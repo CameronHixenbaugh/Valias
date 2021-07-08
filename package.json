@@ -5,26 +5,28 @@
   "main": "index.js",
   "dependencies": {
     "lerna": "^4.0.0",
+    "typescript": "^4.3.5",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.37",
-    "@types/yargs": "^16.0.1"
+    "@types/yargs": "^16.0.1",
+    "ts-node-dev": "^1.1.8"
   },
   "scripts": {
-    "start": "node ./api/src/index.js",
-    "start:worker": "node ./api/src/index.js --worker",
+    "start": "tsnd ./api/src/index.ts",
+    "start:worker": "tsnd ./api/src/index.ts --worker",
     "start:dev": "./scripts/run-local.sh",
     "start:testnet": "./scripts/run-testnet.sh",
     "setup-minter": "./scripts/setup-minter.sh",
     "heroku-postbuild": "./scripts/build-all.sh"
   },
-  "repository": {  
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/onflow/kitty-items.git"
   },
-  "author": "", 
-  "license": "ISC", 
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/onflow/kitty-items/issues"
   },
