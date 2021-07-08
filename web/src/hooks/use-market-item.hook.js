@@ -42,7 +42,7 @@ export function useMarketItem(address, id) {
 
   useEffect(() => {
     fetchMarketItem(...expand(key)).then(setItem)
-  }, [])
+  })
 
   return {
     ...item,
