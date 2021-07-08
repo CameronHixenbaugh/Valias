@@ -19,7 +19,7 @@
     "setup-minter": "./scripts/setup-minter.sh",
     "heroku-postbuild": "./scripts/build-all.sh"
   },
-  "repository": { 
+  "repository": {  
     "type": "git",
     "url": "git+https://github.com/onflow/kitty-items.git"
   },
