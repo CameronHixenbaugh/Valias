@@ -80,7 +80,7 @@ Now that the API is configured, [launch the front-end app](https://github.com/on
 
 ---
 
-## Appendix: API Reference
+## Appendix: API Reference 
 
 ### Setup
 
