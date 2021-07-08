@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsnd ./src/index.ts --respawn --dev",
-    "testnet": "tsnd --respawn ./src/index.ts --dev",
+    "dev": "tsnd ./src/index.js --respawn --dev",
+    "testnet": "tsnd --respawn ./src/index.js --dev",
     "start:worker": "node ./src/index.js --worker",
     "start": "node ./src/index.js",
     "build": "tsc",
