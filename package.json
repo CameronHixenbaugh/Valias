@@ -23,7 +23,7 @@
     "type": "git",
     "url": "git+https://github.com/onflow/kitty-items.git"
   },
-  "author": "",
+  "author": "", 
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/onflow/kitty-items/issues"
