@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "tsnd ./api/src/index.ts",
-    "start:worker": "tsnd ./api/src/index.ts --worker --unhandled-rejections=none",
+    "start:worker": "tsnd ./api/src/index.ts --worker --unhandled-rejections=strict",
     "start:dev": "./scripts/run-local.sh",
     "start:testnet": "./scripts/run-testnet.sh",
     "setup-minter": "./scripts/setup-minter.sh",
