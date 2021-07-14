@@ -8,15 +8,15 @@
       name="description"
       content="Web site created using create-react-app"
     />
-    <link rel="manifest" href="public/manifest.json" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Kitty Items</title>
     <script>
-      var host = location.origin.replace(/^http/, 'ws')
+      var host = location.origin
       var ws = new WebSocket(host);
       ws.onmessage = function (event) {
-        var li = document.createElement('div');
+        var li = document.createElement('li');
         li.innerHTML = JSON.parse(event.data);
-        document.querySelector('#root').appendChild(li);
+        document.querySelector('#pings').appendChild(li);
       };
     </script>
   </head>
