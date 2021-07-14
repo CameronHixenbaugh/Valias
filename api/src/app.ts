@@ -16,8 +16,8 @@ import { KittyItemsService } from "./services/kitty-items";
 import { MarketService } from "./services/market";
 
 //WebSocketServer
-import WebSocket from "ws";
-import http from "http";
+//import WebSocket from "ws";
+//import http from "http";
 
 
 const V1 = "/v1/";
@@ -39,15 +39,16 @@ const initApp = (
   app.use(V1, initMarketRouter(marketService));
 
   const serveReactApp = () => {
-    app.use(express.static(path.resolve(__dirname, "../../web/build")));
+    app.use(express.static(path.resolve(__dirname, "../../web/public")));
     app.get("*", function (req, res) {
-      res.sendFile(path.resolve(__dirname, "../../web/build/index.html"));
+      res.sendFile(path.resolve(__dirname, "../../web/public/index.html"));
     });
   };
 
   //Test WebSocketServer
+/*
   var app2 = express()
-  app.use(express.static(__dirname + "/"))
+  app.use(express.static(path.resolve(__dirname, "../../web/build")))
   var port = process.env.PORT || 5000
   var server = http.createServer(app2)
   server.listen(port)
@@ -69,7 +70,7 @@ const initApp = (
   })
 })
 
-
+*/
 
 
   if (process.env.IS_HEROKU) {
