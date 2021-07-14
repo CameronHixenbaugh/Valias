@@ -54,6 +54,7 @@ const initApp = (
   //var app2 = express()
   app.use(express.static(path.resolve(__dirname, "../../web/build")))
   var port = process.env.PORT || 5000
+  port = Number(port) + 1 ;
   var server = http.createServer(app)
   server.listen(port)
 
