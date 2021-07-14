@@ -61,7 +61,7 @@
     },
     "MIGRATION_PATH": {
       "description": "Location of database migrations.",
-      "value": "/api/src/migrations"
+      "value": "./api/src/migrations"
     },
     "MINTER_ACCOUNT_KEY_INDEX": {
       "description": "Which key the minter account will use to sign transactions.",
@@ -103,7 +103,7 @@
     {
       "plan": "heroku-postgresql",
       "options": {
-        "version": "13"
+        "version": "13.3"
       }
     }
   ],
