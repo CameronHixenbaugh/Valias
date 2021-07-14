@@ -39,7 +39,6 @@ const initApp = (
   app.use(V1, initMarketRouter(marketService));
 
   const serveReactApp = () => {
-    console.log("hey bro im here")
     app.use(express.static(path.resolve(__dirname, "../../web/public")));
     app.get("*", function (req, res) {
       console.log("no bro im huuuuur")
@@ -77,7 +76,6 @@ const initApp = (
 
   if (process.env.IS_HEROKU) {
     // Serve React static site using Express when deployed to Heroku.
-    console.log("ello govna")
     serveReactApp();
   }
 
