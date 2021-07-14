@@ -14,8 +14,8 @@
     "ts-node-dev": "^1.1.8"
   },
   "scripts": {
-    "start": "tsnd ./api/src/index.ts node --trace-warnings",
-    "start:worker": "tsnd ./api/src/index.ts --worker node --trace-warnings",
+    "start": "tsnd ./api/src/index.ts",
+    "start:worker": "tsnd ./api/src/index.ts --worker",
     "start:dev": "./scripts/run-local.sh",
     "start:testnet": "./scripts/run-testnet.sh",
     "setup-minter": "./scripts/setup-minter.sh",

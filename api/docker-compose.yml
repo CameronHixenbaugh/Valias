@@ -1,10 +1,10 @@
-version: "13.3"
+version: "3"
 services:
   db:
     image: postgres
     ports:
-      - ${PORT}:${PORT}
+      - "5432:5432"
     environment:
-      - POSTGRES_DB=d817541ndaf9or
-      - POSTGRES_USER=wgfqyskieaaqgx
-      - POSTGRES_PASSWORD=47015fc8023cbe2e8ab104306f22cac75f5f74d6802f454b401eb28c16bc9a4c
+      - POSTGRES_DB=kittyitems
+      - POSTGRES_USER=kittyuser
+      - POSTGRES_PASSWORD=kittypassword
