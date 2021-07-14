@@ -30,7 +30,7 @@
   "bugs": {
     "url": "https://github.com/onflow/kitty-items/issues"
   },
-  "homepage": "https://vaultv2.herokuapp.com/",
+  "homepage": "https://://vaultv2.herokuapp.com/",
   "engines": {
     "node": "14.x"
   }
