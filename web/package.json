@@ -2,6 +2,7 @@
   "name": "kitty-items-web",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://://vaultv2.herokuapp.com/",
   "dependencies": {
     "@chakra-ui/icons": "^1.0.3",
     "@chakra-ui/react": "^1.1.4",

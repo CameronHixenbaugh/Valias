@@ -2,6 +2,7 @@
   "name": "kitty-items-api",
   "version": "0.0.1",
   "description": "",
+  "homepage": "https://://vaultv2.herokuapp.com/",
   "main": "index.js",
   "scripts": {
     "dev": "tsnd ./src/index.ts --respawn --dev",

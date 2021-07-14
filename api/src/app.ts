@@ -46,7 +46,7 @@ const initApp = (
   }
 
   app.all("*", async (req: Request, res: Response) => {
-    return res.sendStatus(200);
+    return res.sendStatus(404);
   });
 
   return app;
