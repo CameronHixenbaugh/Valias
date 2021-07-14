@@ -1,6 +1,7 @@
 import {atomFamily, selectorFamily, useRecoilState} from "recoil"
 import {fetchAccountItems} from "../flow/script.get-account-items"
 import {IDLE, PROCESSING} from "../global/constants"
+import {p1} from "../parts/create-nft-cluster.comp"
 
 export const $state = atomFamily({
   key: "account-items::state",
@@ -33,7 +34,8 @@ export function useAccountItems(address) {
         body: JSON.stringify({
           recipient: address,
           // Random typeID between 1 - 5
-          typeID: Math.floor(Math.random() * (5 - 1)) + 1,
+          //Math.floor(Math.random() * (5 - 1)) + 1
+          typeID: p1,
         }),
       })
       await fetchAccountItems(address).then(setItems)

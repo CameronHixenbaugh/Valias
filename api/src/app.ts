@@ -16,8 +16,8 @@ import { KittyItemsService } from "./services/kitty-items";
 import { MarketService } from "./services/market";
 
 //WebSocketServer
-import WebSocket from "ws";
-import http from "http";
+//import WebSocket from "ws";
+//import http from "http";
 
 
 const V1 = "/v1/";
@@ -40,8 +40,6 @@ const initApp = (
 
   const serveReactApp = () => {
     app.use(express.static(path.resolve(__dirname, "../../web/build")));
-
-   // app.use('/', express.static("../../web/public"));
 
     app.get("*", function (req, res) {
       res.sendFile(path.resolve(__dirname, "../../web/build/index.html"));

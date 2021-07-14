@@ -1,4 +1,4 @@
-import {Suspense} from "react"
+import React, {Suspense} from "react"
 import {Base} from "../../parts/base.comp"
 import {IDLE} from "../../global/constants"
 import {useAddress} from "../../hooks/use-url-address.hook"
@@ -11,6 +11,8 @@ import AuthCluster from "../../parts/auth-cluster.comp"
 import InitCluster from "../../parts/init-cluster.comp"
 import BalanceCluster from "../../parts/balance-cluster.comp"
 import MarketItemsCluster from "../../parts/market-items-cluster.comp"
+import CreateNFTCluster from "../../parts/create-nft-cluster.comp.js"
+import Navbar from "../../parts/navbar.comp"
 import AccountItemsCluster from "../../parts/account-items-cluster.comp"
 import {
   Alert,
@@ -28,13 +30,12 @@ import {
   TabPanels,
   TabPanel,
   Spinner,
-  Button,
-  HStack,
-  Image,
-} from "@chakra-ui/react"
+  HStack
+} from "@chakra-ui/react" 
 
-import Cookie from "../../svg/cookie.svg"
-import BackPack from "../../svg/backpack.svg"
+//import marketpic from "../../parts/Images/market.jpg"
+//import NFT from "./nft.jpg"
+// from "./../../parts/images/createnft.jpg"
 
 export function MarketItemsCount() {
   let l = 0
@@ -55,15 +56,7 @@ export function StoreItemsCount() {
   return l > 0 ? <Tag ml="1">{l}</Tag> : null
 }
 
-export function MintButton({address}) {
-  const items = useAccountItems(address)
 
-  return (
-    <Button disabled={items.status !== IDLE} onClick={items.mint}>
-      Mint Item
-    </Button>
-  )
-}
 
 export function InfoBanner({address}) {
   const init = useInitialized(address)
@@ -75,12 +68,12 @@ export function InfoBanner({address}) {
       type: "info",
       title: "Initialize Your Account",
       text:
-        "You need to initialize your account before you can receive Kibble.",
+        "You need to initialize your account before you can receive VCoins.",
     },
     noKibble: {
       type: "info",
-      title: "Get Kibble",
-      text: "You need Kibble to buy Kitty Items.",
+      title: "Get VCoins",
+      text: "You need Vcoins to buy NFTs.",
     },
   }
 
@@ -106,18 +99,32 @@ export function InfoBanner({address}) {
   }
 }
 
+
+
 export function Page() {
   const address = useAddress()
-  const [cu] = useCurrentUser()
-  if (address == null) return <div>Not Found</div>
+  const [cu, loggedIn] = useCurrentUser()
+  if (address == null) return <div>Not Found</div> 
+   
 
-  return (
+  return loggedIn ?(
     <Base>
-      <Box p="4">
-        <AuthCluster />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
+        crossOrigin="anonymous"></link>
+
+        <Box borderWidth="10px" borderColor="black" >
+        <AuthCluster/>
+        </Box>
+        <Box borderWidth="10px" borderColor="black">
+          <Navbar />
+        </Box>
+        <Box backgroundImage={'url(https://burst.shopifycdn.com/photos/sunlight-reflects-on-water-texture.jpg?width=4460&height=4460&exif=1&iptc=1)'}
+          backgroundSize={'cover'} backgroundPosition={'center center'} p={50} height={500}>
+        <Center>
         <Flex mb="4">
           <Center>
-            <Text mr="4" fontSize="2xl" color="purple.500">
+            <Text mr="4" fontSize="2xl" color="black" backgroundColor="#A0AEC0">
               Account:{" "}
               <Text display="inline" color="black" fontWeight="bold">
                 {address}
@@ -126,36 +133,38 @@ export function Page() {
           </Center>
           {address === cu.addr && (
             <Center>
-              <Badge ml="4" variant="outline" colorScheme="orange">
+              <Badge ml="4" variant="solid" colorScheme="red">
                 You
               </Badge>
             </Center>
           )}
         </Flex>
-        <Suspense fallback={null}>
+        <Suspense fallback={null} >
           <InfoBanner address={address} />
         </Suspense>
+        </Center>
+        <Center>
         <Flex>
-          <Box>
+          <Box backgroundColor="#A0AEC0">
             <InitCluster address={address} />
           </Box>
-          <Box ml="4">
+          <Box ml="4" backgroundColor="#A0AEC0">
             <BalanceCluster address={address} />
           </Box>
-          {cu.addr === address && (
-            <Box ml="4">
-              <Suspense fallback={null}>
-                <MintButton address={address} />
-              </Suspense>
-            </Box>
-          )}
+
         </Flex>
-        <Tabs colorScheme="pink" defaultIndex={0}>
-          <TabList>
+        </Center>
+        </Box>
+        
+        <Box backgroundImage={'url(https://burst.shopifycdn.com/photos/ripples-of-sand-in-black-and-white.jpg?width=4460&height=4460&exif=1&iptc=1)'}
+    backgroundSize={'cover'} backgroundPosition={'center center'} p={5} style={{color:"white"}}>
+        <Tabs colorScheme="blue" defaultIndex={0}>
+          <Center>
+          <TabList backgroundColor="black" style={{color:"white"}}>
             <Tab fontSize="2xl">
               <HStack>
-                <Image src={BackPack} />
-                <Box>{cu.addr === address ? "My" : "User"} Items</Box>
+                {/*<Image src={NFT} alt="nftToken" style={{width: 50, height: 50}}/>*/}
+                <Box>{cu.addr === address ? "My" : "User"} NFTs</Box>
               </HStack>
               <Suspense fallback={null}>
                 <AccountItemsCount address={address} />
@@ -163,25 +172,78 @@ export function Page() {
             </Tab>
             <Tab fontSize="2xl">
               <HStack>
-                <Image src={Cookie} />
-                <Box>Items Marketplace</Box>
+                {/*<Image src={marketpic} alt="Marketplace" style={{width: 50, height: 50}}/>*/}
+                <Box>NFT Market</Box>
               </HStack>
               <Suspense fallback={null}>
                 <MarketItemsCount />
               </Suspense>
             </Tab>
+            <Tab fontSize="2xl">
+              <HStack>
+                {/*<Image src={create} alt="createnft" style={{width: 60, height: 50}}/>*/}
+                <Box>Create NFT</Box>
+              </HStack>
+            </Tab>
           </TabList>
+          </Center>
 
-          <TabPanels>
+          <TabPanels backgroundColor="black">
             <TabPanel>
               <AccountItemsCluster address={address} />
             </TabPanel>
-            <TabPanel>
+            <TabPanel >
               <MarketItemsCluster />
+            </TabPanel>
+            <TabPanel>
+            <Suspense fallback={null}>
+              <CreateNFTCluster address={address} />
+            </Suspense>
             </TabPanel>
           </TabPanels>
         </Tabs>
       </Box>
     </Base>
+
+
+  ):(
+
+    
+    <Base>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
+        crossOrigin="anonymous"></link>
+
+        <Box borderWidth="10px" borderColor="black" >
+        <AuthCluster/>
+        </Box>
+        <Box borderWidth="10px" borderColor="black">
+          <Navbar />
+        </Box>
+        <Box borderWidth="10px" borderColor="#2D3748">
+          
+        </Box>
+        <Box backgroundImage={'url(https://burst.shopifycdn.com/photos/ripples-of-sand-in-black-and-white.jpg?width=4460&height=4460&exif=1&iptc=1)'}
+          backgroundSize={'cover'} backgroundPosition={'center center'} p={5}>
+      <Center>
+        <HStack>
+                
+                <Box fontSize="6xl" color="white" backgroundColor="black" p={25}>
+                  What's For Sale in The Vault?
+                </Box>
+              </HStack>
+              <Suspense fallback={null}>
+                <MarketItemsCount />
+              </Suspense>
+              </Center>
+              <br/>
+              <Center>
+              <Box fontSize="4xl" color="white" backgroundColor="black" maxW="lg">
+              <MarketItemsCluster />
+              </Box>
+        </Center>
+        </Box>
+    </Base>
   )
 }
+

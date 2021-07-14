@@ -1,8 +1,10 @@
-import React, {useEffect, useState, Suspense} from "react"
+import React, { useEffect, useState, Suspense} from "react"
 import {useAccountItem} from "../hooks/use-account-item.hook"
 import {useMarketItem} from "../hooks/use-market-item.hook"
 import {useCurrentUser} from "../hooks/use-current-user.hook"
 import {IDLE} from "../global/constants"
+import {p1, p2} from './UserSetPrice'
+import PriceModal from './PriceModal.js'
 import {
   Tr,
   Td,
@@ -15,8 +17,8 @@ import {
   HStack,
 } from "@chakra-ui/react"
 
+
 export const ItemImage = ({typeID}) => {
-  // Lazy load SVG images for the kitty items.
   let [item, setItemImage] = useState("")
 
   useEffect(() => {
@@ -30,8 +32,21 @@ export const ItemImage = ({typeID}) => {
   return <Image maxW="64px" src={item} />
 }
 
-export function AccountItemCluster({address, id}) {
-  const item = useAccountItem(address, id)
+
+var seller
+
+export function Clicky(){
+    if(p1 == null){
+      seller.sell(p2)
+    } if(p2 == null){
+      seller.sell(p1)
+    }
+  };
+
+
+
+export function AccountItemCluster( {address, id}) {
+  var item = useAccountItem(address, id)
   const listing = useMarketItem(address, id)
   const [cu] = useCurrentUser()
 
@@ -39,6 +54,8 @@ export function AccountItemCluster({address, id}) {
 
   if (address == null) return null
   if (id == null) return null
+
+  seller = item
 
   return (
     <Tr>
@@ -49,24 +66,24 @@ export function AccountItemCluster({address, id}) {
       </Td>
       <Td>({item.typeID})</Td>
       <Td>
+        <Text>Sample</Text>
+      </Td>
+      <Td>
+        <Text>Sample NFT</Text>
+      </Td>
+      <Td>
         <ItemImage typeID={item.typeID} />
       </Td>
       {cu.addr === address && (
         <>
           {!item.forSale ? (
             <Td isNumeric>
-              <Button
-                colorScheme="blue"
-                size="sm"
-                disabled={BUSY}
-                onClick={() => item.sell("10.0")}
-              >
-                <HStack>
-                  {BUSY && <Spinner mr="2" size="xs" />}{" "}
-                  <Text>List for 10 KIBBLE</Text>
-                </HStack>
-              </Button>
+              
+              <PriceModal />
+
             </Td>
+            
+
           ) : (
             <Td isNumeric>
               <Button
@@ -86,7 +103,6 @@ export function AccountItemCluster({address, id}) {
     </Tr>
   )
 }
-
 export default function WrappedAccountItemCluster(props) {
   return (
     <Suspense
@@ -110,3 +126,5 @@ export default function WrappedAccountItemCluster(props) {
     </Suspense>
   )
 }
+
+

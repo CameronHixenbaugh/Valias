@@ -20,6 +20,8 @@ export function MarketItemsCluster() {
           <Tr>
             <Th>Id</Th>
             <Th>Type</Th>
+            <Th>Name</Th>
+            <Th>Description</Th>
             <Th>Image</Th>
             <Th>Price</Th>
           </Tr>
@@ -29,6 +31,8 @@ export function MarketItemsCluster() {
             <Item
               key={item.itemID}
               id={item.itemID}
+              //name={}
+              //Description={}
               address={item.owner}
               status={status}
             />

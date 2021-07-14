@@ -33,7 +33,7 @@ export default function WrappedKibblesBalanceCluster({address}) {
     <Suspense
       fallback={
         <Bar>
-          <Loading label="Fetching Kibbles Balance" />
+          <Loading label="Fetching VCoin Balance" />
         </Bar>
       }
     >
