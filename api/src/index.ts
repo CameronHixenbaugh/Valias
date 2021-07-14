@@ -100,7 +100,6 @@ async function run() {
 
   if (LOCAL) {
     // If we're in dev, run everything in one process.
-    console.log("Both")
     startWorker();
     startAPIServer();
     return;
@@ -113,11 +112,9 @@ async function run() {
 
     // Start the worker only if worker is passed as command flag.
     // See above notes for why.
-    console.log("worker only")
     startWorker();
   } else {
     // Default when not in dev: start the API server.
-    console.log("API only")
     startAPIServer();
   }
 }
