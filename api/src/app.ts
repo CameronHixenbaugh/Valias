@@ -39,13 +39,13 @@ const initApp = (
   app.use(V1, initMarketRouter(marketService));
 
   const serveReactApp = () => {
-    app.use(express.static(path.join(__dirname, "../../web/public")));
+    app.use(express.static(path.resolve(__dirname, "../../web/public")));
 
     //app.use('/', express.static(""));
 
     app.get("*", function (req, res) {
       console.log("no bro im huuuuur")
-      res.sendFile(path.join(__dirname + "../../web/public/index.html"));
+      res.sendFile(path.resolve(__dirname, "../../web/public/index.html"));
     });
   };
 
