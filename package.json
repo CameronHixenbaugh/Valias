@@ -23,14 +23,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/onflow/kitty-items.git"
+    "url": "https://git.heroku.com/vaultv2.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/onflow/kitty-items/issues"
   },
-  "homepage": "https://github.com/onflow/kitty-items#readme",
+  "homepage": "https://vaultv2.herokuapp.com/",
   "engines": {
     "node": "14.x"
   }
