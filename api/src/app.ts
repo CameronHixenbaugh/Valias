@@ -40,6 +40,7 @@ const initApp = (
 
   const serveReactApp = () => {
     app.use(express.static(path.resolve(__dirname, "../../web/public")));
+    console.log("hey bro im here")
     app.get("*", function (req, res) {
       res.sendFile(path.resolve(__dirname, "../../web/public/index.html"));
     });
