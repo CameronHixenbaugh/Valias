@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsnd ./src/index.ts --respawn --dev",
     "testnet": "tsnd --respawn ./src/index.ts --dev",
-    "start:worker": "tsnd ./src/index.ts --worker --unhandled-rejections=strict",
+    "start:worker": "tsnd ./src/index.ts --worker",
     "start": "tsnd ./src/index.ts",
     "build": "tsc",
     "format": "prettier \"src/**/*.ts\" \"test/**/*.ts\"",

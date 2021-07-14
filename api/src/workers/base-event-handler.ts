@@ -100,7 +100,7 @@ abstract class BaseEventHandler {
       `fromBlock=${fromBlock} toBlock=${toBlock} latestBlock=${toBlock}`
     );
 
-    return Object.assign({}, { fromBlock, toBlock });
+    return await Object.assign({}, { fromBlock, toBlock });
   }
 }
 
