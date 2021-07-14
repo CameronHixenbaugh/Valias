@@ -77,8 +77,8 @@ const initApp = (
 
   if (process.env.IS_HEROKU) {
     // Serve React static site using Express when deployed to Heroku.
-    serveReactApp();
     console.log("ello govna")
+    serveReactApp();
   }
 
   app.all("*", async (req: Request, res: Response) => {
