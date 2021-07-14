@@ -1,3 +1,2 @@
 
-web: npm run start
-worker: npm run start:testnet 
+web: npm run start:testnet
