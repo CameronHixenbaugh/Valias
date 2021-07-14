@@ -26,7 +26,7 @@ const initApp = (
   const app = express();
 
   // @ts-ignore
-  app.use(cors());
+  app.use(cors({origin:['https://vaultv2.herokuapp.com/']}));
   app.use(json());
   app.use(urlencoded({ extended: false }));
   app.use(V1, initKibblesRouter(kibblesService));
