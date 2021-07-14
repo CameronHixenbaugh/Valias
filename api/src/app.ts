@@ -41,7 +41,7 @@ const initApp = (
   const serveReactApp = () => {
     app.use(express.static(path.resolve(__dirname, "../../web/public")));
 
-    //app.use('/', express.static(""));
+    app.use('/', express.static("../../web/public"));
 
     app.get("*", function (req, res) {
       console.log("no bro im huuuuur")
