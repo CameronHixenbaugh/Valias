@@ -48,7 +48,7 @@ abstract class BaseEventHandler {
             blockCursor,
             startingBlockHeight
           ));
-        } catch (e) {
+        } catch (e) { 
           console.warn("Error retrieving block range:", e);
         }
 
