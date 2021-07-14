@@ -4,3 +4,4 @@
 
 npx lerna exec npm install --ignore=fcl-dev-wallet 
 npx lerna exec npm run build --ignore=fcl-dev-wallet 
+ 
