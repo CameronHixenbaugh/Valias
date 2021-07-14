@@ -38,17 +38,17 @@ const initApp = (
   app.use(V1, initKittyItemsRouter(kittyItemsService));
   app.use(V1, initMarketRouter(marketService));
 
-  //const serveReactApp = () => {
-    app.use(express.static(path.resolve(__dirname, "../../web/public")));
+  const serveReactApp = () => {
+    app.use(express.static(path.resolve(__dirname, "../../web/build")));
 
    // app.use('/', express.static("../../web/public"));
 
     app.get("*", function (req, res) {
-      res.sendFile(path.resolve(__dirname, "../../web/public/index.html"));
+      res.sendFile(path.resolve(__dirname, "../../web/build/index.html"));
     });
-  //};
+  };
 
-  //Test WebSocketServer
+  //WebSocketServer
 /*
   var app2 = express()
   app.use(express.static(path.resolve(__dirname, "../../web/build")))
@@ -76,12 +76,12 @@ const initApp = (
 */
 
 
-/*
+
   if (process.env.IS_HEROKU) {
     // Serve React static site using Express when deployed to Heroku.
     serveReactApp();
   }
-*/
+
   app.all("*", async (req: Request, res: Response) => {
     return res.sendStatus(404);
   });
