@@ -15,6 +15,11 @@ import { KibblesService } from "./services/kibbles";
 import { KittyItemsService } from "./services/kitty-items";
 import { MarketService } from "./services/market";
 
+//WebSocketServer
+import WebSocket from "ws";
+import http from "http";
+
+
 const V1 = "/v1/";
 
 // Init all routes, setup middlewares and dependencies
@@ -39,6 +44,33 @@ const initApp = (
       res.sendFile(path.resolve(__dirname, "../../web/build/index.html"));
     });
   };
+
+  //Test WebSocketServer
+  var app2 = express()
+  app.use(express.static(__dirname + "/"))
+  var port = process.env.PORT || 5000
+  var server = http.createServer(app2)
+  server.listen(port)
+
+  console.log("http server listening on %d", port)
+  var wss = new WebSocket.Server({server: server})
+  console.log("websocket server created")
+
+  wss.on("connection", function(ws) {
+    var id = setInterval(function() {
+      ws.send(JSON.stringify(new Date()), function() {  })
+    }, 1000)
+
+  console.log("websocket connection open")
+
+  ws.on("close", function() {
+    console.log("websocket connection close")
+    clearInterval(id)
+  })
+})
+
+
+
 
   if (process.env.IS_HEROKU) {
     // Serve React static site using Express when deployed to Heroku.
