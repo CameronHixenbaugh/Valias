@@ -61,7 +61,7 @@
     },
     "MIGRATION_PATH": {
       "description": "Location of database migrations.",
-      "value": "api/dist/migrations"
+      "value": "./api/src/migrations"
     },
     "MINTER_ACCOUNT_KEY_INDEX": {
       "description": "Which key the minter account will use to sign transactions.",
