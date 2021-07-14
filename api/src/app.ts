@@ -37,21 +37,20 @@ const initApp = (
   app.use(V1, initKibblesRouter(kibblesService));
   app.use(V1, initKittyItemsRouter(kittyItemsService));
   app.use(V1, initMarketRouter(marketService));
-/*
-  const serveReactApp = () => {
+
+  //const serveReactApp = () => {
     app.use(express.static(path.resolve(__dirname, "../../web/public")));
 
-    app.use('/', express.static("../../web/public"));
+   // app.use('/', express.static("../../web/public"));
 
     app.get("*", function (req, res) {
-      console.log("no bro im huuuuur")
       res.sendFile(path.resolve(__dirname, "../../web/public/index.html"));
     });
-  };
-*/
-  //Test WebSocketServer
+  //};
 
-  //var app2 = express()
+  //Test WebSocketServer
+/*
+  var app2 = express()
   app.use(express.static(path.resolve(__dirname, "../../web/build")))
   var port = process.env.PORT || 5000
   port = Number(port) + 1 ;
@@ -74,7 +73,7 @@ const initApp = (
     clearInterval(id)
   })
 })
-
+*/
 
 
 /*
