@@ -34,6 +34,10 @@ export function getConfig(env) {
   const databaseMigrationPath =
     process.env.MIGRATION_PATH || defaultMigrationPath;
 
+  const pinataApiKey = env.PINATA_API_KEY
+
+  const pinataSecretApiKey = env.PINATA_SECRET_API_KEY
+
   return {
     port,
     accessApi,
@@ -44,5 +48,7 @@ export function getConfig(env) {
     nonFungibleTokenAddress,
     databaseUrl,
     databaseMigrationPath,
+    pinataApiKey,
+    pinataSecretApiKey
   };
 }
