@@ -76,6 +76,7 @@ export function UserSetPrice() {
             Price : ${price1}
           `)
           p1=parseInt(`${price1}`)
+          p1=p1.toFixed(2)
           Clicky();
         }
         if(price2!==null && length!=='' && showHide2===true && price3===null){
@@ -85,6 +86,7 @@ export function UserSetPrice() {
             Auction Length : ${length}
           `)
           p2=parseInt(`${price2}`)
+          p2=p2.toFixed(2)
           lengt=parseInt(`${length}`)
           Clicky();
         }
