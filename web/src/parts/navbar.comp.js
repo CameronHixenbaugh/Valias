@@ -15,10 +15,9 @@ import {
   CloseButton,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
-//import Vault from "./../parts/images/vault.jpg";
 
 export default function Navbar() {
-  const bg = useColorModeValue("#A0AEC0");
+  const bg = useColorModeValue("black");
   const mobileNav = useDisclosure();
   const [user] = useCurrentUser()
 
@@ -31,19 +30,18 @@ export default function Navbar() {
         py={4}
         shadow="md"
       >
-        <Flex position="s" justifyContent="space-between" mx="auto">
+        <Flex position="s" justifyContent="space-between" mx="auto" borderColor="#BEE3F8" borderWidth="3px">
           <Flex align="center">
             <chakra.a
               href="/" 
-              title="Choc Home Page"
+              title="Home Page"
               display="flex"
               alignItems="center"
             >
-              <VisuallyHidden>Choc</VisuallyHidden>
+              <VisuallyHidden>Valias</VisuallyHidden>
             </chakra.a>
-            {/*<img className="img-fluid rounded-circle" alt="vaultDoor" src={Vault} style={{width: 60, height: 50}} />*/}
-            <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
-              The Vault
+            <chakra.h1 fontSize="xl" color="white" fontWeight="medium" ml="2">
+              Menu
             </chakra.h1>
           </Flex>
           <HStack display="flex" alignItems="center" spacing={1}>
@@ -53,32 +51,29 @@ export default function Navbar() {
               color="brand.500"
               display={{ base: "none", md: "inline-flex" }}
             >
-              <Button variant="ghost"><NavLink to={"/" + user.addr} style={{color:"black"}}>Home</NavLink></Button>
-              <Button variant="ghost">My NFTs</Button>
-              <Button variant="ghost"><NavLink to={"/"+user.addr+"/create"} style={{color:"black"}}>Create NFT</NavLink></Button>
-              <Button variant="ghost">Marketplace</Button>
-              <Button variant="ghost"><NavLink to={"/"+user.addr+"/about"} style={{color:"black"}}>About Us</NavLink></Button>
+              <Button variant="ghost"><NavLink to={"/" + user.addr} style={{color:"white"}}>Home</NavLink></Button>
+              <Button variant="ghost" style={{color:"white"}}>My NFTs</Button>
+              <Button variant="ghost"><NavLink to={"/"+user.addr+"/create"} style={{color:"white"}}>Create NFT</NavLink></Button>
+              <Button variant="ghost" style={{color:"white"}}>Marketplace</Button>
+              <Button variant="ghost"><NavLink to={"/"+user.addr+"/about"} style={{color:"white"}}>About Us</NavLink></Button>
             </HStack>
-            <Button colorScheme="brand" size="sm">
-              Get Started
-            </Button>
-            <Box display={{ base: "inline-flex", md: "none" }}>
+            <Box display={{ base: "inline-block", md: "none" }}>
               <IconButton
-                display={{ base: "flex", md: "none" }}
+                display={{ base: "block", md: "block" }}
                 aria-label="Open menu"
                 fontSize="20px"
-                color={useColorModeValue("gray.800", "inherit")}
+                color={useColorModeValue("white", "black")}
                 variant="ghost"
                 icon={<HamburgerIcon />}
                 onClick={mobileNav.onOpen}
               />
-
+              
               <VStack
                 pos="absolute"
-                top={0}
+                top={381}
                 left={0}
                 right={0}
-                display={mobileNav.isOpen ? "flex" : "none"}
+                display={mobileNav.isOpen ? "block" : "none"}
                 flexDirection="column"
                 p={2}
                 pb={4}
@@ -87,6 +82,8 @@ export default function Navbar() {
                 spacing={3}
                 rounded="sm"
                 shadow="sm"
+                color="white"
+                zIndex="100"
               >
                 <CloseButton
                   aria-label="Close menu"

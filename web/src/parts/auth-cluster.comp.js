@@ -49,15 +49,8 @@ export function AuthCluster() {
       </div>
       </div>
     </Box>
-  ) : (
-    <Box id="vid">
-        <div className="overlay"></div>
-          <video playsInline="playsInline" autoPlay="autoPlay" muted="muted" loop="loop">
-            <source src={rain} type='video/mp4' />
-          </video>
-          <div className="container h-100">
-    <div className="d-flex h-100 text-center align-items-center">
-      <div className="w-100 text-white">
+  ) : ( 
+    <Box backgroundColor="black">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
         crossOrigin="anonymous"></link>

@@ -1,7 +1,16 @@
 import {atomFamily, selectorFamily, useRecoilState} from "recoil"
 import {fetchAccountItems} from "../flow/script.get-account-items"
 import {IDLE, PROCESSING} from "../global/constants"
-import {p1} from "../parts/create-nft-cluster.comp"
+//import {p1} from "../parts/create-nft-cluster.comp"
+
+
+ 
+//create dictionary for ipfs hash and item id
+/*
+export function CidDict(cid){
+
+}
+*/
 
 export const $state = atomFamily({
   key: "account-items::state",

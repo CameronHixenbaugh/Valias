@@ -14,6 +14,123 @@ import initMarketRouter from "./routes/market";
 import { KibblesService } from "./services/kibbles";
 import { KittyItemsService } from "./services/kitty-items";
 import { MarketService } from "./services/market";
+import { getConfig } from "./config";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
+
+const argv = yargs(hideBin(process.argv)).argv;
+const LOCAL = argv.dev;
+
+let envVars;
+
+if (LOCAL) {
+  const env = require("dotenv");
+  const expandEnv = require("dotenv-expand");
+
+  const config = env.config({
+    path: ".env.local",
+  });
+
+  expandEnv(config);
+  envVars = config.parsed;
+} 
+
+
+//IPFS file upload
+const app = express();
+import multer from 'multer';
+app.use(cors());
+import fs from 'fs'; 
+import pinataSDK from '@pinata/sdk';
+
+ 
+const config = getConfig(envVars) 
+var pinataKey = config.pinataApiKey;
+var pinataSecretKey = config.pinataSecretApiKey;
+
+
+//Pinata API Keys
+const pinata = pinataSDK( pinataKey, 
+  pinataSecretKey);
+
+var pinName
+
+//Delete uploaded file from local directory
+function DeleteFile( delFile){
+  
+  let resultHandler = function (err) {
+    if (err) {
+        console.log("unlink failed", err);
+    } else {
+        console.log("file deleted");
+    }
+}
+
+fs.unlink(delFile, resultHandler);  
+};
+
+//Pin file to IPFS
+var ipfsCid;
+
+
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.resolve('src/tmpIpfs'))
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname )
+      pinName = file.originalname;
+    }
+  })
+  
+  var upload = multer({ storage: storage }).array('file')
+  
+app.get('/',function(req,res){
+    return res.send('Hello Server')
+})
+
+app.post('/upload',function(req, res) {
+    
+    upload(req, res, function (err) {
+        
+        if (err instanceof multer.MulterError) {
+            return res.status(500).json(err)
+          // A Multer error occurred when uploading.
+        } else if (err) {
+            return res.status(500).json(err)
+          // An unknown error occurred when uploading.
+        } 
+        IPFSFile(pinName) 
+        function IPFSFile(Filex){
+          var fileString = path.resolve('src/tmpIpfs')+ '/' + Filex
+          const readableStreamForFile = fs.createReadStream(fileString);
+        
+          pinata.pinFileToIPFS(readableStreamForFile).then((result) => {
+            //handle results here
+            DeleteFile(fileString)
+            ipfsCid = result.IpfsHash
+            return res.status(200).send(ipfsCid)
+        
+        }).catch((err) => {
+            //handle error here
+            console.log(err);
+        });
+        }
+
+        
+        // Everything went fine.
+      })
+});
+
+app.listen(8000, function() {
+    console.log('App running on port 8000');
+});
+
+
+
+
+
 
 //WebSocketServer
 //import WebSocket from "ws";

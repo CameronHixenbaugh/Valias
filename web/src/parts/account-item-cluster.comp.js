@@ -31,7 +31,7 @@ export const ItemImage = ({typeID}) => {
 
   return <Image maxW="64px" src={item} />
 }
-
+ 
 
 var seller
 

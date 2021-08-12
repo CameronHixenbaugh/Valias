@@ -6,13 +6,41 @@ import {IDLE} from "../global/constants"
 import {useAddress} from "../hooks/use-url-address.hook"
 import {useCurrentUser} from "../hooks/use-current-user.hook.js"
 import { Int } from "@onflow/types"
+import IpfsUpload from './ipfsUpload.comp'
 
+import pinataSDK from '@pinata/sdk';
+import {hash} from './ipfsUpload.comp'
 
-var p1 = 0
+const pKey = process.env.REACT_APP_PINATA_API_KEY;
+const pSKey = process.env.REACT_APP_PINATA_SECRET_API_KEY;
+const pinata = pinataSDK( pKey, pSKey);
 
+var name;
+var des;
+var price;
+var auction;
+var p3;
 
+function IpfsMetadata(cid){
+  const metadata = {
+      name: String(name),
+      keyvalues: {
+          Description: String(des),
+          Price: String(price),
+          AuctionLength: String(auction),
+          ImmediatePrice : String(p3) 
+      }
+  };
+  pinata.hashMetadata(cid, metadata).then((result) => {
+      //handle results here
+      console.log(result);
+  }).catch((err) => {
+      //handle error here
+      console.log(err);
+  });
+}
 
-export default function CreateNFTCluster (){ 
+export default function CreateNFTCluster(){ 
     
   
     const [title1, setTitle1] = useState('');
@@ -23,6 +51,7 @@ export default function CreateNFTCluster (){
     const [length, setLength] = useState('');
     const [showHide1, setShowHide1] = useState(false);
     const [showHide2, setShowHide2] = useState(false);
+    const [showHide3, setShowHide3] = useState(false);
     const [state, setState] = useState({
       title1: '',
       description: '',
@@ -37,15 +66,16 @@ export default function CreateNFTCluster (){
     const items = useAccountItems(address)
     if (address == null) return <div>Not Found</div> 
 
+    
   
   // Form submitting logic, prevent default page refresh 
   const handleSubmit = (event) =>{
     event.preventDefault();
-    
-    p1=parseInt(`${price1}`)
+
 
     if(cu.addr === address){
-      items.mint()
+      console.log("good")
+      //items.mint()
     }else{
       alert(`Must be logged on to your account`)
     }
@@ -58,6 +88,11 @@ export default function CreateNFTCluster (){
     if(description===''){
       alert(`
         You must enter a Description for the NFT.
+      `)
+    }
+    if(price1===null && showHide1===false && showHide2===false){
+      alert(`
+        You must enter a Price for the NFT.
       `)
     }
     if(price1===null && showHide1===true){
@@ -82,6 +117,12 @@ export default function CreateNFTCluster (){
         Description : ${description}
         Price : ${price1}
       `)
+      name = title1
+      des = description
+      price = price1
+      IpfsMetadata(hash)
+      console.log('int of hash is: ' + parseInt(hash))
+      items.mint()
     }
     if(title1!=='' && description!=='' && price2!=='' && length!=='' && showHide2===true && price3===''){
       alert(`
@@ -91,6 +132,11 @@ export default function CreateNFTCluster (){
         Starting Bid : ${price2}
         Auction Length : ${length}
       `)
+      name = title1
+      des = description
+      price = price2
+      auction = length
+      IpfsMetadata(hash)
     }
     else if(title1!=='' && description!=='' && price2!=='' && length!=='' && showHide2===true && price3!==''){
       alert(`
@@ -101,6 +147,12 @@ export default function CreateNFTCluster (){
         Immediate Buy Price : ${price3}
         Auction Length : ${length}
       `)
+      name = title1
+      des = description
+      price = price2
+      p3 = price3
+      auction = length
+      IpfsMetadata(hash)
     }
   }
 
@@ -202,6 +254,11 @@ const handleLenChange = (event) => {
   
 }
 
+const handleShow3= (childData) => {
+  var sh3 = ({showHide3: childData})
+  setShowHide3(sh3)
+}
+
   // Return a controlled form i.e. values of the 
   // input field not stored in DOM values are exist 
   // in react component itself as state
@@ -212,6 +269,7 @@ const handleLenChange = (event) => {
           <label htmlFor='title1'>Name: 
           <br />
           <input
+            style={{color:"black"}}
             name="title1"
             value={state.title1}
             placeholder='Name'
@@ -224,6 +282,7 @@ const handleLenChange = (event) => {
           <label htmlFor='description'>What is this NFT?
           <br />
           <input
+            style={{color:"black"}}
             name='description'
             value={state.description}
             placeholder='Description'
@@ -244,6 +303,7 @@ const handleLenChange = (event) => {
           <label htmlFor='price1'>
           <Center>
            <input
+              style={{color:"black"}}
               name='price1' 
               type="number"
               value={state.price1}
@@ -281,7 +341,7 @@ const handleLenChange = (event) => {
             </div>
             <div class='form-check form-check-inline'>
             <label> 
-            <input
+            <input 
               name="length"
               type="radio"
               id="Check2"
@@ -307,6 +367,7 @@ const handleLenChange = (event) => {
             <label>
             Starting Bid Price: 
           <input
+            style={{color:"black"}}
             name='price2' 
             value={state.price2}
             placeholder='10.00'
@@ -318,6 +379,7 @@ const handleLenChange = (event) => {
             <Center>
             Immediate Buying Price: 
           <input
+            style={{color:"black"}}
             name='price3' 
             value={state.price3}
             placeholder='10.00 (Optional)'
@@ -334,11 +396,17 @@ const handleLenChange = (event) => {
         <br />
         
         <Center>
+          <IpfsUpload parentCallback = {handleShow3}/>
+        </Center>
 
-          <Button type="submit" disabled={items.status !== IDLE} style={{color:"Black"}}>
-            Create My NFT
-          </Button>
+        <br />
 
+        <Center>
+          {showHide3 &&
+            <Button type="submit" disabled={items.status !== IDLE} style={{color:"black"}}>
+              Create My NFT
+            </Button>
+          }
         </Center>
 
       </form>
@@ -346,10 +414,9 @@ const handleLenChange = (event) => {
     )
 }
 
+//export default CreateNFTCluster;  
 
-//export default CreateNFTCluster;
+//UserMeta(name, des, p1)
 
-
-
-export {p1};
+//export {name, des, p1};
 

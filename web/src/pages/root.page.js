@@ -13,8 +13,9 @@ import Navbar from "../parts/navbar.comp"
 import {
   Box,
   Center,
-  HStack
-} from "@chakra-ui/react"
+  Text,
+  VStack
+} from "@chakra-ui/react" 
 
 //var slider
 //var toggle
