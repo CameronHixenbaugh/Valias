@@ -85,10 +85,10 @@ var storage = multer.diskStorage({
   })
   
   var upload = multer({ storage: storage }).array('file')
-  
+/*  
 app.get('/',function(req,res){
     return res.send('Hello Server')
-})
+})*/
 
 app.post('/upload',function(req, res) {
     
