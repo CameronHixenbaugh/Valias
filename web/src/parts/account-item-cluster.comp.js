@@ -23,7 +23,7 @@ export const ItemImage = ({typeID}) => {
 
   useEffect(() => {
     async function getImage() {
-      let importedIcon = await import(`../svg/Items/item0${typeID}.svg`)
+      let importedIcon = await import(`./images/vault.jpg`)  //`../svg/Items/item0${typeID}.svg`)
       setItemImage(importedIcon.default)
     }
     if (typeID) getImage()
@@ -31,7 +31,7 @@ export const ItemImage = ({typeID}) => {
 
   return <Image maxW="64px" src={item} />
 }
- 
+
 
 var seller
 
@@ -64,12 +64,14 @@ export function AccountItemCluster( {address, id}) {
           <Text as={item.forSale && "del"}>#{item.itemID}</Text>
         </Flex>
       </Td>
-      <Td>({item.typeID})</Td>
       <Td>
         <Text>Sample</Text>
       </Td>
       <Td>
         <Text>Sample NFT</Text>
+      </Td>
+      <Td>
+        <Text>20</Text>
       </Td>
       <Td>
         <ItemImage typeID={item.typeID} />

@@ -98,7 +98,7 @@ export function InfoBanner({address}) {
       return null
   }
 }
- 
+
 
 
 export function Page() {
@@ -207,42 +207,34 @@ export function Page() {
 
 
   ):(
-
-    
     <Base>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
         crossOrigin="anonymous"></link>
-
-        <Box borderWidth="10px" borderColor="black" >
+      <Box borderWidth="10px" borderColor="black" >
         <AuthCluster/>
-        </Box>
-        <Box borderWidth="10px" borderColor="black">
-          <Navbar />
-        </Box>
-        <Box borderWidth="10px" borderColor="#2D3748">
-          
-        </Box>
-        <Box backgroundImage={'url(https://burst.shopifycdn.com/photos/ripples-of-sand-in-black-and-white.jpg?width=4460&height=4460&exif=1&iptc=1)'}
-          backgroundSize={'cover'} backgroundPosition={'center center'} p={5}>
-      <Center>
-        <HStack>
-                
-                <Box fontSize="6xl" color="white" backgroundColor="black" p={25}>
-                  What's For Sale in The Vault?
-                </Box>
-              </HStack>
-              <Suspense fallback={null}>
-                <MarketItemsCount />
-              </Suspense>
-              </Center>
-              <br/>
-              <Center>
-              <Box fontSize="4xl" color="white" backgroundColor="black" maxW="lg">
-              <MarketItemsCluster />
-              </Box>
+      </Box>
+      <Box borderWidth="10px" borderColor="black">
+        <Navbar />
+      </Box>
+      <Box backgroundColor="black">
+        <Center>
+          <HStack>   
+            <Box fontSize="6xl" color="white" backgroundColor="black">
+              What's For Sale in The Vault??
+            </Box>
+          </HStack>
+          <Suspense fallback={null}>
+            <MarketItemsCount />
+          </Suspense>
         </Center>
-        </Box>
+        <br/>
+        <Center>
+          <Box fontSize="4xl" color="white" backgroundColor="black" maxW="lg">
+            <MarketItemsCluster />
+          </Box>
+        </Center>
+      </Box>
     </Base>
   )
 }

@@ -5,13 +5,15 @@ import './../pages/vid.css';
 import {
   Box,
   Button,
-  Spacer,
+  Center,
+  HStack,
   Link,
-  Center
+  Spacer
 } from "@chakra-ui/react"
 
 import Vault from "./images/vault.jpg"
 import rain from "./images/rain.mp4"
+import logo from "./images/ValiasLogo.svg"
 
 export function AuthCluster() {
   const [user, loggedIn, {signUp, logIn, logOut}] = useCurrentUser()
@@ -49,32 +51,70 @@ export function AuthCluster() {
       </div>
       </div>
     </Box>
-  ) : ( 
+  ) : (
     <Box backgroundColor="black">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
-        crossOrigin="anonymous"></link>
+        crossOrigin="anonymous" />
+      <link href="https://fonts.googleapis.com/css?family=Sora&display=swap" rel="stylesheet" />
       <div className="jumbotron-fluid" id="bg">
-        <Center className="container-fluid" >
-          <img className="img-fluid rounded-circle" alt="vaultDoor" src={Vault} style={{width: 285, height: 250}}/>
-        </Center>
+        <div className="container-fluid" >
+          <Box >
+            <HStack>
+              <img className="img-fluid" alt="ValiasLogo" src={logo} style={{width: 150, height: 150}}/>
+              <div className="container-fluid text-right">
+                <Button type="button" className="btn mr-4" onClick={logIn} style={{
+                  border: "2px solid #BEE3F8",
+                  boxSizing: "border-box",
+                  boxShadow: "inset 0px 4px 4px #E2E8F0",
+                  filter: "drop-shadow(0px 4px 4px #C4C4C4)",
+                  borderRadius: "6px",
+                  fontFamily: "Sora",
+                  fontStyle: "normal",
+                  fontWeight: "bolder",
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  color: "rgba(226, 232, 240, 0.92)",
+                  textShadow: "0px 4px 4px rgba(196, 196, 196, 0.0989583)",
+                  backgroundColor: "black"
+                }}>
+                  Log In
+                </Button>
+                <Button type="button" className="btn" onClick={signUp} style={{
+                  border: "2px solid #BEE3F8",
+                  boxSizing: "border-box",
+                  boxShadow: "inset 0px 4px 4px #E2E8F0",
+                  filter: "drop-shadow(0px 4px 4px #C4C4C4)",
+                  borderRadius: "6px",
+                  fontFamily: "Sora",
+                  fontStyle: "normal",
+                  fontWeight: "bolder",
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  color: "rgba(226, 232, 240, 0.92)",
+                  textShadow: "0px 4px 4px rgba(196, 196, 196, 0.0989583)",
+                  backgroundColor: "black"
+                }}>
+                  Sign Up
+                </Button>
+              </div>
+              </HStack>
+          </Box>
+        </div>
         <div className="container-fluid text-center">
-          <h1 className="display-3 font-weight-bold align-middle text-white">The Vault</h1>
+          <span style={{
+            fontFamily: "Sora",
+            fontStyle: "normal",
+            fontWeight: "bolder",
+            fontSize: "120px",
+            lineHeight: "151px",
+            letterSpacing: "-0.06em",
+            color: "#FFFFFF",
+            textShadow: "0px 4px 10px rgba(226, 232, 240, 0.92)"}}>
+              VALIAS
+          </span>
         </div>
         <Spacer />
-        <div className="container-fluid text-center">
-          <Box>
-          <Button mr="4" type="button" className="btn btn-light btn-group mr-5" onClick={logIn}>
-            Log In
-          </Button>
-          <Button mr="4" type="button" className="btn btn-light btn-group ml-5" onClick={signUp}>
-            Sign Up
-          </Button>
-          </Box>
-          </div>
-      </div>
-      </div>
-      </div>
       </div>
     </Box>
   )

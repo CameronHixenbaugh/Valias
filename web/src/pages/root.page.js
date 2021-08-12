@@ -1,26 +1,28 @@
 import {Base} from "../parts/base.comp"
 import React from "react"
-//import ReactDOM from "react-dom"
 import {useCurrentUser} from "../hooks/use-current-user.hook"
 import {Redirect} from "react-router-dom"
-import {MarketItemsCluster} from "../parts/market-items-cluster.comp"
+//import {MarketItemsCluster} from "../parts/market-items-cluster.comp"
 import {AuthCluster} from "../parts/auth-cluster.comp"
-import {MarketItemsCount} from "./account/index"
-//import "./routepages/preloadgif.css"
+//import {MarketItemsCount} from "./account/index"
 import "./routepages/preloadgif.js"
-//import vgif from "../parts/Images/vault.gif"
 import Navbar from "../parts/navbar.comp"
 import {
   Box,
   Center,
   Text,
   VStack
-} from "@chakra-ui/react" 
+} from "@chakra-ui/react"
 
-//var slider
-//var toggle
-
-
+import sphere from "./../parts/images/WordSphere.mp4"
+import thinker from "./../parts/images/Thinking.mp4"
+import flow from "./../parts/images/FLOWbutton.png"
+import yes from "./../parts/images/NOButton.png"
+import dn from "./../parts/images/DNGButton.png"
+import grid from "./../parts/images/PicGrid.png"
+import frame5 from "./../parts/images/Frame5.png"
+import frame6 from "./../parts/images/Frame6.png"
+import frame7 from "./../parts/images/Frame7.png"
 
 
 export function Page() {
@@ -28,90 +30,197 @@ export function Page() {
 
   if (loggedIn) return <Redirect to={"/" + user.addr} />
 
-
-/*
-document.getElementById('toggle').addEventListener('click', toggleSlider, false);
-
-function toggleSlider(){
-  if (slider.classList.contains('opened')) {
-    slider.classList.remove('opened');
-    slider.classList.add('closed');
-  } else {
-    slider.classList.remove('closed');
-    slider.classList.add('opened');
-  }
-}
-
-*/
   return (
     <Base>
-    
-   {/*}   
-    <div id="preloader" style={{
-      position: "fixed",
-      width: "100%",
-      height: "100%",
-      zIndex: 999,
-      overflow: "visible",
-      background: 'url(' + vgif + ') no-repeat center center',
-      backgroundColor: "black"
-    }}></div>
-            <div id="content">
-  
-*/}
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
         crossOrigin="anonymous"></link>
-
-        <Box borderWidth="10px" borderColor="black" >
+      <Box borderWidth="10px" borderColor="black" >
         <AuthCluster/>
+      </Box>
+      <Box borderWidth="10px" borderColor="black">
+        <Navbar />
+      </Box>
+      <Box backgroundColor="black">
+        <br />
+        <Box id="vid">
+          <video className="rounded-circle" style={{width: 50, height: 50}} playsInline="playsInline" autoPlay="autoPlay" muted="muted" loop="loop">
+            <source src={sphere} type='video/mp4' />
+          </video>
+          <div className="container h-100">
+            <div className=" h-100 text-center align-items-center">
+              <div className="w-100 text-white" />
+            </div>
+          </div>
         </Box>
-        <Box borderWidth="10px" borderColor="black">
-          <Navbar />
+        <br />
+        <Box>
+          <Center>
+            <Text textAlign="center" style={{
+              fontFamily: "Sora",
+              fontStyle: "normal",
+              fontWeight: "bolder",
+              fontSize: "25px",
+              lineHeight: "50px",
+              letterSpacing: "-0.06em",
+              color: "#FFFFFF",
+              textShadow: "0px 4px 10px rgba(226, 232, 240, 0.92)"}}>
+                A Decentralized NFT Exchange with the Most Secure Vault to Store your NFTs 
+            </Text>
+          </Center>
         </Box>
-        <Box backgroundImage={'url(https://burst.shopifycdn.com/photos/ripples-of-sand-in-black-and-white.jpg?width=4460&height=4460&exif=1&iptc=1)'}
-    backgroundSize={'cover'} backgroundPosition={'center center'} p={5}>
-        <Center>
-         <HStack>
-                <Box fontSize="6xl" color="white" p={25}>
-                  What's For Sale in The Vault?
-                </Box>
-              </HStack>
-                <MarketItemsCount />
-              </Center>
-              <br/>
-              <Center>
-              <Box fontSize="4xl" color="white" backgroundColor="black" maxW="lg">
-              <MarketItemsCluster />
-              </Box>
-        </Center>
+        <br />
+        <br />
+        <br />
+        <Box>
+          <Center>
+            <Text textAlign="center" style={{
+              fontFamily: "Sora",
+              fontStyle: "normal",
+              fontWeight: "bolder",
+              fontSize: "25px",
+              lineHeight: "50px",
+              letterSpacing: "-0.06em",
+              color: "#FFFFFF",
+              textShadow: "0px 4px 10px rgba(226, 232, 240, 0.92)"}}>
+                One Step Closer Towards Concealment of Personal Data
+            </Text>
+          </Center>
         </Box>
-        {/*</div>*/}
+        <Box id="vid">
+          <video style={{width: 50, height: 50}} playsInline="playsInline" autoPlay="autoPlay" muted="muted" loop="loop">
+            <source src={thinker} type='video/mp4' />
+          </video>
+          <div className="container h-100">
+            <div className=" h-100 text-center align-items-center">
+              <div className="w-100 text-white" />
+            </div>
+          </div>
+        </Box>
+        <Box>
+          <Center>
+            <VStack>
+              <Text textAlign="center" style={{
+                fontFamily: "Sora",
+                fontStyle: "normal",
+                fontWeight: "bolder",
+                fontSize: "30px",
+                lineHeight: "50px",
+                letterSpacing: "-0.06em",
+                color: "#FFFFFF",
+                textShadow: "0px 4px 10px rgba(226, 232, 240, 0.92)"}}>
+                  The Most Secure NFT Exchange
+              </Text>
+              <Text textAlign="center" style={{
+                fontFamily: "Sora",
+                fontStyle: "normal",
+                fontWeight: "bolder",
+                fontSize: "20px",
+                lineHeight: "10px",
+                letterSpacing: "-0.06em",
+                color: "#FFFFFF",
+                textShadow: "0px 4px 10px rgba(226, 232, 240, 0.92)"}}>
+                  Your Own Personal Vault   
+              </Text>
+              </VStack>
+          </Center>
+        </Box>
+        <br />
+        <br />
+        <br />
+        <br />
+        <Box>
+          <Center>
+            <VStack>
+              <Text textAlign="center" style={{
+              fontFamily: "Sora",
+              fontStyle: "normal",
+              fontWeight: "bolder",
+              fontSize: "100px",
+              lineHeight: "50px",
+              letterSpacing: "-0.06em",
+              color: "#FFFFFF",
+              textShadow: "0px 4px 10px rgba(226, 232, 240, 0.92)"}}>
+                VEX
+              </Text>
+              <Text textAlign="center" style={{
+              fontFamily: "Sora",
+              fontStyle: "normal",
+              fontWeight: "bolder",
+              fontSize: "40px",
+              lineHeight: "50px",
+              letterSpacing: "-0.06em",
+              color: "#FFFFFF",
+              textShadow: "0px 4px 10px rgba(226, 232, 240, 0.92)"}}>       
+                The Vault EXchange Token
+              </Text>
+            </VStack>
+          </Center>
+          <VStack>
+            <Box>
+                <Text color="white">
+                  Coin
+                </Text>
+            </Box>
+            <Box>
+              <img className="img-fluid" alt="FlowBox" src={flow} style={{width: 800, height: 150}}/>
+              <img className="img-fluid" alt="NoLimitBox" src={yes} style={{width: 800, height: 150}}/>
+              <img className="img-fluid" alt="DNGLBBox" src={dn} style={{width: 800, height: 150}}/>
+            </Box>
+          </VStack>
+        </Box>
+        <br />
+        <br />
+        <br />
+        <br />
+        <Box>
+          <Center>
+            <VStack>
+              <Text textAlign="center" style={{
+                fontFamily: "Sora",
+                fontStyle: "normal",
+                fontWeight: "bolder",
+                fontSize: "40px",
+                lineHeight: "50px",
+                letterSpacing: "-0.06em",
+                color: "#FFFFFF",
+                textShadow: "0px 4px 10px rgba(226, 232, 240, 0.92)"}}>
+                  Created With A Vision to Level The Playing Field
+              </Text>
+              <Text textAlign="center" style={{
+                fontFamily: "Sora",
+                fontStyle: "normal",
+                fontWeight: "bolder",
+                fontSize: "25px",
+                lineHeight: "50px",
+                letterSpacing: "-0.06em",
+                color: "#FFFFFF",
+                textShadow: "0px 4px 10px rgba(226, 232, 240, 0.92)"}}>
+                  Community Protected, Infinite Growth, Immediate Liquidation
+              </Text>
+              <img className="img-fluid" alt="PictureGrid" src={grid} style={{width: 600, height: 600}}/>
+            </VStack>
+          </Center>
+        </Box>
+        <Box>
+          <Center>
+            <img className="img-fluid" alt="SecondGrid" src={frame5} style={{width: 850, height: 750}}/>
+          </Center>
+        </Box>
+        <br />
+        <br />
+        <br />
+        <Box>
+          <Center>
+            <img className="img-fluid" alt="CreationOfAdam" src={frame6} style={{width: 1000, height: 700}}/>
+          </Center>
+        </Box>
+        <footer>
+          <Center>
+            <img className="img-fluid" alt="ValiasFooter" src={frame7} style={{width:"100%", height: 500}}/>
+          </Center>
+        </footer>
+      </Box>
     </Base>
   )
 }
-/*
-function toggleSlider(){
-  ( (ReactDOM.render('<div class="slider"></div>', document.querySelector('.slider')).classList.contains('opened')) ?
-    (ReactDOM.render('<div class="slider"></div>', document.querySelector('.slider')).classList.remove('opened'),
-    ReactDOM.render('<div class="slider"></div>', document.querySelector('.slider')).classList.add('closed'))
-   : 
-    (ReactDOM.render('<div class="slider"></div>', document.querySelector('.slider')).classList.remove('closed'),
-    ReactDOM.render('<div class="slider"></div>', document.querySelector('.slider')).classList.add('opened'))
-  
-)};
-ReactDOM.render('<button id="toggle"></button>', document.getElementById('toggle').addEventListener('click', toggleSlider, false));
-
-toggle.addEventListener('click', toggleSlider, false);
-
-function toggleSlider(){
-  if (slider.classList.contains('opened')) {
-    slider.classList.remove('opened');
-    slider.classList.add('closed');
-  } else {
-    slider.classList.remove('closed');
-    slider.classList.add('opened');
-  }
-}
-*/

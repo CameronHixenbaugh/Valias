@@ -75,7 +75,7 @@ class IpfsUpload extends Component {
        loaded:0
     })
   }
-  } 
+  }
     onClickHandler = () => {
       const data = new FormData() 
       if(this.state.selectedFile == null){

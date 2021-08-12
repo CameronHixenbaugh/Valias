@@ -4,11 +4,10 @@ import {IDLE, PROCESSING} from "../global/constants"
 //import {p1} from "../parts/create-nft-cluster.comp"
 
 
- 
+
 //create dictionary for ipfs hash and item id
 /*
 export function CidDict(cid){
-
 }
 */
 
@@ -44,7 +43,7 @@ export function useAccountItems(address) {
           recipient: address,
           // Random typeID between 1 - 5
           //Math.floor(Math.random() * (5 - 1)) + 1
-          typeID: p1,
+          typeID: 51,
         }),
       })
       await fetchAccountItems(address).then(setItems)

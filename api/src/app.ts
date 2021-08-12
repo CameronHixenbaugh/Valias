@@ -101,7 +101,7 @@ app.post('/upload',function(req, res) {
             return res.status(500).json(err)
           // An unknown error occurred when uploading.
         } 
-        IPFSFile(pinName) 
+        IPFSFile(pinName)
         function IPFSFile(Filex){
           var fileString = path.resolve('src/tmpIpfs')+ '/' + Filex
           const readableStreamForFile = fs.createReadStream(fileString);
@@ -132,9 +132,6 @@ app.listen(8000, function() {
 
 
 
-//WebSocketServer
-//import WebSocket from "ws";
-//import http from "http";
 
 
 const V1 = "/v1/";
@@ -145,10 +142,10 @@ const initApp = (
   kittyItemsService: KittyItemsService,
   marketService: MarketService
 ) => {
-  const app = express();
+  //const app = express();
 //{origin:['https://vaultv2.herokuapp.com/']}
   // @ts-ignore
-  app.use(cors());
+  //app.use(cors());
   app.use(json());
   app.use(urlencoded({ extended: false }));
   app.use(V1, initKibblesRouter(kibblesService));
@@ -162,33 +159,6 @@ const initApp = (
       res.sendFile(path.resolve(__dirname, "../../web/build/index.html"));
     });
   };
-
-  //WebSocketServer
-/*
-  var app2 = express()
-  app.use(express.static(path.resolve(__dirname, "../../web/build")))
-  var port = process.env.PORT || 5000
-  port = Number(port) + 1 ;
-  var server = http.createServer(app)
-  server.listen(port)
-
-  console.log("http server listening on %d", port)
-  var wss = new WebSocket.Server({server: server})
-  console.log("websocket server created")
-
-  wss.on("connection", function(ws) {
-    var id = setInterval(function() {
-      ws.send(JSON.stringify(new Date()), function() {  })
-    }, 1000)
-
-  console.log("websocket connection open")
-
-  ws.on("close", function() {
-    console.log("websocket connection close")
-    clearInterval(id)
-  })
-})
-*/
 
 
 
@@ -204,4 +174,5 @@ const initApp = (
   return app;
 };
 
+//export {ipfsCid};
 export default initApp;
