@@ -1,12 +1,13 @@
 import React, {useState} from "react"
 import { Base } from "./base.comp"
 import { Button, Center} from "@chakra-ui/react"
-import {useAccountItems} from "../hooks/use-account-items.hook"
+import { useAccountItems} from "../hooks/use-account-items.hook"
 import {IDLE} from "../global/constants"
 import {useAddress} from "../hooks/use-url-address.hook"
 import {useCurrentUser} from "../hooks/use-current-user.hook.js"
 import { Int } from "@onflow/types"
 import IpfsUpload from './ipfsUpload.comp'
+import { CidDict, cidID } from "./account-items-cluster.comp"
 
 import pinataSDK from '@pinata/sdk';
 import {hash} from './ipfsUpload.comp'
@@ -21,10 +22,11 @@ var price;
 var auction;
 var p3;
 
-function IpfsMetadata(cid){
+export function IpfsMetadata(cid, id){
   const metadata = {
       name: String(name),
       keyvalues: {
+          ItemID: String(id),
           Description: String(des),
           Price: String(price),
           AuctionLength: String(auction),
@@ -120,9 +122,9 @@ export default function CreateNFTCluster(){
       name = title1
       des = description
       price = price1
-      IpfsMetadata(hash)
-      console.log('int of hash is: ' + parseInt(hash))
+      CidDict(hash)
       items.mint()
+      IpfsMetadata(hash, cidID)
     }
     if(title1!=='' && description!=='' && price2!=='' && length!=='' && showHide2===true && price3===''){
       alert(`
@@ -136,7 +138,9 @@ export default function CreateNFTCluster(){
       des = description
       price = price2
       auction = length
-      IpfsMetadata(hash)
+      CidDict(hash)
+      items.mint()
+      IpfsMetadata(hash, cidID)
     }
     else if(title1!=='' && description!=='' && price2!=='' && length!=='' && showHide2===true && price3!==''){
       alert(`
@@ -152,7 +156,9 @@ export default function CreateNFTCluster(){
       price = price2
       p3 = price3
       auction = length
-      IpfsMetadata(hash)
+      CidDict(hash)
+      items.mint()
+      IpfsMetadata(hash, cidID)
     }
   }
 
@@ -266,7 +272,7 @@ const handleShow3= (childData) => {
       <Base>
       <form onSubmit={handleSubmit}>
         <Center>
-          <label htmlFor='title1'>Name: 
+          <label style={{color:"white"}} htmlFor='title1'>Name: 
           <br />
           <input
             style={{color:"black"}}
@@ -279,7 +285,7 @@ const handleShow3= (childData) => {
         </Center>
           <br /><br />
           <Center>
-          <label htmlFor='description'>What is this NFT?
+          <label style={{color:"white"}} htmlFor='description'>What is this NFT?
           <br />
           <input
             style={{color:"black"}}
@@ -292,15 +298,15 @@ const handleShow3= (childData) => {
           </Center>
           <br /><br />
         <Center>
-        <label>
-        <input type="radio" name="tab" onClick={() => showHide("showHide1")} />
+        <label style={{color:"white"}}>
+        <input style={{color:"white"}} type="radio" name="tab" onClick={() => showHide("showHide1")} />
           Fixed Price:
         </label>
         </Center>
         { showHide1 && 
           <div>
           <Center>
-          <label htmlFor='price1'>
+          <label style={{color:"white"}} htmlFor='price1'>
           <Center>
            <input
               style={{color:"black"}}
@@ -319,13 +325,13 @@ const handleShow3= (childData) => {
          </div> 
         }
         <Center>
-        <label> 
+        <label style={{color:"white"}}> 
         <input type="radio" name="tab" onClick={() => showHide("showHide2")} />
           Auction NFT
         </label>
         </Center>
         { showHide2 && 
-          <div>
+          <div style={{color:"white"}}>
             <Center>
             Auction Length: 
             <div class='form-check form-check-inline'>
@@ -414,9 +420,5 @@ const handleShow3= (childData) => {
     )
 }
 
-//export default CreateNFTCluster;  
-
-//UserMeta(name, des, p1)
-
-//export {name, des, p1};
+//export default CreateNFTCluster; 
 

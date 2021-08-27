@@ -27,7 +27,7 @@ export function BalanceCluster({address}) {
       <Box mb="2">
         <Flex>
           <Heading size="md" mr="4">
-            Balances
+            Balance
           </Heading>
           {(flow.status !== IDLE || kibbles.status !== IDLE) && (
             <Center>

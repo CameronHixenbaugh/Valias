@@ -1,11 +1,12 @@
 import React, { useState} from "react"
 import { Int } from "@onflow/types"
-import {useAccountItems} from "../hooks/use-account-items.hook"
-//import {useAccountItem} from "../hooks/use-account-item.hook"
+import { useAccountItems} from "../hooks/use-account-items.hook"
 import {IDLE} from "../global/constants"
 import {useCurrentUser} from "../hooks/use-current-user.hook.js"
 import {useAddress} from "../hooks/use-url-address.hook"
-import {Clicky} from "./account-item-cluster.comp" 
+import { getItemID, useAccountItem } from "../hooks/use-account-item.hook"
+import pinataSDK from '@pinata/sdk';
+import { itemCid } from "./account-items-cluster.comp"
 import{
     Button,
     Center,
@@ -17,8 +18,32 @@ var p3;
 var lengt;
 var clicked;
 
+const pKey = process.env.REACT_APP_PINATA_API_KEY;
+const pSKey = process.env.REACT_APP_PINATA_SECRET_API_KEY;
+const pinata = pinataSDK( pKey, pSKey);
 
-export function UserSetPrice() {
+
+function IpfsMetadata(cidID, price){
+  var cid = itemCid.get(cidID)
+  alert(`id is ${cidID}, cid is ${cid} and price is ${price}`)
+  const metadata = {
+      keyvalues: {
+          Price: String(price)
+      }
+  };
+  pinata.hashMetadata(cid, metadata).then((result) => {
+      //handle results here
+      console.log(result);
+  }).catch((err) => {
+      //handle error here
+      console.log(err);
+  });
+}
+
+
+
+
+export function UserSetPrice(props) {
 
     const [price1, setPrice1] = useState(null);
     const [price2, setPrice2] = useState(null);
@@ -39,8 +64,13 @@ export function UserSetPrice() {
     const address = useAddress()
     const [cu] = useCurrentUser()
     const items = useAccountItems(address)
+    var item = useAccountItem(address, props.sellNFT)
     if (address == null) return <div>Not Found</div> 
     
+
+    
+
+
 
     const HandleSubmit = (event) =>{
         event.preventDefault();
@@ -77,7 +107,9 @@ export function UserSetPrice() {
           `)
           p1=parseInt(`${price1}`)
           p1=p1.toFixed(2)
-          Clicky();
+          IpfsMetadata(props.sellNFT, p1)
+          getItemID(props.sellNFT, p1)
+          item.sell(p1)
         }
         if(price2!==null && length!=='' && showHide2===true && price3===null){
           alert(`
@@ -88,7 +120,9 @@ export function UserSetPrice() {
           p2=parseInt(`${price2}`)
           p2=p2.toFixed(2)
           lengt=parseInt(`${length}`)
-          Clicky();
+          IpfsMetadata(props.sellNFT, p2)
+          getItemID(props.sellNFT, p2)
+          item.sell(p2)
         }
         else if(price2!==null && length!=='' && showHide2===true && price3!==null && !isNaN(price3)){
           alert(`
@@ -181,7 +215,7 @@ return(
     <Center>
         <label>
         <input type="radio" name="tab" onClick={() => showHide("showHide1")} />
-          Fixed Price:
+          Fixed Price
         </label>
         </Center>
         { showHide1 && 

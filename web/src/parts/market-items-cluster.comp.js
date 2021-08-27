@@ -17,11 +17,15 @@ export function MarketItemsCluster() {
     <Box borderWidth="1px" borderRadius="lg">
       <Table size="sm">
         <Thead>
-          <Tr>
+          <Tr>{/*}
             <Th>Id</Th>
             <Th>Type</Th>
             <Th>Name</Th>
             <Th>Description</Th>
+            <Th>Image</Th>
+  <Th>Price</Th>*/}
+            <Th>Id</Th>
+            <Th>Type</Th>
             <Th>Image</Th>
             <Th>Price</Th>
           </Tr>

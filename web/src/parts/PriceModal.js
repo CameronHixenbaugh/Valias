@@ -16,7 +16,7 @@ import{
     useDisclosure,
 } from "@chakra-ui/react"
 
-export function PriceModal(){
+export function PriceModal(props){
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     return(
@@ -34,7 +34,7 @@ export function PriceModal(){
                   <ModalHeader><Center>Set the Price for your NFT</Center></ModalHeader>
                   <ModalCloseButton />
                   <ModalBody>
-                    <UserSetPrice />
+                    <UserSetPrice sellNFT={props.sellNFT}/>
                   </ModalBody>
 
                   <ModalFooter>

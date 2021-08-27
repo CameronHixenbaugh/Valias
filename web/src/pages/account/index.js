@@ -1,4 +1,5 @@
 import React, {Suspense} from "react"
+import {Redirect} from "react-router-dom"
 import {Base} from "../../parts/base.comp"
 import {IDLE} from "../../global/constants"
 import {useAddress} from "../../hooks/use-url-address.hook"
@@ -33,9 +34,7 @@ import {
   HStack
 } from "@chakra-ui/react" 
 
-//import marketpic from "../../parts/Images/market.jpg"
-//import NFT from "./nft.jpg"
-// from "./../../parts/images/createnft.jpg"
+
 
 export function MarketItemsCount() {
   let l = 0
@@ -104,7 +103,7 @@ export function InfoBanner({address}) {
 export function Page() {
   const address = useAddress()
   const [cu, loggedIn] = useCurrentUser()
-  if (address == null) return <div>Not Found</div> 
+  if (address == null) return <Redirect to={"/"} /> 
    
 
   return loggedIn ?(
@@ -119,8 +118,7 @@ export function Page() {
         <Box borderWidth="10px" borderColor="black">
           <Navbar />
         </Box>
-        <Box backgroundImage={'url(https://burst.shopifycdn.com/photos/sunlight-reflects-on-water-texture.jpg?width=4460&height=4460&exif=1&iptc=1)'}
-          backgroundSize={'cover'} backgroundPosition={'center center'} p={50} height={500}>
+        <Box backgroundColor="black">
         <Center>
         <Flex mb="4">
           <Center>
@@ -156,8 +154,7 @@ export function Page() {
         </Center>
         </Box>
         
-        <Box backgroundImage={'url(https://burst.shopifycdn.com/photos/ripples-of-sand-in-black-and-white.jpg?width=4460&height=4460&exif=1&iptc=1)'}
-    backgroundSize={'cover'} backgroundPosition={'center center'} p={5} style={{color:"white"}}>
+        <Box backgroundColor="black">
         <Tabs colorScheme="blue" defaultIndex={0}>
           <Center>
           <TabList backgroundColor="black" style={{color:"white"}}>

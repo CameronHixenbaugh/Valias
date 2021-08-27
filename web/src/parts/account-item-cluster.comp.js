@@ -3,7 +3,6 @@ import {useAccountItem} from "../hooks/use-account-item.hook"
 import {useMarketItem} from "../hooks/use-market-item.hook"
 import {useCurrentUser} from "../hooks/use-current-user.hook"
 import {IDLE} from "../global/constants"
-import {p1, p2} from './UserSetPrice'
 import PriceModal from './PriceModal.js'
 import {
   Tr,
@@ -23,7 +22,7 @@ export const ItemImage = ({typeID}) => {
 
   useEffect(() => {
     async function getImage() {
-      let importedIcon = await import(`./images/vault.jpg`)  //`../svg/Items/item0${typeID}.svg`)
+      let importedIcon = await import(`./images/ValiasLogo.svg`)  //`../svg/Items/item0${typeID}.svg`)
       setItemImage(importedIcon.default)
     }
     if (typeID) getImage()
@@ -31,18 +30,6 @@ export const ItemImage = ({typeID}) => {
 
   return <Image maxW="64px" src={item} />
 }
-
-
-var seller
-
-export function Clicky(){
-    if(p1 == null){
-      seller.sell(p2)
-    } if(p2 == null){
-      seller.sell(p1)
-    }
-  };
-
 
 
 export function AccountItemCluster( {address, id}) {
@@ -55,10 +42,9 @@ export function AccountItemCluster( {address, id}) {
   if (address == null) return null
   if (id == null) return null
 
-  seller = item
 
   return (
-    <Tr>
+    <Tr color="white">
       <Td maxW="50px">
         <Flex>
           <Text as={item.forSale && "del"}>#{item.itemID}</Text>
@@ -81,7 +67,7 @@ export function AccountItemCluster( {address, id}) {
           {!item.forSale ? (
             <Td isNumeric>
               
-              <PriceModal />
+              <PriceModal sellNFT={item.itemID} />
 
             </Td>
             

@@ -7,6 +7,14 @@ import {IDLE, PROCESSING} from "../global/constants"
 import {useAccountItems} from "../hooks/use-account-items.hook"
 import {useMarketItems} from "../hooks/use-market-items.hook"
 
+var nftID
+var nftPrice
+
+export function getItemID(userID, userPrice){
+  nftID = userID
+  nftPrice = userPrice 
+}
+
 function expand(key) {
   return key.split("|")
 }
@@ -41,9 +49,9 @@ export function useAccountItem(address, id) {
     status,
     forSale: marketItems.has(item),
     owned: sansPrefix(cu.addr) === sansPrefix(address),
-    async sell(price) {
+    async sell(nftPrice) {
       await createSaleOffer(
-        {itemID: id, price: price},
+        {itemID: nftID, price: nftPrice},
         {
           onStart() {
             setStatus(PROCESSING)

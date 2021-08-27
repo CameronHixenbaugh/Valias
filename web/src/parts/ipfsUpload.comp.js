@@ -85,9 +85,9 @@ class IpfsUpload extends Component {
             data.append('file', this.state.selectedFile[x])
         }
         //To use locally
-        //axios.post("http://localhost:8000/upload", data, {
+        axios.post("http://localhost:8000/upload", data, {
         //With heroku
-        axios.post("https://vaultv2.herokuapp.com:8000/upload", data, {
+        //axios.post("https://vaultv2.herokuapp.com:8000/upload", data, {
             onUploadProgress: ProgressEvent => {
                 this.setState({
                     loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
@@ -112,7 +112,7 @@ class IpfsUpload extends Component {
             <div className="row">
               <div className="offset-md-3 col-md-6">
                  <div className="form-group files">
-                  <label>Upload Your File </label>
+                  <label style={{color:"white"}}>Upload Your File </label>
                   <input type="file" className="form-control" multiple onChange={this.onChangeHandler} 
                     style={{"outline": "2px dashed #92b0b3",
                         "outlineOffset": "-10px",

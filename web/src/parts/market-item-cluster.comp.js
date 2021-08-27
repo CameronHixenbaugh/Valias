@@ -21,8 +21,12 @@ export function MarketItemCluster({address, id}) {
 
   const BUSY = item.status !== IDLE || item.status !== IDLE
 
+  var priceAdjust = item.price
+  var pAdjust = parseInt(priceAdjust)
+  pAdjust = pAdjust.toFixed(2)
+
   return (
-    <Tr>
+    <Tr color="white">
       <Td maxW="50px">
         <Flex>
           <Text>#{item.itemID}</Text>
@@ -32,7 +36,7 @@ export function MarketItemCluster({address, id}) {
       <Td>
         <ItemImage typeID={item.typeID} />
       </Td>
-      <Td>{item.price}</Td>
+      <Td>{pAdjust}</Td>
       {loggedIn && (
         <>
           {item.owner === cu.addr ? (
