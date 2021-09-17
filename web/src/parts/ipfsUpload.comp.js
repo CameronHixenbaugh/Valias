@@ -73,7 +73,7 @@ class IpfsUpload extends Component {
        this.setState({
        selectedFile: files,
        loaded:0
-    })
+    }) 
   }
   }
     onClickHandler = () => {
