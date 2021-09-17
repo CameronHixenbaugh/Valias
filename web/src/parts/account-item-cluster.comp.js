@@ -32,6 +32,7 @@ export const ItemImage = ({typeID}) => {
 }
 
 
+
 export function AccountItemCluster( {address, id}) {
   var item = useAccountItem(address, id)
   const listing = useMarketItem(address, id)
@@ -41,6 +42,8 @@ export function AccountItemCluster( {address, id}) {
 
   if (address == null) return null
   if (id == null) return null
+
+  var imageurl = "https://ipfs.io/ipfs/" + item.typeID
 
 
   return (
@@ -60,7 +63,7 @@ export function AccountItemCluster( {address, id}) {
         <Text>20</Text>
       </Td>
       <Td>
-        <ItemImage typeID={item.typeID} />
+        <img src={imageurl} alt="nft"/>
       </Td>
       {cu.addr === address && (
         <>

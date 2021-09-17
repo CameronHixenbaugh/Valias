@@ -5,8 +5,8 @@ import {IDLE} from "../global/constants"
 import {useCurrentUser} from "../hooks/use-current-user.hook.js"
 import {useAddress} from "../hooks/use-url-address.hook"
 import { getItemID, useAccountItem } from "../hooks/use-account-item.hook"
-import pinataSDK from '@pinata/sdk';
-import { itemCid } from "./account-items-cluster.comp"
+//import pinataSDK from '@pinata/sdk';
+//import { itemCid } from "./account-items-cluster.comp"
 import{
     Button,
     Center,
@@ -17,7 +17,7 @@ var p2;
 var p3;
 var lengt;
 var clicked;
-
+/*
 const pKey = process.env.REACT_APP_PINATA_API_KEY;
 const pSKey = process.env.REACT_APP_PINATA_SECRET_API_KEY;
 const pinata = pinataSDK( pKey, pSKey);
@@ -39,7 +39,7 @@ function IpfsMetadata(cidID, price){
       console.log(err);
   });
 }
-
+*/
 
 
 
@@ -107,7 +107,7 @@ export function UserSetPrice(props) {
           `)
           p1=parseInt(`${price1}`)
           p1=p1.toFixed(2)
-          IpfsMetadata(props.sellNFT, p1)
+          //IpfsMetadata(props.sellNFT, p1)
           getItemID(props.sellNFT, p1)
           item.sell(p1)
         }
@@ -120,7 +120,7 @@ export function UserSetPrice(props) {
           p2=parseInt(`${price2}`)
           p2=p2.toFixed(2)
           lengt=parseInt(`${length}`)
-          IpfsMetadata(props.sellNFT, p2)
+          //IpfsMetadata(props.sellNFT, p2)
           getItemID(props.sellNFT, p2)
           item.sell(p2)
         }

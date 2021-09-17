@@ -164,7 +164,7 @@ func KittyItemsMarketPurchaseItem(
 ) {
 	tx := flow.NewTransaction().
 		SetScript(kittyItemsMarketGenerateBuyItemScript(contracts)).
-		SetGasLimit(100).
+		SetGasLimit(200).
 		SetProposalKey(b.ServiceKey().Address, b.ServiceKey().Index, b.ServiceKey().SequenceNumber).
 		SetPayer(b.ServiceKey().Address).
 		AddAuthorizer(userAddress)

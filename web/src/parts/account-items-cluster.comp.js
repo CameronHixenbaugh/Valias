@@ -3,8 +3,8 @@ import { useAccountItems} from "../hooks/use-account-items.hook"
 import {useCurrentUser} from "../hooks/use-current-user.hook"
 import Item from "./account-item-cluster.comp"
 import {Box, Table, Thead, Tbody, Tr, Th, Text, Spinner} from "@chakra-ui/react"
-import { IpfsMetadata } from "./create-nft-cluster.comp"
-
+//import { IpfsMetadata } from "./create-nft-cluster.comp"
+/*
 const itemCid = new Map();
 var Dict; 
 var hash;
@@ -14,7 +14,7 @@ var cidID;
 export function CidDict(cid){
   hash = cid
 }
-
+*/
 
 export function AccountItemsCluster({address}) {
   const items = useAccountItems(address)
@@ -82,4 +82,4 @@ export default function WrappedAccountItemsCluster({address}) {
   )
 }
 
-export { Dict, itemCid, cidID};
+//export { Dict, itemCid, cidID};

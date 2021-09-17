@@ -15,22 +15,14 @@ import {
   CloseButton,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import { itemCid } from "./account-items-cluster.comp";
 
 export default function Navbar() {
   const bg = useColorModeValue("black");
   const mobileNav = useDisclosure();
   const [user] = useCurrentUser()
 
-
-
-  //const iterator1 = itemCid.values();
-
-  function handler(){
-    //var test = "9"
-
-    //itemCid[test] = "this guy"
-    alert(`cid has : ${itemCid.size}`)
+  function handle() {
+    alert(`${user.addr}`)
   }
 
   return (
@@ -64,9 +56,10 @@ export default function Navbar() {
               display={{ base: "none", md: "inline-flex" }}
             >
               <Button variant="ghost"><NavLink to={"/" + user.addr} style={{color:"white"}}>Home</NavLink></Button>
-              <Button variant="ghost" style={{color:"white"}} onClick={handler}>My NFTs</Button>
+              <Button variant="ghost"><NavLink to={"/"+user.addr+"/congrats"} style={{color:"white"}}>My NFTs</NavLink></Button>
               <Button variant="ghost"><NavLink to={"/"+user.addr+"/create"} style={{color:"white"}}>Create NFT</NavLink></Button>
-              <Button variant="ghost" style={{color:"white"}}>Marketplace</Button>
+              {/*<Button variant="ghost" style={{color:"white"}}>Marketplace</Button>*/}
+              <Button variant="ghost" style={{color:"white"}} onClick={handle}>Marketplace</Button>
               <Button variant="ghost"><NavLink to={"/"+user.addr+"/about"} style={{color:"white"}}>About Us</NavLink></Button>
             </HStack>
             <Box display={{ base: "inline-block", md: "none" }}>

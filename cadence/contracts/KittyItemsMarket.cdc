@@ -45,7 +45,7 @@ pub contract KittyItemsMarket {
     // A sale offer has been inserted into the collection of Address.
     pub event CollectionInsertedSaleOffer(
       itemID: UInt64, 
-      typeID: UInt64, 
+      typeID: String, 
       owner: Address, 
       price: UFix64
     )
@@ -60,7 +60,7 @@ pub contract KittyItemsMarket {
     //
     pub resource interface SaleOfferPublicView {
         pub let itemID: UInt64
-        pub let typeID: UInt64
+        pub let typeID: String
         pub let price: UFix64
     }
 
@@ -75,7 +75,7 @@ pub contract KittyItemsMarket {
         pub let itemID: UInt64
 
         // The 'type' of NFT
-        pub let typeID: UInt64
+        pub let typeID: String
 
         // The sale payment price.
         pub let price: UFix64
@@ -123,7 +123,7 @@ pub contract KittyItemsMarket {
         init(
             sellerItemProvider: Capability<&KittyItems.Collection{NonFungibleToken.Provider, KittyItems.KittyItemsCollectionPublic}>,
             itemID: UInt64,
-            typeID: UInt64,
+            typeID: String,
             sellerPaymentReceiver: Capability<&Kibble.Vault{FungibleToken.Receiver}>,
             price: UFix64
         ) {
@@ -157,7 +157,7 @@ pub contract KittyItemsMarket {
     pub fun createSaleOffer (
         sellerItemProvider: Capability<&KittyItems.Collection{NonFungibleToken.Provider, KittyItems.KittyItemsCollectionPublic}>,
         itemID: UInt64,
-        typeID: UInt64,
+        typeID: String,
         sellerPaymentReceiver: Capability<&Kibble.Vault{FungibleToken.Receiver}>,
         price: UFix64
     ): @SaleOffer {
@@ -216,7 +216,7 @@ pub contract KittyItemsMarket {
         //
          pub fun insert(offer: @KittyItemsMarket.SaleOffer) {
             let itemID: UInt64 = offer.itemID
-            let typeID: UInt64 = offer.typeID
+            let typeID: String = offer.typeID
             let price: UFix64 = offer.price
 
             // add the new offer to the dictionary which removes the old one

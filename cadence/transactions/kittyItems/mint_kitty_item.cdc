@@ -6,7 +6,7 @@ import KittyItems from "../../contracts/KittyItems.cdc"
 // It must be run with the account that has the minter resource
 // stored at path /storage/NFTMinter.
 
-transaction(recipient: Address, typeID: UInt64) {
+transaction(recipient: Address, typeID: String) {
     
     // local variable for storing the minter reference
     let minter: &KittyItems.NFTMinter

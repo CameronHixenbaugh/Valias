@@ -1,5 +1,5 @@
 import React, {Suspense} from "react"
-import {Redirect} from "react-router-dom"
+import {NavLink, Redirect} from "react-router-dom"
 import {Base} from "../../parts/base.comp"
 import {IDLE} from "../../global/constants"
 import {useAddress} from "../../hooks/use-url-address.hook"
@@ -12,9 +12,10 @@ import AuthCluster from "../../parts/auth-cluster.comp"
 import InitCluster from "../../parts/init-cluster.comp"
 import BalanceCluster from "../../parts/balance-cluster.comp"
 import MarketItemsCluster from "../../parts/market-items-cluster.comp"
-import CreateNFTCluster from "../../parts/create-nft-cluster.comp.js"
+import {CreateNFTCluster} from "../../parts/create-nft-cluster.comp.js"
 import Navbar from "../../parts/navbar.comp"
 import AccountItemsCluster from "../../parts/account-items-cluster.comp"
+import Foot from "../../parts/footer.comp"
 import {
   Alert,
   AlertIcon,
@@ -71,8 +72,8 @@ export function InfoBanner({address}) {
     },
     noKibble: {
       type: "info",
-      title: "Get VCoins",
-      text: "You need Vcoins to buy NFTs.",
+      title: "Get Vex",
+      text: "You need Vex to buy NFTs.",
     },
   }
 
@@ -200,6 +201,9 @@ export function Page() {
           </TabPanels>
         </Tabs>
       </Box>
+      <footer>
+        <Foot />
+      </footer>
     </Base>
 
 
@@ -215,22 +219,11 @@ export function Page() {
         <Navbar />
       </Box>
       <Box backgroundColor="black">
-        <Center>
-          <HStack>   
-            <Box fontSize="6xl" color="white" backgroundColor="black">
-              What's For Sale in The Vault??
-            </Box>
-          </HStack>
-          <Suspense fallback={null}>
-            <MarketItemsCount />
-          </Suspense>
-        </Center>
-        <br/>
-        <Center>
-          <Box fontSize="4xl" color="white" backgroundColor="black" maxW="lg">
-            <MarketItemsCluster />
-          </Box>
-        </Center>
+        <Text textAlign="center" fontSize="4xl" color="white"><b>Oops! Please click this link:</b></Text>
+        <Text textAlign="center" fontSize="4xl"><NavLink to={"/"} >Back to Home</NavLink></Text>
+        <footer>
+          <Foot />
+        </footer>
       </Box>
     </Base>
   )

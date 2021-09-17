@@ -1,5 +1,6 @@
 import {Suspense} from "react"
-//import {Redirect} from "react-router-dom"
+//import * as fcl from "@onflow/fcl"
+//import {NavLink, Redirect} from "react-router-dom"
 import {useCurrentUser} from "../hooks/use-current-user.hook"
 import {Link as A} from "react-router-dom"
 import {
@@ -16,10 +17,6 @@ import logo from "./images/ValiasLogo.svg"
 
 export function AuthCluster() {
   const [user, loggedIn, {signUp, logIn, logOut}] = useCurrentUser()
-  /*function handle(){
-    
-    return <Redirect to={"/"} /> && {logOut}
-  }*/
 
   return loggedIn ? (
     <Box backgroundColor="black">
@@ -31,7 +28,7 @@ export function AuthCluster() {
         <div className="container-fluid" >
           <Center>
             <Link as={A} mr="4" to={"/" + user.addr}>
-              {user.addr}
+              Account: {user.addr}
             </Link>
           </Center>
           <Box >
@@ -53,7 +50,7 @@ export function AuthCluster() {
                   textShadow: "0px 4px 4px rgba(196, 196, 196, 0.0989583)",
                   backgroundColor: "black"
                 }}>
-                  Log Out
+                  Log Out{/*<NavLink to={"/"} >Log Out</NavLink>*/}
                 </Button>
               </div>
               </HStack>

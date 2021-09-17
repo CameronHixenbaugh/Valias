@@ -1,8 +1,8 @@
 import {atomFamily, selectorFamily, useRecoilState} from "recoil"
 import {fetchAccountItems} from "../flow/script.get-account-items"
 import {IDLE, PROCESSING} from "../global/constants"
-import { Dict } from "../parts/account-items-cluster.comp"
-
+import { hash } from "../parts/ipfsUpload.comp"
+//import { Dict } from "../parts/account-items-cluster.comp"
 
 
 export const $state = atomFamily({
@@ -38,11 +38,11 @@ export function useAccountItems(address) {
           recipient: address,
           // Random typeID between 1 - 5
           //Math.floor(Math.random() * (5 - 1)) + 1
-          typeID: 51,
+          typeID: {hash},
         }),
       })
       await fetchAccountItems(address).then(setItems)
-      Dict()
+      //Dict()
       setStatus(IDLE)
     },
     async refresh() {

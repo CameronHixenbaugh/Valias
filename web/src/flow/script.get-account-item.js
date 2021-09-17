@@ -8,10 +8,10 @@ import KittyItems from 0xKittyItems
 
 pub struct AccountItem {
   pub let itemID: UInt64
-  pub let typeID: UInt64
+  pub let typeID: String
   pub let owner: Address
 
-  init(itemID: UInt64, typeID: UInt64, owner: Address) {
+  init(itemID: UInt64, typeID: String, owner: Address) {
     self.itemID = itemID
     self.typeID = typeID
     self.owner = owner

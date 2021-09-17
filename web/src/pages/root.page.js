@@ -9,6 +9,7 @@ import "./routepages/preloadgif.js"
 import Navbar from "../parts/navbar.comp"
 import "./vid.css"
 import styled from "styled-components";
+import Foot from "../parts/footer.comp"
 import {
   Box,
   Center,
@@ -24,7 +25,6 @@ import dn from "./../parts/images/DNGButton.png"
 import grid from "./../parts/images/PicGrid.png"
 import frame5 from "./../parts/images/Frame5.png"
 import frame6 from "./../parts/images/Frame6.png"
-import frame7 from "./../parts/images/Frame7.png"
 
 
 export function Page() {
@@ -152,7 +152,7 @@ export function Page() {
   if (loggedIn) return <Redirect to={"/" + user.addr} />
 
   return (
-    <Base>
+    <Base >
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
         crossOrigin="anonymous"></link>
@@ -357,9 +357,7 @@ export function Page() {
         </Box>
         </Wrapper>
         <footer>
-          <Center>
-            <img className="img-fluid" alt="ValiasFooter" src={frame7} style={{width:"100%", height: 500}}/>
-          </Center>
+          <Foot />
         </footer>
       </Box>
     </Base>

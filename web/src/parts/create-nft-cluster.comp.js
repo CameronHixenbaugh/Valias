@@ -1,13 +1,13 @@
 import React, {useState} from "react"
+import { useHistory } from "react-router-dom"
 import { Base } from "./base.comp"
 import { Button, Center} from "@chakra-ui/react"
 import { useAccountItems} from "../hooks/use-account-items.hook"
 import {IDLE} from "../global/constants"
 import {useAddress} from "../hooks/use-url-address.hook"
 import {useCurrentUser} from "../hooks/use-current-user.hook.js"
-import { Int } from "@onflow/types"
 import IpfsUpload from './ipfsUpload.comp'
-import { CidDict, cidID } from "./account-items-cluster.comp"
+import { buildNFT } from "../pages/routepages/newNFT.page"
 
 import pinataSDK from '@pinata/sdk';
 import {hash} from './ipfsUpload.comp'
@@ -22,11 +22,10 @@ var price;
 var auction;
 var p3;
 
-export function IpfsMetadata(cid, id){
+export function IpfsMetadata(cid){
   const metadata = {
       name: String(name),
       keyvalues: {
-          ItemID: String(id),
           Description: String(des),
           Price: String(price),
           AuctionLength: String(auction),
@@ -42,27 +41,20 @@ export function IpfsMetadata(cid, id){
   });
 }
 
-export default function CreateNFTCluster(){ 
+export function CreateNFTCluster(){ 
     
   
     const [title1, setTitle1] = useState('');
     const [description, setDescription] = useState('');
-    const [price1, setPrice1] = useState(null);
+    const [price1, setPrice1] = useState('');
     const [price2, setPrice2] = useState('');
     const [price3, setPrice3] = useState('');
     const [length, setLength] = useState('');
     const [showHide1, setShowHide1] = useState(false);
     const [showHide2, setShowHide2] = useState(false);
     const [showHide3, setShowHide3] = useState(false);
-    const [state, setState] = useState({
-      title1: '',
-      description: '',
-      price1: Int,
-      price2: '',
-      price3: '',
-      length: ''
-    })
 
+    const history = useHistory()
     const [cu] = useCurrentUser()
     const address = useAddress()
     const items = useAccountItems(address)
@@ -72,12 +64,10 @@ export default function CreateNFTCluster(){
   
   // Form submitting logic, prevent default page refresh 
   const handleSubmit = (event) =>{
-    event.preventDefault();
 
 
     if(cu.addr === address){
       console.log("good")
-      //items.mint()
     }else{
       alert(`Must be logged on to your account`)
     }
@@ -122,9 +112,11 @@ export default function CreateNFTCluster(){
       name = title1
       des = description
       price = price1
-      CidDict(hash)
+      IpfsMetadata(hash)
       items.mint()
-      IpfsMetadata(hash, cidID)
+      buildNFT(name, des, price, null, null, hash)
+      history.push("/"+cu.addr+"/congrats")
+      event.preventDefault();
     }
     if(title1!=='' && description!=='' && price2!=='' && length!=='' && showHide2===true && price3===''){
       alert(`
@@ -138,9 +130,11 @@ export default function CreateNFTCluster(){
       des = description
       price = price2
       auction = length
-      CidDict(hash)
-      items.mint()
-      IpfsMetadata(hash, cidID)
+      IpfsMetadata(hash)
+      //items.mint()
+      buildNFT(name, des, price, auction, null, hash)
+      history.push("/"+cu.addr+"/congrats")
+      event.preventDefault();
     }
     else if(title1!=='' && description!=='' && price2!=='' && length!=='' && showHide2===true && price3!==''){
       alert(`
@@ -156,9 +150,11 @@ export default function CreateNFTCluster(){
       price = price2
       p3 = price3
       auction = length
-      CidDict(hash)
-      items.mint()
-      IpfsMetadata(hash, cidID)
+      IpfsMetadata(hash)
+      //items.mint()
+      buildNFT(name, des, price, auction, p3, hash)
+      history.push("/"+cu.addr+"/congrats")
+      event.preventDefault();
     }
   }
 
@@ -191,21 +187,22 @@ export default function CreateNFTCluster(){
   const handletitle1Change = (event) => {
       // Computed property names
       // keys of the objects are computed dynamically
+      
       setTitle1(event.target.value);
-      const title1 = event.target.value;
+      /*const title1 = event.target.value;
         setState({
-          title1: title1
-        });
+          title1: event.target.value
+        });*/
       }
 
   const handleDescChange = (event) => {
       // Computed property names
       // keys of the objects are computed dynamically
       setDescription(event.target.value);
-      const description = event.target.value;
+      /*const description = event.target.value;
         setState({
           description: description
-        });
+        });*/
       
   }
 
@@ -213,10 +210,10 @@ export default function CreateNFTCluster(){
     // Computed property names
     // keys of the objects are computed dynamically
     setPrice1(event.target.value);
-    const price1 = event.target.value;
+    /*const price1 = event.target.value;
       setState({
         price1: price1
-      });
+      });*/
     
 }
 
@@ -224,10 +221,10 @@ const handleprice2Change = (event) => {
   // Computed property names
   // keys of the objects are computed dynamically
   setPrice2(event.target.value);
-  const price2 = event.target.value;
+  /*const price2 = event.target.value;
     setState({
       price2: price2
-    });
+    });*/
   
 }
 
@@ -235,10 +232,10 @@ const handleprice3Change = (event) => {
   // Computed property names
   // keys of the objects are computed dynamically
   setPrice3(event.target.value);
-  const price3 = event.target.value;
+  /*const price3 = event.target.value;
     setState({
       price3: price3
-    });
+    });*/
   
 }
 
@@ -246,10 +243,10 @@ const handleLenChange = (event) => {
   // Computed property names
   // keys of the objects are computed dynamically
   setLength(event.target.value);
-  const length = event.target.value;
+  /*const length = event.target.value;
     setState({
       length: length
-    });
+    });*/
     
     const id = event.target.id;
     for (var i = 1;i <= 3; i++)
@@ -272,17 +269,17 @@ const handleShow3= (childData) => {
       <Base>
       <form onSubmit={handleSubmit}>
         <Center>
-          <label style={{color:"white"}} htmlFor='title1'>Name: 
+          <label style={{color:"white"}} htmlFor='title1'>Name:
           <br />
           <input
             style={{color:"black"}}
             name="title1"
-            value={state.title1}
+            value={title1}
             placeholder='Name'
             onChange={handletitle1Change}
           />
           </label>
-        </Center>
+        </Center> 
           <br /><br />
           <Center>
           <label style={{color:"white"}} htmlFor='description'>What is this NFT?
@@ -290,7 +287,7 @@ const handleShow3= (childData) => {
           <input
             style={{color:"black"}}
             name='description'
-            value={state.description}
+            value={description}
             placeholder='Description'
             onChange={handleDescChange}
           />
@@ -312,7 +309,7 @@ const handleShow3= (childData) => {
               style={{color:"black"}}
               name='price1' 
               type="number"
-              value={state.price1}
+              value={price1}
               placeholder='10.00'
               onChange={handleprice1Change}
             />
@@ -340,7 +337,7 @@ const handleShow3= (childData) => {
               name="length"
               type="radio"
               id="Check1"
-              value={state.length = "24"}
+              value={length = "24"}
               onChange={handleLenChange} 
             />24 Hours
             </label>
@@ -351,7 +348,7 @@ const handleShow3= (childData) => {
               name="length"
               type="radio"
               id="Check2"
-              value={state.length = "48"}
+              value={length = "48"}
               onChange={handleLenChange} 
             />48 Hours
             </label>
@@ -362,7 +359,7 @@ const handleShow3= (childData) => {
               name="length"
               type="radio"
               id="Check3"
-              value={state.length = "72"}
+              value={length = "72"}
               onChange={handleLenChange} 
             />72 Hours
             </label>
@@ -375,7 +372,7 @@ const handleShow3= (childData) => {
           <input
             style={{color:"black"}}
             name='price2' 
-            value={state.price2}
+            value={price2}
             placeholder='10.00'
             onChange={handleprice2Change}
           />
@@ -387,7 +384,7 @@ const handleShow3= (childData) => {
           <input
             style={{color:"black"}}
             name='price3' 
-            value={state.price3}
+            value={price3}
             placeholder='10.00 (Optional)'
             onChange={handleprice3Change}
           />
@@ -409,9 +406,7 @@ const handleShow3= (childData) => {
 
         <Center>
           {showHide3 &&
-            <Button type="submit" disabled={items.status !== IDLE} style={{color:"black"}}>
-              Create My NFT
-            </Button>
+            <Button type="submit"  disabled={items.status !== IDLE} style={{color:"black"}} >Create My NFT</Button>
           }
         </Center>
 
@@ -419,6 +414,4 @@ const handleShow3= (childData) => {
       </Base>
     )
 }
-
-//export default CreateNFTCluster; 
 

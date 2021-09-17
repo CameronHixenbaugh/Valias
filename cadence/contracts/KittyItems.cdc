@@ -10,7 +10,7 @@ pub contract KittyItems: NonFungibleToken {
     pub event ContractInitialized()
     pub event Withdraw(id: UInt64, from: Address?)
     pub event Deposit(id: UInt64, to: Address?)
-    pub event Minted(id: UInt64, typeID: UInt64)
+    pub event Minted(id: UInt64, typeID: String)
 
     // Named Paths
     //
@@ -30,11 +30,11 @@ pub contract KittyItems: NonFungibleToken {
         // The token's ID
         pub let id: UInt64
         // The token's type, e.g. 3 == Hat
-        pub let typeID: UInt64
+        pub let typeID: String
 
         // initializer
         //
-        init(initID: UInt64, initTypeID: UInt64) {
+        init(initID: UInt64, initTypeID: String) {
             self.id = initID
             self.typeID = initTypeID
         }
@@ -152,7 +152,7 @@ pub contract KittyItems: NonFungibleToken {
         // Mints a new NFT with a new ID
 		// and deposit it in the recipients collection using their collection reference
         //
-		pub fun mintNFT(recipient: &{NonFungibleToken.CollectionPublic}, typeID: UInt64) {
+		pub fun mintNFT(recipient: &{NonFungibleToken.CollectionPublic}, typeID: String) {
             emit Minted(id: KittyItems.totalSupply, typeID: typeID)
 
 			// deposit it in the recipient's account using their reference

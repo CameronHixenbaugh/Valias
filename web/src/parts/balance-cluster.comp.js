@@ -40,7 +40,7 @@ export function BalanceCluster({address}) {
         <Table size="sm">
           <Tbody>
             <Tr>
-              <Td>VCoins</Td>
+              <Td>Vex</Td>
               {kibbles.status === IDLE ? (
                 <Td isNumeric>{fmtKibbles(kibbles.balance)}</Td>
               ) : (
@@ -59,7 +59,7 @@ export function BalanceCluster({address}) {
             disabled={kibbles.status !== IDLE || !init.isInitialized}
             onClick={kibbles.mint}
           >
-            Request VCoins
+            Request Vex
           </Button>
         </Flex>
       </Box>
@@ -76,7 +76,7 @@ export default function WrappedBalanceCluster(props) {
       fallback={
         <Flex>
           <Heading size="md" mr="4">
-            Balances
+            Balance
           </Heading>
           <Center>
             <Spinner size="sm" />

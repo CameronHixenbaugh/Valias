@@ -9,12 +9,12 @@ export async function fetchMarketItem(address, id) {
 
       pub struct SaleItem {
         pub let itemID: UInt64
-        pub let typeID: UInt64
+        pub let typeID: String
         pub let owner: Address
         pub let price: UFix64
         
 
-        init(itemID: UInt64, typeID: UInt64, owner: Address, price: UFix64, ) {
+        init(itemID: UInt64, typeID: String, owner: Address, price: UFix64, ) {
           self.itemID = itemID
           self.typeID = typeID
           self.owner = owner

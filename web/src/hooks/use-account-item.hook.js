@@ -6,6 +6,7 @@ import {createSaleOffer} from "../flow/tx.create-sale-offer"
 import {IDLE, PROCESSING} from "../global/constants"
 import {useAccountItems} from "../hooks/use-account-items.hook"
 import {useMarketItems} from "../hooks/use-market-items.hook"
+import {price} from "../pages/routepages/newNFT.page"
 
 var nftID
 var nftPrice
@@ -44,14 +45,22 @@ export function useAccountItem(address, id) {
   const [item, setItem] = useRecoilState($state(key))
   const [status, setStatus] = useRecoilState($status(key))
 
+  var p 
+
+  if(price === null){
+    p = nftPrice
+  } if (nftPrice === null){
+    p = price
+  }
+
   return {
     ...item,
     status,
     forSale: marketItems.has(item),
     owned: sansPrefix(cu.addr) === sansPrefix(address),
-    async sell(nftPrice) {
+    async sell(p) {
       await createSaleOffer(
-        {itemID: nftID, price: nftPrice},
+        {itemID: nftID, price: p},
         {
           onStart() {
             setStatus(PROCESSING)
