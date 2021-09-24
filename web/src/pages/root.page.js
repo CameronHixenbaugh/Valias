@@ -286,9 +286,9 @@ export function Page() {
           </Div>
           <VStack>
             <Box>
-                <Text color="white">
+                {/*<Text color="white">
                   Coin
-                </Text>
+              </Text>*/}
             </Box>
             <Box>
             <Div1 animate={show.itemOne} ref={ourRef}>
