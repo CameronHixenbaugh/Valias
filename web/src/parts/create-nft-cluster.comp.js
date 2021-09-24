@@ -113,7 +113,7 @@ export function CreateNFTCluster(){
       des = description
       price = price1
       IpfsMetadata(hash)
-      //items.mint()
+      items.mint()
       buildNFT(name, des, price, null, null, hash)
       history.push("/"+cu.addr+"/congrats")
       event.preventDefault();
