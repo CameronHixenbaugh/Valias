@@ -1,7 +1,0 @@
-*.md
-./api/node_modules
-./web/node_modules
-*.local 
-.github
-./fcl-dev-wallet
-./scripts
