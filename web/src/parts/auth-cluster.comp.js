@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react"
 
 
-import logo from "./images/ValiasLogo.svg"
+//import logo from "./images/ValiasLogo.svg"
 
 export function AuthCluster() {
   const [user, loggedIn, {signUp, logIn, logOut}] = useCurrentUser()
@@ -33,7 +33,7 @@ export function AuthCluster() {
           </Center>
           <Box >
             <HStack>
-              <img className="img-fluid" alt="ValiasLogo" src={logo} style={{width: 150, height: 150}}/>            
+              <img className="img-fluid" alt="ValiasLogo" src={'https://drive.google.com/uc?export=view&id=1iKkvy1tPabahiV3eRNGZU_7DRbXcPLJk'} style={{width: 150, height: 150}}/>            
               <div className="container-fluid text-right">
                 <Button type="button" className="btn" onClick={logOut} style={{
                   border: "2px solid #BEE3F8",
@@ -82,7 +82,7 @@ export function AuthCluster() {
         <div className="container-fluid" >
           <Box >
             <HStack>
-              <img className="img-fluid" alt="ValiasLogo" src={logo} style={{width: 150, height: 150}}/>
+              <img className="img-fluid" alt="ValiasLogo" src={'https://drive.google.com/uc?export=view&id=1iKkvy1tPabahiV3eRNGZU_7DRbXcPLJk'} style={{width: 150, height: 150}}/>
               <div className="container-fluid text-right">
                 <Button type="button" className="btn mr-4" onClick={logIn} style={{
                   border: "2px solid #BEE3F8",

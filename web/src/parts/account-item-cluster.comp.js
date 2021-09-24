@@ -16,13 +16,13 @@ import {
   HStack,
 } from "@chakra-ui/react"
 
-
+ 
 export const ItemImage = ({typeID}) => {
   let [item, setItemImage] = useState("")
 
   useEffect(() => {
     async function getImage() {
-      let importedIcon = await import(`./images/ValiasLogo.svg`)  //`../svg/Items/item0${typeID}.svg`)
+      let importedIcon = await import ('./kitty-items-banner.png') //(`./images/ValiasLogo.svg`)  //`../svg/Items/item0${typeID}.svg`)
       setItemImage(importedIcon.default)
     }
     if (typeID) getImage()

@@ -17,14 +17,14 @@ import {
   VStack
 } from "@chakra-ui/react"
 
-import sphere from "./../parts/images/WordSphere.mp4"
-import thinker from "./../parts/images/Thinking.mp4"
-import flow from "./../parts/images/FLOWbutton.png"
-import yes from "./../parts/images/NOButton.png"
-import dn from "./../parts/images/DNGButton.png"
-import grid from "./../parts/images/PicGrid.png"
-import frame5 from "./../parts/images/Frame5.png"
-import frame6 from "./../parts/images/Frame6.png"
+//import sphere from "./../parts/images/WordSphere.mp4"
+//import thinker from "./../parts/images/Thinking.mp4"
+//import flow from "./../parts/images/FLOWbutton.png"
+//import yes from "./../parts/images/NOButton.png"
+//import dn from "./../parts/images/DNGButton.png"
+//import grid from "./../parts/images/PicGrid.png"
+//import frame5 from "./../parts/images/Frame5.png"
+//import frame6 from "./../parts/images/Frame6.png"
 
 
 export function Page() {
@@ -167,7 +167,7 @@ export function Page() {
         <br />
         <Box id="vid">
           <video className="rounded-circle" style={{width: 50, height: 50}} playsInline="playsInline" autoPlay="autoPlay" muted="muted" loop="loop">
-            <source src={sphere} type='video/mp4' />
+            <source src={'https://drive.google.com/uc?export=view&id=1vqLZMb3AVcZTQfErZTGvtmWK-ssxI6qm'} type='video/mp4' />
           </video>
           <div className="container h-100">
             <div className=" h-100 text-center align-items-center">
@@ -214,7 +214,7 @@ export function Page() {
         </Box>
         <Box id="vid">
           <video style={{width: 50, height: 50}} playsInline="playsInline" autoPlay="autoPlay" muted="muted" loop="loop">
-            <source src={thinker} type='video/mp4' />
+            <source src={'https://drive.google.com/uc?export=view&id=1vFMSpN89VNmdMPKu55DIjtTcy2W5Ceht'} type='video/mp4' />
           </video>
           <div className="container h-100">
             <div className=" h-100 text-center align-items-center">
@@ -292,13 +292,13 @@ export function Page() {
             </Box>
             <Box>
             <Div1 animate={show.itemOne} ref={ourRef}>
-              <img className="img-fluid" alt="FlowBox" src={flow} style={{width: 800, height: 150}}/>
+              <img className="img-fluid" alt="FlowBox" src={'https://drive.google.com/uc?export=view&id=11MMkLBssHoLHA9huj3FzNj53Urgo7h-k'} style={{width: 800, height: 150}}/>
             </Div1>
             <Div animate={show.itemFour} ref={refFour}>
-              <img className="img-fluid" alt="NoLimitBox" src={yes} style={{width: 800, height: 150}}/>
+              <img className="img-fluid" alt="NoLimitBox" src={'https://drive.google.com/uc?export=view&id=11TnM8hqlJod885QBYvNw53trLEzpW56K'} style={{width: 800, height: 150}}/>
             </Div>
             <Div1 animate={show.itemFive} ref={refFive}>
-              <img className="img-fluid" alt="DNGLBBox" src={dn} style={{width: 800, height: 150}}/>
+              <img className="img-fluid" alt="DNGLBBox" src={'https://drive.google.com/uc?export=view&id=1JKS-aiHj_CjsudYcAPUmCdy_fkASoBxR'} style={{width: 800, height: 150}}/>
             </Div1>
             </Box>
           </VStack>
@@ -333,7 +333,7 @@ export function Page() {
                 textShadow: "0px 4px 10px rgba(226, 232, 240, 0.92)"}}>
                   Community Protected, Infinite Growth, Immediate Liquidation
               </Text>
-              <img className="img-fluid" alt="PictureGrid" src={grid} style={{width: 600, height: 600}}/>
+              <img className="img-fluid" alt="PictureGrid" src={'https://drive.google.com/uc?export=view&id=1GZ8sshCMkMQQX4FDPF3KQAvCYemrcqgw'} style={{width: 600, height: 600}}/>
             </VStack>
           </Center>
           </Div>
@@ -341,7 +341,7 @@ export function Page() {
         <Box>
           <Center>
           <Div1 animate={show.itemSeven} ref={refSeven}>
-            <img className="img-fluid" alt="SecondGrid" src={frame5} style={{width: 850, height: 750}}/>
+            <img className="img-fluid" alt="SecondGrid" src={'https://drive.google.com/uc?export=view&id=1UUiYfJHxzVVJHSuG3FkMeyAve06Evghh'} style={{width: 850, height: 750}}/>
           </Div1>
           </Center>
         </Box>
@@ -351,7 +351,7 @@ export function Page() {
         <Box>
           <Center>
           <Div animate={show.itemEight} ref={refEight}>
-            <img className="img-fluid" alt="CreationOfAdam" src={frame6} style={{width: 1000, height: 700}}/>
+            <img className="img-fluid" alt="CreationOfAdam" src={'https://drive.google.com/uc?export=view&id=16Iik3pAIdXtF2PfHSc6rqtPZp4EZJJ2M'} style={{width: 1000, height: 700}}/>
           </Div>
           </Center>
         </Box>

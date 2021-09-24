@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 
 import "../../pages/vid2.css"
-import fireworks from "../../parts/images/fireworks.mp4"
+//import fireworks from "../../parts/images/fireworks.mp4"
 
 var name
 var description
@@ -53,7 +53,7 @@ export function Newnft (){
         <Box id="vid">
             <div className="overlay"></div>
             <video playsInline="playsInline" autoPlay="autoPlay" muted="muted" loop="loop">
-                <source src={fireworks} type='video/mp4' />
+                <source src={'https://drive.google.com/uc?export=view&id=1gbGPmeO6p8pYQaY-SgWylSiQqX_m4IQd'} type='video/mp4' />
             </video>
             <div className="container h-100">
                 <div className="d-flex h-100 text-center align-items-center">

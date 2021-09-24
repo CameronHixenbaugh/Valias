@@ -9,7 +9,7 @@ import {
     VStack 
 } from "@chakra-ui/react"
 
-import logo from "./images/ValiasLogo.svg"
+//import logo from "./images/ValiasLogo.svg"
 
 export default function Foot (){
 
@@ -17,7 +17,7 @@ export default function Foot (){
       <footer style={{backgroundColor:"black"}}>
         <Flex align="center">
             <Box>
-                <img src={logo} alt="Logo" width="150" />
+                <img src={'https://drive.google.com/uc?export=view&id=1iKkvy1tPabahiV3eRNGZU_7DRbXcPLJk'} alt="Logo" width="150" />
             </Box>
             <Spacer />
             <Box >

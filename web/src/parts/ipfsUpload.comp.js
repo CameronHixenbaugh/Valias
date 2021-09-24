@@ -94,7 +94,7 @@ class IpfsUpload extends Component {
                 })
             },
         })
-            .then(res => { // then print response status
+            .then(res => { // then print response status 
                 hash = res.data
                 this.props.parentCallback(this.setState({showHide3: true}))
                 toast.success('upload success')
