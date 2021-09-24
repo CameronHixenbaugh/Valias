@@ -1,5 +1,5 @@
 import React from "react";
-import { SocialMediaIconsReact } from 'social-media-icons-react'
+import { SocialMediaIconsReact } from './../social-media-icons-react'
 import {
     Box,
     Flex,
