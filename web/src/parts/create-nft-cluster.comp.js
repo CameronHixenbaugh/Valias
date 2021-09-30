@@ -39,6 +39,19 @@ export function IpfsMetadata(cid){
       //handle error here
       console.log(err);
   });
+  const filters = {
+    status : 'pinned',
+    pageLimit: 10,
+    pageOffset: 0,
+    metadata: metadata
+};
+pinata.pinList(filters).then((result) => {
+    //handle results here
+    console.log(result);
+}).catch((err) => {
+    //handle error here
+    console.log(err);
+});
 }
 
 export function CreateNFTCluster(){ 
@@ -55,7 +68,7 @@ export function CreateNFTCluster(){
     const [showHide3, setShowHide3] = useState(false);
 
     const history = useHistory()
-    const [cu] = useCurrentUser()
+    const [user] = useCurrentUser()
     const address = useAddress()
     const items = useAccountItems(address)
     if (address == null) return <div>Not Found</div> 
@@ -66,7 +79,7 @@ export function CreateNFTCluster(){
   const handleSubmit = (event) =>{
 
 
-    if(cu.addr === address){
+    if(user.addr === address){
       console.log("good")
     }else{
       alert(`Must be logged on to your account`)
@@ -113,10 +126,12 @@ export function CreateNFTCluster(){
       des = description
       price = price1
       IpfsMetadata(hash)
-      items.mint()
+      //alert(`Hash: ${hash}`)
       buildNFT(name, des, price, null, null, hash)
-      history.push("/"+cu.addr+"/congrats")
+      history.push("/"+user.addr+"/congrats")
+      //items.mint()
       event.preventDefault();
+      //return (<Redirect to={"/0x:address/congrats"} />)
     }
     if(title1!=='' && description!=='' && price2!=='' && length!=='' && showHide2===true && price3===''){
       alert(`
@@ -133,7 +148,7 @@ export function CreateNFTCluster(){
       IpfsMetadata(hash)
       //items.mint()
       buildNFT(name, des, price, auction, null, hash)
-      history.push("/"+cu.addr+"/congrats")
+      //history.push("/0x:address/congrats")
       event.preventDefault();
     }
     else if(title1!=='' && description!=='' && price2!=='' && length!=='' && showHide2===true && price3!==''){
@@ -153,7 +168,7 @@ export function CreateNFTCluster(){
       IpfsMetadata(hash)
       //items.mint()
       buildNFT(name, des, price, auction, p3, hash)
-      history.push("/"+cu.addr+"/congrats")
+      //history.push("/"+cu.addr+"/congrats")
       event.preventDefault();
     }
   }
@@ -331,35 +346,35 @@ const handleShow3= (childData) => {
           <div style={{color:"white"}}>
             <Center>
             Auction Length: 
-            <div class='form-check form-check-inline'>
+            <div className='form-check form-check-inline'>
             <label>
             <input
               name="length"
               type="radio"
               id="Check1"
-              value={length = "24"}
+              value="24"
               onChange={handleLenChange} 
             />24 Hours
             </label>
             </div>
-            <div class='form-check form-check-inline'>
+            <div className='form-check form-check-inline'>
             <label> 
             <input 
               name="length"
               type="radio"
               id="Check2"
-              value={length = "48"}
+              value="48"
               onChange={handleLenChange} 
             />48 Hours
             </label>
             </div>
-            <div class='form-check form-check-inline'>
+            <div className='form-check form-check-inline'>
             <label>
             <input
               name="length"
               type="radio"
               id="Check3"
-              value={length = "72"}
+              value="72"
               onChange={handleLenChange} 
             />72 Hours
             </label>

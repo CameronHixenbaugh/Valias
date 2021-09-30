@@ -99,8 +99,6 @@ export function InfoBanner({address}) {
   }
 }
 
-
-
 export function Page() {
   const address = useAddress()
   const [cu, loggedIn] = useCurrentUser()
@@ -154,7 +152,6 @@ export function Page() {
         </Flex>
         </Center>
         </Box>
-        
         <Box backgroundColor="black">
         <Tabs colorScheme="blue" defaultIndex={0}>
           <Center>

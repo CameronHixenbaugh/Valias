@@ -40,7 +40,7 @@ class KittyItemsService {
     });
   };
 
-  mint = async (recipient: string, typeID: number) => {
+  mint = async (recipient: string, typeID: string) => {
     const authorization = this.flowService.authorizeMinter();
 
     const transaction = fs
@@ -59,7 +59,7 @@ class KittyItemsService {
 
     return this.flowService.sendTx({
       transaction,
-      args: [fcl.arg(recipient, t.Address), fcl.arg(typeID, t.UInt64)],
+      args: [fcl.arg(recipient, t.Address), fcl.arg(typeID, t.String)],
       authorizations: [authorization],
       payer: authorization,
       proposer: authorization,

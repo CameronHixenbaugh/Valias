@@ -1,9 +1,11 @@
-import React from "react";
+import React, {Suspense} from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import {useCurrentUser } from "../../hooks/use-current-user.hook";
 import {useAddress} from "../../hooks/use-url-address.hook"
 import {Base} from "../../parts/base.comp"
+import {IDLE} from "../../global/constants"
 import AuthCluster from "../../parts/auth-cluster.comp.js"
+import { useAccountItems} from "../../hooks/use-account-items.hook"
 import Navbar from "../../parts/navbar.comp.js"
 import Foot from "../../parts/footer.comp"
 import { 
@@ -34,10 +36,20 @@ function buildNFT(n, d, p, l, p3, h){
 
 
 }
+/*
+function MintButton({address}) {
+  const items = useAccountItems(address)
+
+  return (
+    <Button disabled={items.status !== IDLE} onClick={items.mint}>
+      Mint Item
+    </Button>
+  )
+}*/
 
 export function Newnft (){
     const address = useAddress()
-    const [user, loggedIn] = useCurrentUser()
+    const [user, loggedIn, cu] = useCurrentUser()
     if (address == null) return <Redirect to={"/"} />  
 
     var image = "https://ipfs.io/ipfs/"+ hash
@@ -70,6 +82,8 @@ export function Newnft (){
                                     <img src={image} alt="New NFT" width="75%" />
                                     <Text color="white" fontSize="2xl" width="75%" ><b>{description}</b></Text>
                                     <Text color="white" fontSize="2xl" ><b>Price: {price}</b></Text>
+                                    <Text color="white" fontSize="2xl" ><b>TypeID: {hash}</b></Text>
+                                    
                                     <Button backgroundColor= "#BEE3F8" variant="ghost"><NavLink to={"/" + user.addr} style={{color:"black"}}>Home</NavLink></Button>
                                 </VStack>
                             </Center>

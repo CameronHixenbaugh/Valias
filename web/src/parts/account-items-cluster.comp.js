@@ -50,11 +50,11 @@ export function AccountItemsCluster({address}) {
       <Table size="sm">
         <Thead>
           <Tr>
-            <Th>Id</Th>
-            <Th>Name</Th>
-            <Th>Description</Th>
-            <Th>Price</Th>
-            <Th>Image</Th>
+            <Th textAlign="center">Id</Th>
+            <Th textAlign="center">Name</Th>
+            {/*<Th>Description</Th>*/}
+            {/*<Th>Price</Th>*/}
+            <Th textAlign="center">Image</Th>
             {cu.addr === address && <Th />}
           </Tr>
         </Thead>

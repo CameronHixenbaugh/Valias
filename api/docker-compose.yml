@@ -1,16 +1,16 @@
-#version: "3" 
-version: "13.3"
+#version: "13.3" 
+version: "3"
 services:
   db:
     image: postgres
     ports:
       - "5432:5432"
     environment:
-    - POSTGRES_DB=d3nvt4kgpaajuh
-    - POSTGRES_USER=ynlenbyregqmdj
-    - POSTGRES_PASSWORD=0eda35dec532dd537f5e58561c117db374269ac61f8d922926158b040b6e117d
+    #- POSTGRES_DB=d3nvt4kgpaajuh
+    #- POSTGRES_USER=ynlenbyregqmdj
+    #- POSTGRES_PASSWORD=0eda35dec532dd537f5e58561c117db374269ac61f8d922926158b040b6e117d
 
 
-    #- POSTGRES_DB=kittyitems
-    #- POSTGRES_USER=kittyuser
-    #- POSTGRES_PASSWORD=kittypassword
+    - POSTGRES_DB=kittyitems
+    - POSTGRES_USER=kittyuser
+    - POSTGRES_PASSWORD=kittypassword

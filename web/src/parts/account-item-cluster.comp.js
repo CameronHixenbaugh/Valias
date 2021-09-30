@@ -3,6 +3,7 @@ import {useAccountItem} from "../hooks/use-account-item.hook"
 import {useMarketItem} from "../hooks/use-market-item.hook"
 import {useCurrentUser} from "../hooks/use-current-user.hook"
 import {IDLE} from "../global/constants"
+import pinataSDK from '@pinata/sdk';
 import PriceModal from './PriceModal.js'
 import {
   Tr,
@@ -31,6 +32,14 @@ export const ItemImage = ({typeID}) => {
   return <Image maxW="64px" src={item} />
 }
 
+function nftName(hash){
+  const pKey = process.env.REACT_APP_PINATA_API_KEY;
+  const pSKey = process.env.REACT_APP_PINATA_SECRET_API_KEY;
+  const pinata = pinataSDK( pKey, pSKey);
+
+
+}
+
 
 
 export function AccountItemCluster( {address, id}) {
@@ -56,12 +65,12 @@ export function AccountItemCluster( {address, id}) {
       <Td>
         <Text>Sample</Text>
       </Td>
-      <Td>
+      {/*<Td>
         <Text>Sample NFT</Text>
       </Td>
       <Td>
         <Text>20</Text>
-      </Td>
+      </Td>*/}
       <Td>
         <img src={imageurl} alt="nft"/>
       </Td>

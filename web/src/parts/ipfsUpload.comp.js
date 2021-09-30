@@ -85,9 +85,9 @@ class IpfsUpload extends Component {
             data.append('file', this.state.selectedFile[x])
         }
         //To use locally
-        //axios.post("http://localhost:8000/upload", data, {
+        axios.post("http://localhost:8000/upload", data, {
         //With heroku
-        axios.post("https://vaultv2.herokuapp.com:8000/upload", data, {
+        //axios.post("https://vaultv2.herokuapp.com:8000/upload", data, {
             onUploadProgress: ProgressEvent => {
                 this.setState({
                     loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
@@ -96,6 +96,7 @@ class IpfsUpload extends Component {
         })
             .then(res => { // then print response status
                 hash = res.data
+                //hash = toString(hash)
                 this.props.parentCallback(this.setState({showHide3: true}))
                 toast.success('upload success')
             })

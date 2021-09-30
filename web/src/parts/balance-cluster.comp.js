@@ -4,9 +4,10 @@ import {useKibblesBalance} from "../hooks/use-kibbles-balance.hook"
 import {useCurrentUser} from "../hooks/use-current-user.hook"
 import {IDLE} from "../global/constants"
 import {fmtKibbles} from "../util/fmt-kibbles"
+import VexModal from "./paypal/VexModal.comp"
 import {
   Box,
-  Button,
+  ChakraProvider,
   Table,
   Tbody,
   Tr,
@@ -16,12 +17,12 @@ import {
   Spinner,
   Center,
 } from "@chakra-ui/react"
-import {useInitialized} from "../hooks/use-initialized.hook"
+//import {useInitialized} from "../hooks/use-initialized.hook"
 
 export function BalanceCluster({address}) {
   const flow = useFlowBalance(address)
   const kibbles = useKibblesBalance(address)
-  const init = useInitialized(address)
+  //const init = useInitialized(address)
   return (
     <Box mb="4">
       <Box mb="2">
@@ -54,13 +55,9 @@ export function BalanceCluster({address}) {
       </Box>
       <Box mt="2">
         <Flex>
-          <Button
-            colorScheme="blue"
-            disabled={kibbles.status !== IDLE || !init.isInitialized}
-            onClick={kibbles.mint}
-          >
-            Request Vex
-          </Button>
+          <ChakraProvider>
+            <VexModal />
+          </ChakraProvider>
         </Flex>
       </Box>
     </Box>
