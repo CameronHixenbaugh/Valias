@@ -18,9 +18,9 @@ export function useMarketItems() {
   const url = process.env.REACT_APP_API_MARKET_ITEMS_LIST
   const [status, setStatus] = useRecoilState($marketItemsStatus)
   const [items, setItems] = useRecoilState($marketItemsState)
-  var fetcher1 = JSON.stringify(fetcher)
+  //var fetcher = 
 
-  useSWR(url, fetcher1, {
+  useSWR(url, fetcher, {
     initialData: items,
     refreshInterval: 10,
     onLoadingSlow: () => {
