@@ -7,7 +7,6 @@ import {fmtKibbles} from "../util/fmt-kibbles"
 import VexModal from "./paypal/VexModal.comp"
 import {
   Box,
-  ChakraProvider,
   Table,
   Tbody,
   Tr,
@@ -55,9 +54,7 @@ export function BalanceCluster({address}) {
       </Box>
       <Box mt="2">
         <Flex>
-          <ChakraProvider>
             <VexModal />
-          </ChakraProvider>
         </Flex>
       </Box>
     </Box>

@@ -13,7 +13,7 @@ import {
   HStack,
 } from "@chakra-ui/react"
 
-import {ItemImage} from "./account-item-cluster.comp"
+//import {ItemImage} from "./account-item-cluster.comp"
 
 export function MarketItemCluster({address, id}) {
   const [cu, loggedIn] = useCurrentUser()
@@ -24,8 +24,12 @@ export function MarketItemCluster({address, id}) {
   var priceAdjust = item.price
   var pAdjust = parseInt(priceAdjust)
   pAdjust = pAdjust.toFixed(2)
+  var imageurl
 
-  var imageurl = "https://ipfs.io/ipfs/" + item.typeID
+  if (item.itemID === 0){
+   imageurl = "https://ipfs.io/ipfs/QmaCaM6X1gdAYnCpJrEdQRG6EEXUJHSu733iXDi1F1M5fP"
+  } else
+   imageurl = "https://ipfs.io/ipfs/" + item.typeID
 
   return (
     <Tr color="white">
@@ -36,7 +40,7 @@ export function MarketItemCluster({address, id}) {
       </Td>
       <Td>({item.typeID})</Td>
       <Td>
-      <img src={imageurl} alt="nft"/>
+        <img src={imageurl} alt="nft"/>
       </Td>
       <Td>{pAdjust}</Td>
       {loggedIn && (

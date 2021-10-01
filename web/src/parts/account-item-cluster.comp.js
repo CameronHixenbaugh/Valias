@@ -3,7 +3,7 @@ import {useAccountItem} from "../hooks/use-account-item.hook"
 import {useMarketItem} from "../hooks/use-market-item.hook"
 import {useCurrentUser} from "../hooks/use-current-user.hook"
 import {IDLE} from "../global/constants"
-import pinataSDK from '@pinata/sdk';
+//import pinataSDK from '@pinata/sdk';
 import PriceModal from './PriceModal.js'
 import {
   Tr,
@@ -31,7 +31,7 @@ export const ItemImage = ({typeID}) => {
 
   return <Image maxW="64px" src={item} />
 }
-
+/*
 function nftName(hash){
   const pKey = process.env.REACT_APP_PINATA_API_KEY;
   const pSKey = process.env.REACT_APP_PINATA_SECRET_API_KEY;
@@ -39,7 +39,7 @@ function nftName(hash){
 
 
 }
-
+*/
 
 
 export function AccountItemCluster( {address, id}) {
@@ -48,21 +48,25 @@ export function AccountItemCluster( {address, id}) {
   const [cu] = useCurrentUser()
 
   const BUSY = item.status !== IDLE || listing.status !== IDLE
+  var imageurl
 
   if (address == null) return null
   if (id == null) return null
 
-  var imageurl = "https://ipfs.io/ipfs/" + item.typeID
+  if (item.itemID === 0){
+    imageurl = "https://ipfs.io/ipfs/QmaCaM6X1gdAYnCpJrEdQRG6EEXUJHSu733iXDi1F1M5fP"
+  } else
+    imageurl = "https://ipfs.io/ipfs/" + item.typeID
 
 
   return (
     <Tr color="white">
       <Td maxW="50px">
         <Flex>
-          <Text as={item.forSale && "del"}>#{item.itemID}</Text>
+          <Text textAlign="center" as={item.forSale && "del"}>#{item.itemID}</Text>
         </Flex>
       </Td>
-      <Td>
+      <Td textAlign="center">
         <Text>Sample</Text>
       </Td>
       {/*<Td>
@@ -72,7 +76,9 @@ export function AccountItemCluster( {address, id}) {
         <Text>20</Text>
       </Td>*/}
       <Td>
-        <img src={imageurl} alt="nft"/>
+        <Center>
+          <img width="175px"  src={imageurl} alt="nft"/>
+        </Center>
       </Td>
       {cu.addr === address && (
         <>

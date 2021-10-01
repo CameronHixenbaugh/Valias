@@ -14,9 +14,10 @@ export default function PayPal(props) {
     var vexAmount = (props.vex * 1) * 0.119 + 0.30
     var amount = (props.vex * 1) + vexAmount
     var adjAmount = amount.toFixed(2)
+    //var myButton = window.myButton
 
     React.useEffect(() => {
-        window.paypal
+      window.paypal
           .Buttons({
             createOrder: (data, actions) => {
               return actions.order.create({
@@ -29,22 +30,24 @@ export default function PayPal(props) {
                       value: adjAmount,
                     },
                   },
-                ],
-              });
+                ], 
+              })
             },
             onApprove: async (data, actions) => {
               const order = await actions.order.capture();
               setPaid(true);
-              kibbles.mint(props.vex)
+              var amount = parseInt(props.vex)
+              kibbles.mint(amount)
               console.log(order);
             },
             onError: (err) => {
-            //   setError(err),
+              setError(err)
               console.error(err);
+              //close();
             },
           })
-          .render(paypalRef.current);
-      }, );
+          .render(paypalRef.current)
+      }, []);
 
       if (paid) {
         return <div>Payment successful.!</div>;
@@ -56,9 +59,9 @@ export default function PayPal(props) {
       }
 
     return (
-        <div>
+        <React.StrictMode>
             <h4 style={{color:"white"}}>Total Amount in USD : ${adjAmount} for {props.vex} VEX</h4>
             <div ref={paypalRef} />
-        </div>
+        </React.StrictMode>
     )
 }

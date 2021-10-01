@@ -1,11 +1,11 @@
-import React, {Suspense} from "react";
+import React from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import {useCurrentUser } from "../../hooks/use-current-user.hook";
 import {useAddress} from "../../hooks/use-url-address.hook"
 import {Base} from "../../parts/base.comp"
-import {IDLE} from "../../global/constants"
+//import {IDLE} from "../../global/constants"
 import AuthCluster from "../../parts/auth-cluster.comp.js"
-import { useAccountItems} from "../../hooks/use-account-items.hook"
+//import { useAccountItems} from "../../hooks/use-account-items.hook"
 import Navbar from "../../parts/navbar.comp.js"
 import Foot from "../../parts/footer.comp"
 import { 
@@ -49,7 +49,7 @@ function MintButton({address}) {
 
 export function Newnft (){
     const address = useAddress()
-    const [user, loggedIn, cu] = useCurrentUser()
+    const [user, loggedIn] = useCurrentUser()
     if (address == null) return <Redirect to={"/"} />  
 
     var image = "https://ipfs.io/ipfs/"+ hash

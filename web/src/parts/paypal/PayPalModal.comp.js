@@ -12,13 +12,19 @@ import {
     useDisclosure
 } from "@chakra-ui/react"
 import PayPal from './PayPal.comp';
+import {IDLE} from "../../global/constants"
+import {useKibblesBalance} from "../../hooks/use-kibbles-balance.hook"
+import {useAddress} from "../../hooks/use-url-address.hook"
 
 export default function PayPalModal(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const address = useAddress()
+    const kibble = useKibblesBalance(address)
+
     
     return (
-        <>
-      <Button onClick={onOpen} backgroundColor="#BEE3F8">Checkout</Button>
+        <div>
+      <Button disabled={kibble.status !== IDLE} onClick={onOpen} backgroundColor="#BEE3F8">Checkout</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -26,7 +32,9 @@ export default function PayPalModal(props) {
           <ModalHeader textAlign="center" p="7" color="white"><h1>Checkout</h1></ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <PayPal vex={props.vex}/>
+            <React.StrictMode>
+              <PayPal vex={props.vex}/>
+            </React.StrictMode>
           </ModalBody>
 
           <ModalFooter>
@@ -37,6 +45,6 @@ export default function PayPalModal(props) {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>
+    </div>
     )
 }
