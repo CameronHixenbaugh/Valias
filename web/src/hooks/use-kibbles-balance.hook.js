@@ -40,7 +40,7 @@ export function useKibblesBalance(address) {
           recipient: address,
           amount: amount,
         }),
-      })
+      }) 
       await fetchKibblesBalance(address).then(setBalance)
       setStatus(IDLE)
     },

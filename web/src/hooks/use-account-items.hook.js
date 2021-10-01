@@ -65,7 +65,6 @@ export function useAccountItems(address) {
     status,
 
     async mint() {
-      alert(`got to mint: ${hash}`)
       setStatus(PROCESSING)
       await fetch(process.env.REACT_APP_API_KITTY_ITEM_MINT, {
         method: "POST",
