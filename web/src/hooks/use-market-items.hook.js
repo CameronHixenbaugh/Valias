@@ -3,6 +3,7 @@ import useSWR from "swr"
 import {IDLE, LOADING} from "../global/constants"
 import fetcher from "../util/fetcher"
 import normalizeItem from "../util/normalize-item"
+import axios from 'axios'
 
 export const $marketItemsState = atom({
   key: "market-items::state",
@@ -17,8 +18,8 @@ export const $marketItemsStatus = atom({
 export function useMarketItems() {
   const url = process.env.REACT_APP_API_MARKET_ITEMS_LIST
   const [status, setStatus] = useRecoilState($marketItemsStatus)
+  //const fetcherFunc = (url) => axios.get(url).then((res) => res.data);
   const [items, setItems] = useRecoilState($marketItemsState)
-  //var fetcher = 
 
   useSWR(url, fetcher, {
     initialData: items,
@@ -27,12 +28,10 @@ export function useMarketItems() {
       setStatus(LOADING)
     },
     onSuccess: ({latestSaleOffers}) => {
-      //var temp = JSON.stringify(items)
       setItems(latestSaleOffers.map(item => normalizeItem(item)))
       setStatus(IDLE)
     },
     onError: error => {
-      console.log("sale offers" + fetcher)
       console.log("Failed to fetch market items." + error)
     },
   })

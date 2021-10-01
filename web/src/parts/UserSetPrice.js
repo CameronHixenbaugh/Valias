@@ -1,5 +1,5 @@
 import React, { useState} from "react"
-import { Int } from "@onflow/types"
+//import { Int } from "@onflow/types"
 import { useAccountItems} from "../hooks/use-account-items.hook"
 import {IDLE} from "../global/constants"
 import {useCurrentUser} from "../hooks/use-current-user.hook.js"
@@ -45,20 +45,13 @@ function IpfsMetadata(cidID, price){
 
 export function UserSetPrice(props) {
 
-    const [price1, setPrice1] = useState(null);
-    const [price2, setPrice2] = useState(null);
-    const [price3, setPrice3] = useState(null);
+    const [price1, setPrice1] = useState('');
+    const [price2, setPrice2] = useState('');
+    const [price3, setPrice3] = useState('');
     const [length, setLength] = useState('');
     const [showHide1, setShowHide1] = useState(false);
     const [showHide2, setShowHide2] = useState(false);
-    const [state, setState] = useState({
-      title1: '',
-      description: '',
-      price1: Int,
-      price2: Int,
-      price3: Int,
-      length: ''
-    })
+    
 
     //const item = useAccountItem
     const address = useAddress()
@@ -163,10 +156,10 @@ export function UserSetPrice(props) {
         // Computed property names
         // keys of the objects are computed dynamically
         setPrice1(event.target.value);
-        const price1 = event.target.value;
+        /*const price1 = event.target.value;
           setState({
             price1: price1
-          });
+          });*/
         
     }
     
@@ -174,10 +167,10 @@ export function UserSetPrice(props) {
       // Computed property names
       // keys of the objects are computed dynamically
       setPrice2(event.target.value);
-      const price2 = event.target.value;
+      /*const price2 = event.target.value;
         setState({
           price2: price2
-        });
+        });*/
       
     }
     
@@ -185,10 +178,10 @@ export function UserSetPrice(props) {
       // Computed property names
       // keys of the objects are computed dynamically
       setPrice3(event.target.value);
-      const price3 = event.target.value;
+      /*const price3 = event.target.value;
         setState({
           price3: price3
-        });
+        });*/
       
     }
     
@@ -196,10 +189,10 @@ export function UserSetPrice(props) {
       // Computed property names
       // keys of the objects are computed dynamically
       setLength(event.target.value);
-      const length = event.target.value;
+      /*const length = event.target.value;
         setState({
           length: length
-        });
+        });*/
         
         const id = event.target.id;
         for (var i = 1;i <= 3; i++)
@@ -226,7 +219,7 @@ return(
            <input
               name='price1' 
               type="number"
-              value={state.price1}
+              value={price1}
               placeholder='10.00'
               onChange={handleprice1Change}
             />
@@ -254,7 +247,7 @@ return(
               name="length"
               type="radio"
               id="Check1"
-              value={state.length = "24"}
+              value="24"
               onChange={handleLenChange} 
             />24 Hours
             </label>
@@ -265,7 +258,7 @@ return(
               name="length"
               type="radio"
               id="Check2"
-              value={state.length = "48"}
+              value="48"
               onChange={handleLenChange} 
             />48 Hours
             </label>
@@ -276,7 +269,7 @@ return(
               name="length"
               type="radio"
               id="Check3"
-              value={state.length = "72"}
+              value="72"
               onChange={handleLenChange} 
             />72 Hours
             </label>
@@ -289,7 +282,7 @@ return(
           <input
             name='price2' 
             type="number"
-            value={state.price2}
+            value={price2}
             placeholder='10.00'
             onChange={handleprice2Change}
           />
@@ -301,7 +294,7 @@ return(
           <input
             name='price3' 
             type="number"
-            value={state.price3}
+            value={price3}
             placeholder='10.00 (Optional)'
             onChange={handleprice3Change}
           />
