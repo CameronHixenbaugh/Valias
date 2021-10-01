@@ -1,5 +1,9 @@
 import React, {useState} from 'react'
 import PayPalModal from './PayPalModal.comp'
+import {useInitialized} from "../../hooks/use-initialized.hook"
+import {useAddress} from "../../hooks/use-url-address.hook"
+import {IDLE} from "../../global/constants"
+import {useKibblesBalance} from "../../hooks/use-kibbles-balance.hook"
 import {
     Box,
     Button,
@@ -21,6 +25,9 @@ export default function VexModal(props){
     const [state, setState] = useState({
         amount:''
     })
+    const address = useAddress()
+    const kibbles = useKibblesBalance(address)
+    const init = useInitialized(address)
 
     function handleAmount(event){
         const amount = event.target.value;
@@ -31,7 +38,7 @@ export default function VexModal(props){
 
   return (
     <>
-      <Button onClick={onOpen} backgroundColor="#BEE3F8">Request VEX</Button>
+      <Button disabled={kibbles.status !== IDLE || !init.isInitialized} onClick={onOpen} backgroundColor="#BEE3F8">Request VEX</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

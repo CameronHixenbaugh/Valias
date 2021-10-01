@@ -29,7 +29,7 @@ export function useKibblesBalance(address) {
     balance,
     status,
     refresh,
-    async mint() {
+    async mint(amount) {
       setStatus(PROCESSING)
       await fetch(process.env.REACT_APP_API_KIBBLE_MINT, {
         method: "POST",
@@ -38,7 +38,7 @@ export function useKibblesBalance(address) {
         },
         body: JSON.stringify({
           recipient: address,
-          amount: 50.0,
+          amount: amount,
         }),
       })
       await fetchKibblesBalance(address).then(setBalance)

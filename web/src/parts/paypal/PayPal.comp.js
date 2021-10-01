@@ -1,9 +1,15 @@
 import React from 'react'
+import {useAddress} from "../../hooks/use-url-address.hook"
+import {useKibblesBalance} from "../../hooks/use-kibbles-balance.hook"
+
 
 export default function PayPal(props) {
     const [paid, setPaid] = React.useState(false);
     const [error, setError] = React.useState(null);
     const paypalRef = React.useRef();
+
+    const address = useAddress()
+    const kibbles = useKibblesBalance(address)
 
     var vexAmount = (props.vex * 1) * 0.119 + 0.30
     var amount = (props.vex * 1) + vexAmount
@@ -29,6 +35,7 @@ export default function PayPal(props) {
             onApprove: async (data, actions) => {
               const order = await actions.order.capture();
               setPaid(true);
+              kibbles.mint(props.vex)
               console.log(order);
             },
             onError: (err) => {

@@ -25,6 +25,8 @@ export function MarketItemCluster({address, id}) {
   var pAdjust = parseInt(priceAdjust)
   pAdjust = pAdjust.toFixed(2)
 
+  var imageurl = "https://ipfs.io/ipfs/" + item.typeID
+
   return (
     <Tr color="white">
       <Td maxW="50px">
@@ -34,7 +36,7 @@ export function MarketItemCluster({address, id}) {
       </Td>
       <Td>({item.typeID})</Td>
       <Td>
-        <ItemImage typeID={item.typeID} />
+      <img src={imageurl} alt="nft"/>
       </Td>
       <Td>{pAdjust}</Td>
       {loggedIn && (

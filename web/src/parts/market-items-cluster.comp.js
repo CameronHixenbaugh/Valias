@@ -25,7 +25,7 @@ export function MarketItemsCluster() {
             <Th>Image</Th>
   <Th>Price</Th>*/}
             <Th>Id</Th>
-            <Th>Type</Th>
+            <Th>Name</Th>
             <Th>Image</Th>
             <Th>Price</Th>
           </Tr>
