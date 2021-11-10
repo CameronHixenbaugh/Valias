@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "tsnd ./src/index.ts --respawn --dev",
     "testnet": "tsnd --respawn ./src/index.ts --dev",
-    "start:worker": "tsnd ./src/index.ts --worker --traceResolution",
-    "start": "tsnd ./src/index.ts --traceResolution",
+    "start:worker": "tsnd ./src/index.ts --worker",
+    "start": "tsnd ./src/index.ts",
     "build": "tsc",
     "format": "prettier \"src/**/*.ts\" \"test/**/*.ts\"",
     "format:check": "npm run format -- -c",
@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@onflow/fcl": "0.0.72",
+    "@onflow/fcl": "^0.0.77",
     "@onflow/types": "0.0.4",
     "@pinata/sdk": "^1.1.23",
     "cors": "^2.8.5",
@@ -51,6 +51,6 @@
     "ts-node-dev": "^1.1.1"
   },
   "engines": {
-    "node": "14.x"
+    "node": "17.1.0"
   }
 }
