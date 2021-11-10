@@ -125,7 +125,7 @@ app.post('/upload',function(req, res) {
 
         
         // Everything went fine.
-      })
+      }) 
 });
 
 app.listen(8000, function() {
