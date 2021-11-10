@@ -47,7 +47,7 @@ export default function PayPal(props) {
             },
           })
           .render(paypalRef.current)
-      }, []);
+      }, );
 
       if (paid) {
         return <div>Payment successful.!</div>;

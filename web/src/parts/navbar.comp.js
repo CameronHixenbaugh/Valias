@@ -33,8 +33,9 @@ export default function Navbar() {
         px={{ base: 2, sm: 4 }}
         py={4}
         shadow="md"
+        backgroundColor="black"
       >
-        <Flex position="s" justifyContent="space-between" mx="auto" borderColor="#BEE3F8" borderWidth="3px">
+        <Flex position="s" backgroundColor="black" justifyContent="space-between" mx="auto" borderColor="#BEE3F8" borderWidth="3px">
           <Flex align="center">
             <chakra.a
               href="/" 

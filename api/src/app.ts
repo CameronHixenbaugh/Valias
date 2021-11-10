@@ -39,7 +39,10 @@ if (LOCAL) {
 //IPFS file upload
 const app = express();
 import multer from 'multer';
-app.use(cors());
+var corsOptions = {
+  origin: 'http://localhost:3001'
+};
+app.use(cors(corsOptions));
 import fs from 'fs'; 
 import pinataSDK from '@pinata/sdk';
 
@@ -157,6 +160,7 @@ const initApp = (
 
     app.get("*", function (req, res) {
       res.sendFile(path.resolve(__dirname, "../../web/build/index.html"));
+      res.cookie('_ga', '.paypal.com/',{sameSite:'none', secure: true});
     });
   };
 

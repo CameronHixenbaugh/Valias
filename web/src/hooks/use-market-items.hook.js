@@ -18,10 +18,10 @@ export const $marketItemsStatus = atom({
 export function useMarketItems() {
   const url = process.env.REACT_APP_API_MARKET_ITEMS_LIST
   const [status, setStatus] = useRecoilState($marketItemsStatus)
-  const fetcherFunc = (url) => axios.get(url).then((res) => res.data);
+  //const fetcherFunc = (url) => axios.get(url).then((res) => res.data);
   const [items, setItems] = useRecoilState($marketItemsState)
 
-  useSWR(url, fetcherFunc, {
+  useSWR(url, fetcher, {
     initialData: items,
     refreshInterval: 10,
     onLoadingSlow: () => {
@@ -32,7 +32,6 @@ export function useMarketItems() {
       setStatus(IDLE)
     },
     onError: error => {
-      console.log("url is: " + url)
       console.log("Failed to fetch market items." + error)
     },
   })
