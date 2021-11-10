@@ -39,11 +39,12 @@ if (LOCAL) {
 //IPFS file upload
 const app = express();
 import multer from 'multer';
-var corsOptions = {
+//var corsOptions = {
   //origin: 'http://localhost:3001'
-  origin: 'https://vaultv2.herokuapp.com/'
-};
-app.use(cors(corsOptions));
+  //origin: 'https://vaultv2.herokuapp.com/'
+//};
+//app.use(cors(corsOptions));
+app.use(cors());
 import fs from 'fs'; 
 import pinataSDK from '@pinata/sdk';
 
