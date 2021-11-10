@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "tsnd ./src/index.ts --respawn --dev",
     "testnet": "tsnd --respawn ./src/index.ts --dev",
-    "start:worker": "tsnd ./src/index.ts --worker",
-    "start": "tsnd ./src/index.ts",
+    "start:worker": "tsnd ./src/index.ts --worker --traceResolution",
+    "start": "tsnd ./src/index.ts --traceResolution",
     "build": "tsc",
     "format": "prettier \"src/**/*.ts\" \"test/**/*.ts\"",
     "format:check": "npm run format -- -c",
