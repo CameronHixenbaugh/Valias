@@ -114,7 +114,7 @@ export function Page() {
         <Box borderWidth="10px" borderColor="black" >
         <AuthCluster/>
         </Box>
-        <Box borderWidth="10px" borderColor="black">
+        <Box borderWidth="10px" borderColor="black"> 
           <Navbar />
         </Box>
         <Box backgroundColor="black">
