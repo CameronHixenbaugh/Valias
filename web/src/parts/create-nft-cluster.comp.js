@@ -45,13 +45,17 @@ export function IpfsMetadata(cid){
     pageOffset: 0,
     metadata: metadata
 };
+alert(`metadata success`)
 pinata.pinList(filters).then((result) => {
     //handle results here
+    alert(`pinlist success 1`)
     console.log(result);
 }).catch((err) => {
     //handle error here
+    alert(`pinlist fail`)
     console.log(err);
 });
+alert(`pinlist success`)
 }
 
 export function CreateNFTCluster(){ 
@@ -125,12 +129,12 @@ export function CreateNFTCluster(){
       name = title1
       des = description
       price = price1
-      IpfsMetadata(hash)
+      //IpfsMetadata(hash)
       //alert(`Hash: ${hash}`)
-      buildNFT(name, des, price, null, null, hash)
-      history.push("/"+user.addr+"/congrats")
-      //items.mint()
-      event.preventDefault();
+      //buildNFT(name, des, price, null, null, hash)
+      //history.push("/"+user.addr+"/congrats")
+      items.mint()
+      //event.preventDefault();
       //return (<Redirect to={"/0x:address/congrats"} />)
     }
     if(title1!=='' && description!=='' && price2!=='' && length!=='' && showHide2===true && price3===''){
@@ -421,7 +425,7 @@ const handleShow3= (childData) => {
 
         <Center>
           {showHide3 &&
-            <Button type="submit"  disabled={items.status !== IDLE} style={{color:"black"}} >Create My NFT</Button>
+            <Button type="submit"  disabled={items.status !== IDLE} style={{color:"white"}} >Create My NFT</Button>
           }
         </Center>
 

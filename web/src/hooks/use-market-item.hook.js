@@ -8,6 +8,7 @@ import {useKibblesBalance} from "../hooks/use-kibbles-balance.hook"
 import {fetchMarketItem} from "../flow/script.get-market-item"
 import {buyMarketItem} from "../flow/tx.buy-market-item"
 import {cancelMarketListing} from "../flow/tx.remove-sale-offer"
+import { sleep } from "../util/sleep"
 
 function expand(key) {
   return key.split("|")
@@ -40,9 +41,13 @@ export function useMarketItem(address, id) {
   const [status, setStatus] = useRecoilState($status(key))
   const owned = sansPrefix(cu.addr) === sansPrefix(address)
 
-  useEffect(() => {
+  /*useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log('This will run after 1 second!')
+    }, 2000);
     fetchMarketItem(...expand(key)).then(setItem)
-  })
+    return () => clearTimeout(timer);
+  })*/
 
   return {
     ...item,

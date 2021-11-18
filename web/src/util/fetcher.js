@@ -1,4 +1,10 @@
-const fetcher = url => fetch(url).then(res => res.json())//.then(res => console.log(res.json))
+/*const fetcher = async url => 
+    await new Promise.resolve(fetch(url)
+    .then(res => res.json())) //.then(res => console.log(res.json))
+*/
+
+const fetcher = url => fetch(url).then(res => res.json())
+
 export default fetcher
 
 

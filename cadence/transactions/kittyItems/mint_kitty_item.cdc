@@ -32,3 +32,4 @@ transaction(recipient: Address, typeID: String) {
         self.minter.mintNFT(recipient: receiver, typeID: typeID)
     }
 }
+ 
