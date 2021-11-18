@@ -129,7 +129,7 @@ export function CreateNFTCluster(){
       name = title1
       des = description
       price = price1
-      //IpfsMetadata(hash)
+      IpfsMetadata(hash)
       //alert(`Hash: ${hash}`)
       //buildNFT(name, des, price, null, null, hash)
       //history.push("/"+user.addr+"/congrats")
