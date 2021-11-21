@@ -3,37 +3,10 @@ import { useAccountItems} from "../hooks/use-account-items.hook"
 import {useCurrentUser} from "../hooks/use-current-user.hook"
 import Item from "./account-item-cluster.comp"
 import {Box, Table, Thead, Tbody, Tr, Th, Text, Spinner} from "@chakra-ui/react"
-//import { IpfsMetadata } from "./create-nft-cluster.comp"
-/*
-const itemCid = new Map();
-var Dict; 
-var hash;
-var count;
-var cidID;
-
-export function CidDict(cid){
-  hash = cid
-}
-*/
 
 export function AccountItemsCluster({address}) {
   const items = useAccountItems(address)
   const [cu] = useCurrentUser()
-
-/*
-  Dict = () => {
-    var nftLen = items.ids.length
-    count = items.ids[nftLen]
-    
-    //itemCid[count] = hash
-    itemCid.set(count, hash)
-
-    alert(`ID is ${count} and the hash is ${itemCid.get(count)}`)
-
-    cidID = count;
-    IpfsMetadata(hash, cidID)
-  }
-  */
   
 
   if (address == null) return null
@@ -52,8 +25,7 @@ export function AccountItemsCluster({address}) {
           <Tr>
             <Th textAlign="center">Id</Th>
             <Th textAlign="center">Name</Th>
-            {/*<Th>Description</Th>*/}
-            {/*<Th>Price</Th>*/}
+            <Th>Description</Th>
             <Th textAlign="center">Image</Th>
             {cu.addr === address && <Th />}
           </Tr>
@@ -82,4 +54,4 @@ export default function WrappedAccountItemsCluster({address}) {
   )
 }
 
-//export { Dict, itemCid, cidID};
+

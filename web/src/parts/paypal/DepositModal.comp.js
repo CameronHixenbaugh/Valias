@@ -11,12 +11,12 @@ import {
     Spacer,
     useDisclosure
 } from "@chakra-ui/react"
-import PayPal from './PayPal.comp';
+import Deposit from './Deposit.comp';
 import {IDLE} from "../../global/constants"
 import {useKibblesBalance} from "../../hooks/use-kibbles-balance.hook"
 import {useAddress} from "../../hooks/use-url-address.hook"
 
-export default function PayPalModal(props) {
+export default function DepositModal(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const address = useAddress()
     const kibble = useKibblesBalance(address)
@@ -33,7 +33,7 @@ export default function PayPalModal(props) {
           <ModalCloseButton />
           <ModalBody>
             <React.StrictMode>
-             <div id="paypal-button"> <PayPal vex={props.vex}/> </div>
+             <div id="paypal-button"> <Deposit vex={props.vex}/> </div>
             </React.StrictMode>
           </ModalBody>
 

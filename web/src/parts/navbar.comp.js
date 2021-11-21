@@ -23,6 +23,7 @@ export default function Navbar() {
 
   function handle() {
     alert(`${user.addr}`)
+
   }
 
   return (

@@ -5,6 +5,7 @@ import {useCurrentUser} from "../hooks/use-current-user.hook"
 import {IDLE} from "../global/constants"
 import {fmtKibbles} from "../util/fmt-kibbles"
 import VexModal from "./paypal/VexModal.comp"
+import DepositVex from "./paypal/DepositVex.comp"
 import {
   Box,
   Table,
@@ -40,7 +41,7 @@ export function BalanceCluster({address}) {
         <Table size="sm">
           <Tbody>
             <Tr>
-              <Td>Vex</Td>
+              <Td>VEX</Td>
               {kibbles.status === IDLE ? (
                 <Td isNumeric>{fmtKibbles(kibbles.balance)}</Td>
               ) : (
@@ -55,6 +56,11 @@ export function BalanceCluster({address}) {
       <Box mt="2">
         <Flex>
             <VexModal />
+        </Flex>
+      </Box>
+      <Box mt="2">
+        <Flex>
+            <DepositVex />
         </Flex>
       </Box>
     </Box>

@@ -2,6 +2,7 @@ import {Suspense} from "react"
 import {useMarketItem} from "../hooks/use-market-item.hook"
 import {useCurrentUser} from "../hooks/use-current-user.hook"
 import {IDLE} from "../global/constants"
+import {Name, Des} from "./account-item-cluster.comp"
 import {
   Tr,
   Td,
@@ -38,9 +39,10 @@ export function MarketItemCluster({address, id}) {
           <Text>#{item.itemID}</Text>
         </Flex>
       </Td>
-      <Td>({item.typeID})</Td>
+      <Td> <Name typeID={item.typeID} /> </Td>
+      <Td> <Des typeID={item.typeID} /> </Td>
       <Td>
-        <img src={imageurl} alt="nft"/>
+        <img width="175px" src={imageurl} alt="nft"/>
       </Td>
       <Td>{pAdjust}</Td>
       {loggedIn && (

@@ -3,7 +3,7 @@ import {useAccountItem} from "../hooks/use-account-item.hook"
 import {useMarketItem} from "../hooks/use-market-item.hook"
 import {useCurrentUser} from "../hooks/use-current-user.hook"
 import {IDLE} from "../global/constants"
-//import pinataSDK from '@pinata/sdk';
+import axios from "axios"
 import PriceModal from './PriceModal.js'
 import {
   Tr,
@@ -13,40 +13,133 @@ import {
   Flex,
   Center,
   Text,
-  Image,
   HStack,
 } from "@chakra-ui/react"
 
- 
-export const ItemImage = ({typeID}) => {
-  let [item, setItemImage] = useState("")
+export const Des = ({typeID}, num) => {
+  let [description, setDescription] = useState("")
 
-  useEffect(() => {
-    async function getImage() {
-      let importedIcon = await import ('./kitty-items-banner.png') //(`./images/ValiasLogo.svg`)  //`../svg/Items/item0${typeID}.svg`)
-      setItemImage(importedIcon.default)
-    }
-    if (typeID) getImage()
-  }, [typeID])
-
-  return <Image maxW="64px" src={item} />
-}
-/*
-function nftName(hash){
+useEffect(() => {
   const pKey = process.env.REACT_APP_PINATA_API_KEY;
-  const pSKey = process.env.REACT_APP_PINATA_SECRET_API_KEY;
-  const pinata = pinataSDK( pKey, pSKey);
+  const PSKey = process.env.REACT_APP_PINATA_SECRET_API_KEY;
+  
+  async function getDes(){
+  const userPinList = (pinataApiKey, pinataSecretApiKey, queryParams) => {
+    let queryString = '?status=pinned';
+    if (queryParams.hashContains) {
+        queryString = queryString + `hashContains=${queryParams.hashContains}&`;
+    }
+    
+    //Make sure keyvalues are properly formatted as described earlier in the docs.
+    if (queryParams.keyvalues) {
+        const stringKeyValues = JSON.stringify(queryParams.keyvalues);
+        queryString = queryString + `metadata[keyvalues]=${stringKeyValues}`;
+    }
+    if (queryParams.keyvalues) {
+      const stringKeyValues = JSON.stringify(queryParams.keyvalues);
+      queryString = queryString + `metadata[keyvalues]=${stringKeyValues}`;
+  }
+    const url = `https://api.pinata.cloud/data/pinList${queryString}`;
 
+    return axios
+        .get(url, {
+            headers: {
+                pinata_api_key: pinataApiKey,
+                pinata_secret_api_key: pinataSecretApiKey
+            }
+        })
+        .then(function (response) {
+            //handle response here
+            let array = response.data
+            let length = response.data.rows.length
+            for(let x=0; x < length; x++){
+              if (array.rows[x].ipfs_pin_hash === typeID) {
+                setDescription(response.data.rows[x].metadata.keyvalues.Description)
+      
+              }
+            }
+          })
+        .catch(function (error) {
+            //handle error here
+        });
+  };
+  
+const hash2 = "Qm"
 
+userPinList(pKey, PSKey, hash2)
 }
-*/
 
+if (typeID) getDes()
+},[typeID])
+
+  return <Text>{description}</Text> 
+}
+
+export const Name = ({typeID}, num) => {
+  let [name1, setName1] = useState("")
+
+useEffect(() => {
+  const pKey = process.env.REACT_APP_PINATA_API_KEY;
+  const PSKey = process.env.REACT_APP_PINATA_SECRET_API_KEY;
+  
+  async function getName(){
+  const userPinList = (pinataApiKey, pinataSecretApiKey, queryParams) => {
+    let queryString = '?status=pinned';
+    if (queryParams.hashContains) {
+        queryString = queryString + `hashContains=${queryParams.hashContains}&`;
+    }
+    
+    //Make sure keyvalues are properly formatted as described earlier in the docs.
+    if (queryParams.keyvalues) {
+        const stringKeyValues = JSON.stringify(queryParams.keyvalues);
+        queryString = queryString + `metadata[keyvalues]=${stringKeyValues}`;
+    }
+    if (queryParams.keyvalues) {
+      const stringKeyValues = JSON.stringify(queryParams.keyvalues);
+      queryString = queryString + `metadata[keyvalues]=${stringKeyValues}`;
+  }
+    const url = `https://api.pinata.cloud/data/pinList${queryString}`;
+
+    return axios
+        .get(url, {
+            headers: {
+                pinata_api_key: pinataApiKey,
+                pinata_secret_api_key: pinataSecretApiKey
+            }
+        })
+        .then(function (response) {
+            //handle response here
+            let array = response.data
+            let length = response.data.rows.length
+            for(let x=0; x < length; x++){
+              if (array.rows[x].ipfs_pin_hash === typeID) {
+                setName1(response.data.rows[x].metadata.name)
+      
+              }
+            }
+          })
+        .catch(function (error) {
+            //handle error here
+        });
+  };
+  
+const hash2 = "Qm"
+
+userPinList(pKey, PSKey, hash2)
+}
+
+if (typeID) getName()
+},[typeID])
+
+  return <Text>{name1}</Text> 
+}
+  
 
 export function AccountItemCluster( {address, id}) {
   var item = useAccountItem(address, id)
   const listing = useMarketItem(address, id)
   const [cu] = useCurrentUser()
-
+  
   const BUSY = item.status !== IDLE || listing.status !== IDLE
   var imageurl
 
@@ -58,8 +151,10 @@ export function AccountItemCluster( {address, id}) {
   } else
     imageurl = "https://ipfs.io/ipfs/" + item.typeID
 
+  
 
   return (
+    
     <Tr color="white">
       <Td maxW="50px">
         <Flex>
@@ -67,14 +162,11 @@ export function AccountItemCluster( {address, id}) {
         </Flex>
       </Td>
       <Td textAlign="center">
-        <Text>Sample</Text>
-      </Td>
-      {/*<Td>
-        <Text>Sample NFT</Text>
+          <Name typeID={item.typeID}/>
       </Td>
       <Td>
-        <Text>20</Text>
-      </Td>*/}
+        <Des typeID={item.typeID} />
+      </Td>
       <Td>
         <Center>
           <img width="175px"  src={imageurl} alt="nft"/>

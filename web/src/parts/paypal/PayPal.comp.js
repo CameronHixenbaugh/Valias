@@ -24,7 +24,7 @@ export default function PayPal(props) {
                 intent: "CAPTURE",
                 purchase_units: [
                   {
-                    description: props.vex + " Vex plus fees",
+                    description: props.vex + " VEX plus fees",
                     amount: {
                       currency_code: "USD",
                       value: adjAmount,
@@ -47,7 +47,7 @@ export default function PayPal(props) {
             },
           })
           .render(paypalRef.current)
-      }, );
+      }, []);
 
       if (paid) {
         return <div>Payment successful.!</div>;

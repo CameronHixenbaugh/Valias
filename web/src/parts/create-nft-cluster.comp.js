@@ -9,6 +9,7 @@ import {useCurrentUser} from "../hooks/use-current-user.hook.js"
 import IpfsUpload from './ipfsUpload.comp'
 import { buildNFT } from "../pages/routepages/newNFT.page"
 
+
 import pinataSDK from '@pinata/sdk';
 import {hash} from './ipfsUpload.comp'
 
@@ -38,24 +39,21 @@ export function IpfsMetadata(cid){
   }).catch((err) => {
       //handle error here
       console.log(err);
-  });
+  });/*
   const filters = {
     status : 'pinned',
     pageLimit: 10,
     pageOffset: 0,
     metadata: metadata
 };
-alert(`metadata success`)
 pinata.pinList(filters).then((result) => {
     //handle results here
-    alert(`pinlist success 1`)
     console.log(result);
+    items.mint();
 }).catch((err) => {
     //handle error here
-    alert(`pinlist fail`)
     console.log(err);
-});
-alert(`pinlist success`)
+});*/
 }
 
 export function CreateNFTCluster(){ 
@@ -125,17 +123,16 @@ export function CreateNFTCluster(){
         Name : ${title1}
         Description : ${description}
         Price : ${price1}
+        Hash: ${hash}
       `)
       name = title1
       des = description
       price = price1
       IpfsMetadata(hash)
-      //alert(`Hash: ${hash}`)
-      //buildNFT(name, des, price, null, null, hash)
-      //history.push("/"+user.addr+"/congrats")
       items.mint()
-      //event.preventDefault();
-      //return (<Redirect to={"/0x:address/congrats"} />)
+      buildNFT(name, des, price, null, null, hash)
+      history.push("/"+user.addr+"/congrats")
+      event.preventDefault();
     }
     if(title1!=='' && description!=='' && price2!=='' && length!=='' && showHide2===true && price3===''){
       alert(`
@@ -150,9 +147,9 @@ export function CreateNFTCluster(){
       price = price2
       auction = length
       IpfsMetadata(hash)
-      //items.mint()
+      items.mint()
       buildNFT(name, des, price, auction, null, hash)
-      //history.push("/0x:address/congrats")
+      history.push("/"+user.addr+"/congrats")
       event.preventDefault();
     }
     else if(title1!=='' && description!=='' && price2!=='' && length!=='' && showHide2===true && price3!==''){
@@ -170,9 +167,9 @@ export function CreateNFTCluster(){
       p3 = price3
       auction = length
       IpfsMetadata(hash)
-      //items.mint()
+      items.mint()
       buildNFT(name, des, price, auction, p3, hash)
-      //history.push("/"+cu.addr+"/congrats")
+      history.push("/"+user.addr+"/congrats")
       event.preventDefault();
     }
   }
@@ -286,7 +283,7 @@ const handleShow3= (childData) => {
   // in react component itself as state
     return(
       <Base>
-      <form onSubmit={handleSubmit}>
+      {/*<form onSubmit={handleSubmit}>*/}
         <Center>
           <label style={{color:"white"}} htmlFor='title1'>Name:
           <br />
@@ -425,11 +422,11 @@ const handleShow3= (childData) => {
 
         <Center>
           {showHide3 &&
-            <Button type="submit"  disabled={items.status !== IDLE} style={{color:"white"}} >Create My NFT</Button>
+            <Button type="submit" onClick={handleSubmit} disabled={items.status !== IDLE} style={{color:"white"}} >Create My NFT</Button>
           }
         </Center>
 
-      </form>
+      {/*</form>*/}
       </Base>
     )
 }
