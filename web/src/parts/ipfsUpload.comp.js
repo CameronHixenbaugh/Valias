@@ -82,7 +82,7 @@ class IpfsUpload extends Component {
         toast.error('You must select a file')
       } else {
         for(var x = 0; x<this.state.selectedFile.length; x++) {
-            data.append('file', this.state.selectedFile[x])
+            data.append('file', this.state.selectedFile[x]) 
         }
         //To use locally
         //axios.post("http://localhost:8000/upload", data, {
