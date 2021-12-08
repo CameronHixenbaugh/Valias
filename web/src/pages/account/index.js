@@ -179,7 +179,7 @@ export function Page() {
               </HStack>
             </Tab>
           </TabList>
-          </Center>
+          </Center> 
 
           <TabPanels backgroundColor="black">
             <TabPanel>
