@@ -127,14 +127,12 @@ export function Page() {
                 {address}
               </Text>
             </Text>
-          </Center>
           {address === cu.addr && (
-            <Center>
               <Badge ml="4" variant="solid" colorScheme="red">
                 You
               </Badge>
-            </Center>
           )}
+          </Center>
         </Flex>
         <Suspense fallback={null} >
           <InfoBanner address={address} />
@@ -152,7 +150,7 @@ export function Page() {
         </Flex>
         </Center>
         </Box>
-        <Box backgroundColor="black">
+        <Box backgroundColor="black" p="7">
         <Tabs colorScheme="blue" defaultIndex={0}>
           <Center>
           <TabList backgroundColor="black" style={{color:"white"}}>

@@ -21,11 +21,6 @@ export default function Navbar() {
   const mobileNav = useDisclosure();
   const [user] = useCurrentUser()
 
-  function handle() {
-    alert(`${user.addr}`)
-
-  }
-
   return (
     <React.Fragment>
       <chakra.header
@@ -58,10 +53,10 @@ export default function Navbar() {
               display={{ base: "none", md: "inline-flex" }}
             >
               <Button variant="ghost"><NavLink to={"/" + user.addr} style={{color:"white"}}>Home</NavLink></Button>
-              <Button variant="ghost"><NavLink to={"/"+user.addr+"/congrats"} style={{color:"white"}}>My NFTs</NavLink></Button>
+              <Button variant="ghost"><NavLink to={"/"+user.addr+"/myNFTs"} style={{color:"white"}}>My NFTs</NavLink></Button>
               <Button variant="ghost"><NavLink to={"/"+user.addr+"/create"} style={{color:"white"}}>Create NFT</NavLink></Button>
               {/*<Button variant="ghost" style={{color:"white"}}>Marketplace</Button>*/}
-              <Button variant="ghost" style={{color:"white"}} onClick={handle}>Marketplace</Button>
+              <Button variant="ghost"><NavLink to={"/"+user.addr+"/market"} style={{color:"white"}}>Marketplace</NavLink></Button>
               <Button variant="ghost"><NavLink to={"/"+user.addr+"/about"} style={{color:"white"}}>About Us</NavLink></Button>
             </HStack>
             <Box display={{ base: "inline-block", md: "none" }}>

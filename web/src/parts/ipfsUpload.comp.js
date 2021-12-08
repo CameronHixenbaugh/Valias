@@ -87,7 +87,8 @@ class IpfsUpload extends Component {
         //To use locally
         //axios.post("http://localhost:8000/upload", data, {
         //With heroku
-        axios.post("https://vaultv2.herokuapp.com:8000/upload", data, {
+        //axios.post("https://vaultv2.herokuapp.com:8000/upload", data, {
+        axios.post("http://Valias.io/upload", data, {
             onUploadProgress: ProgressEvent => {
                 this.setState({
                     loaded: (ProgressEvent.loaded / ProgressEvent.total*100),

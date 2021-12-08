@@ -27,7 +27,7 @@ export function AuthCluster() {
       <div className="jumbotron-fluid" id="bg">
         <div className="container-fluid" >
           <Center>
-            <Link as={A} mr="4" to={"/" + user.addr}>
+            <Link as={A} mr="4" to={"/" + user.addr} color="#E2E8F0">
               Account: {user.addr}
             </Link>
           </Center>
