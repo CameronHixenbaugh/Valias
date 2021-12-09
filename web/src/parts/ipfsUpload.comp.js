@@ -102,7 +102,7 @@ class IpfsUpload extends Component {
                 toast.success('upload success')
             })
             .catch(err => { // then print response status
-                toast.error('upload fail')
+                toast.error('upload fail') 
                 console.log(err)
             })
         }
