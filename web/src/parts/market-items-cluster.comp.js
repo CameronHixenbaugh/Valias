@@ -17,18 +17,12 @@ export function MarketItemsCluster() {
     <Box borderWidth="1px" borderRadius="lg">
       <Table size="sm">
         <Thead>
-          <Tr>{/*}
-            <Th>Id</Th>
-            <Th>Type</Th>
-            <Th>Name</Th>
-            <Th>Description</Th>
-            <Th>Image</Th>
-  <Th>Price</Th>*/}
+          <Tr>
             <Th>Id</Th>
             <Th>Name</Th>
             <Th>Description</Th>
             <Th>Image</Th>
-            <Th>Price</Th>
+            <Th>Starting Price</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -36,8 +30,6 @@ export function MarketItemsCluster() {
             <Item
               key={item.itemID}
               id={item.itemID}
-              //name={}
-              //Description={}
               address={item.owner}
               status={status}
             />

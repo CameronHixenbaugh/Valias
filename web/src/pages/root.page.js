@@ -2,29 +2,19 @@ import {Base} from "../parts/base.comp"
 import React, { useLayoutEffect, useRef, useState } from "react"
 import {useCurrentUser} from "../hooks/use-current-user.hook"
 import {Redirect} from "react-router-dom"
-//import {MarketItemsCluster} from "../parts/market-items-cluster.comp"
 import {AuthCluster} from "../parts/auth-cluster.comp"
-//import {MarketItemsCount} from "./account/index"
 import "./routepages/preloadgif.js"
 import Navbar from "../parts/navbar.comp"
 import "./vid.css"
 import styled from "styled-components";
 import Foot from "../parts/footer.comp"
+import {useAddress} from "../hooks/use-url-address.hook"
 import {
   Box,
   Center,
   Text,
   VStack
 } from "@chakra-ui/react"
-
-//import sphere from "./../parts/images/WordSphere.mp4"
-//import thinker from "./../parts/images/Thinking.mp4"
-//import flow from "./../parts/images/FLOWbutton.png"
-//import yes from "./../parts/images/NOButton.png"
-//import dn from "./../parts/images/DNGButton.png"
-//import grid from "./../parts/images/PicGrid.png"
-//import frame5 from "./../parts/images/Frame5.png"
-//import frame6 from "./../parts/images/Frame6.png"
 
 
 export function Page() {
@@ -58,6 +48,7 @@ export function Page() {
     refEight = useRef(null);
 
   const [user, loggedIn] = useCurrentUser()
+  const address = useAddress()
 
   useLayoutEffect(() => {
     const topPos = (element) => element.getBoundingClientRect().top;
@@ -160,7 +151,7 @@ export function Page() {
         <AuthCluster/>
       </Box>
       <Box borderWidth="10px" borderColor="black">
-        <Navbar />
+        <Navbar address={address} />
       </Box>
       <Box backgroundColor="black">
       <Wrapper>

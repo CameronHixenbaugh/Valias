@@ -36,23 +36,14 @@ function buildNFT(n, d, p, l, p3, h){
 
 
 }
-/*
-function MintButton({address}) {
-  const items = useAccountItems(address)
 
-  return (
-    <Button disabled={items.status !== IDLE} onClick={items.mint}>
-      Mint Item
-    </Button>
-  )
-}*/
+var image = "https://ipfs.io/ipfs/"+ hash
 
 export function Newnft (){
     const address = useAddress()
-    const [user, loggedIn] = useCurrentUser()
-    if (address == null) return <Redirect to={"/"} />  
+    const [user, loggedIn, cu] = useCurrentUser()
 
-    var image = "https://ipfs.io/ipfs/"+ hash
+    
 
   return loggedIn ?(
     <Base>
@@ -97,24 +88,9 @@ export function Newnft (){
     </Base>
   ):(
     <Base>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
-        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
-        crossOrigin="anonymous"></link>
-      <Box borderWidth="10px" borderColor="black" >
-        <AuthCluster/>
-      </Box>
-      <Box borderWidth="10px" borderColor="black">
-        <Navbar />
-      </Box>
-      <Box backgroundColor="black">
-        <Text textAlign="center" fontSize="4xl" color="white"><b>Oops! Please click this link:</b></Text>
-        <Text textAlign="center" fontSize="4xl"><NavLink to={"/"} >Back to Home</NavLink></Text>
-        <footer>
-          <Foot />
-        </footer>
-      </Box>
+      <div>\\<Redirect to="/" /></div>
     </Base>
-  )
+  );
 };
 
 export {buildNFT, hash, price};

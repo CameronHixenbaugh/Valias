@@ -1,22 +1,17 @@
 import {Suspense} from "react"
-//import * as fcl from "@onflow/fcl"
-//import {NavLink, Redirect} from "react-router-dom"
 import {useCurrentUser} from "../hooks/use-current-user.hook"
-import {Link as A} from "react-router-dom"
 import {
   Box,
   Button,
   Center,
   HStack,
-  Link,
-  Spacer
+  Spacer,
+  Text
 } from "@chakra-ui/react"
 
 
-//import logo from "./images/ValiasLogo.svg"
-
 export function AuthCluster() {
-  const [user, loggedIn, {signUp, logIn, logOut}] = useCurrentUser()
+  const [user,loggedIn, {signUp, logIn, logOut}] = useCurrentUser()
 
   return loggedIn ? (
     <Box backgroundColor="black">
@@ -27,31 +22,31 @@ export function AuthCluster() {
       <div className="jumbotron-fluid" id="bg">
         <div className="container-fluid" >
           <Center>
-            <Link as={A} mr="4" to={"/" + user.addr} color="#E2E8F0">
+            <Text mr="4" color="#BEE3F8">
               Account: {user.addr}
-            </Link>
+            </Text>
           </Center>
           <Box >
             <HStack>
               <img className="img-fluid" alt="ValiasLogo" style={{width: 150, height: 150}} src={'https://drive.google.com/uc?export=view&id=1iKkvy1tPabahiV3eRNGZU_7DRbXcPLJk'} />           
               <div className="container-fluid text-right">
-                <Button type="button" className="btn" onClick={logOut} style={{
-                  border: "2px solid #BEE3F8",
-                  boxSizing: "border-box",
-                  boxShadow: "inset 0px 4px 4px #E2E8F0",
-                  filter: "drop-shadow(0px 4px 4px #C4C4C4)",
-                  borderRadius: "6px",
-                  fontFamily: "Sora",
-                  fontStyle: "normal",
-                  fontWeight: "bolder",
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  color: "rgba(226, 232, 240, 0.92)",
-                  textShadow: "0px 4px 4px rgba(196, 196, 196, 0.0989583)",
-                  backgroundColor: "black"
-                }}>
-                  Log Out{/*<NavLink to={"/"} >Log Out</NavLink>*/}
-                </Button>
+                  <Button type="button" className="btn" onClick={logOut} style={{
+                    border: "2px solid #BEE3F8",
+                    boxSizing: "border-box",
+                    boxShadow: "inset 0px 4px 4px #E2E8F0",
+                    filter: "drop-shadow(0px 4px 4px #C4C4C4)",
+                    borderRadius: "6px",
+                    fontFamily: "Sora",
+                    fontStyle: "normal",
+                    fontWeight: "bolder",
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(226, 232, 240, 0.92)",
+                    textShadow: "0px 4px 4px rgba(196, 196, 196, 0.0989583)",
+                    backgroundColor: "black"
+                  }}>
+                    Log Out
+                  </Button>
               </div>
               </HStack>
           </Box>

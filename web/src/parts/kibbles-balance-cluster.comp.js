@@ -13,7 +13,7 @@ export function KibblesBalanceCluster({address}) {
 
   return (
     <Bar>
-      <Label>Kibbles Balance:</Label>
+      <Label>VEX Balance:</Label>
       <Label strong good={kibble.balance > 0} bad={kibble.balance <= 0}>
         {fmtKibbles(kibble.balance)}
       </Label>
@@ -33,7 +33,7 @@ export default function WrappedKibblesBalanceCluster({address}) {
     <Suspense
       fallback={
         <Bar>
-          <Loading label="Fetching VCoin Balance" />
+          <Loading label="Fetching VEX Balance" />
         </Bar>
       }
     >

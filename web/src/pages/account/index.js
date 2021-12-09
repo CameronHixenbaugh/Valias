@@ -1,5 +1,5 @@
 import React, {Suspense} from "react"
-import {NavLink, Redirect} from "react-router-dom"
+import { Redirect} from "react-router-dom"
 import {Base} from "../../parts/base.comp"
 import {IDLE} from "../../global/constants"
 import {useAddress} from "../../hooks/use-url-address.hook"
@@ -101,9 +101,7 @@ export function InfoBanner({address}) {
 
 export function Page() {
   const address = useAddress()
-  const [cu, loggedIn] = useCurrentUser()
-  if (address == null) return <Redirect to={"/"} /> 
-   
+  const [user, loggedIn, cu] = useCurrentUser()
 
   return loggedIn ?(
     <Base>
@@ -156,7 +154,6 @@ export function Page() {
           <TabList backgroundColor="black" style={{color:"white"}}>
             <Tab fontSize="2xl">
               <HStack>
-                {/*<Image src={NFT} alt="nftToken" style={{width: 50, height: 50}}/>*/}
                 <Box>{cu.addr === address ? "My" : "User"} NFTs</Box>
               </HStack>
               <Suspense fallback={null}>
@@ -165,7 +162,6 @@ export function Page() {
             </Tab>
             <Tab fontSize="2xl">
               <HStack>
-                {/*<Image src={marketpic} alt="Marketplace" style={{width: 50, height: 50}}/>*/}
                 <Box>NFT Market</Box>
               </HStack>
               <Suspense fallback={null}>
@@ -174,7 +170,6 @@ export function Page() {
             </Tab>
             <Tab fontSize="2xl">
               <HStack>
-                {/*<Image src={create} alt="createnft" style={{width: 60, height: 50}}/>*/}
                 <Box>Create NFT</Box>
               </HStack>
             </Tab>
@@ -200,27 +195,10 @@ export function Page() {
         <Foot />
       </footer>
     </Base>
-
-
   ):(
     <Base>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
-        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
-        crossOrigin="anonymous"></link>
-      <Box borderWidth="10px" borderColor="black" >
-        <AuthCluster/>
-      </Box>
-      <Box borderWidth="10px" borderColor="black">
-        <Navbar />
-      </Box>
-      <Box backgroundColor="black">
-        <Text textAlign="center" fontSize="4xl" color="white"><b>Oops! Please click this link:</b></Text>
-        <Text textAlign="center" fontSize="4xl"><NavLink to={"/"} >Back to Home</NavLink></Text>
-        <footer>
-          <Foot />
-        </footer>
-      </Box>
+      <div>\\<Redirect to="/" /></div>
     </Base>
-  )
+  );
 }
 

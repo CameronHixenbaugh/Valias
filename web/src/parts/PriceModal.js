@@ -31,8 +31,8 @@ export function PriceModal(props){
         <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                  <ModalHeader><Center>Set the Price for your NFT</Center></ModalHeader>
-                  <ModalCloseButton />
+                  <ModalHeader style={{color:"white"}}><Center>Set the Price for your NFT</Center></ModalHeader>
+                  <ModalCloseButton style={{color:"white"}} />
                   <ModalBody>
                     <UserSetPrice sellNFT={props.sellNFT}/>
                   </ModalBody>

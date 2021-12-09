@@ -14,7 +14,6 @@ import {
   HStack,
 } from "@chakra-ui/react"
 
-//import {ItemImage} from "./account-item-cluster.comp"
 
 export function MarketItemCluster({address, id}) {
   const [cu, loggedIn] = useCurrentUser()

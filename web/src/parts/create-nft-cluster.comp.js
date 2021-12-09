@@ -8,7 +8,8 @@ import {useAddress} from "../hooks/use-url-address.hook"
 import {useCurrentUser} from "../hooks/use-current-user.hook.js"
 import IpfsUpload from './ipfsUpload.comp'
 import { buildNFT } from "../pages/routepages/newNFT.page"
-
+import {fmtKibbles} from "../util/fmt-kibbles"
+import {useKibblesBalance} from "../hooks/use-kibbles-balance.hook"
 
 import pinataSDK from '@pinata/sdk';
 import {hash} from './ipfsUpload.comp'
@@ -73,6 +74,7 @@ export function CreateNFTCluster(){
     const [user] = useCurrentUser()
     const address = useAddress()
     const items = useAccountItems(address)
+    const kibbles = useKibblesBalance(address)
     if (address == null) return <div>Not Found</div> 
 
     
@@ -80,6 +82,15 @@ export function CreateNFTCluster(){
   // Form submitting logic, prevent default page refresh 
   const handleSubmit = (event) =>{
 
+    var currBal = fmtKibbles(kibbles.balance)
+    
+    if(currBal < (price1 || price2 || price3)){
+      alert(`
+      You need to buy more VEX!
+      You currently have ${currBal} VEX
+      `)
+      return history.push("/"+user.addr)
+    }
 
     if(user.addr === address){
       console.log("good")

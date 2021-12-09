@@ -20,23 +20,25 @@ import * as t from "@onflow/types"
 import "./global/config"
 
 import "./font.css"
+import "./index.css"
 
 window.fcl = fcl
 window.t = t
 
+
 ReactDOM.render(
-  <Providers>
-    <Switch>
-      <Route exact path="/" component={Root} />
-      <Route exact path="/0x:address/create" component={CreatePage} />
-      <Route exact path="/0x:address/congrats" component={Newnft} />
-      <Route exact path="/0x:address/market" component={Market} />
-      <Route exact path="/0x:address/myNFTs" component={MyNFTs} />
-      <Route exact path="/0x:address/about" component={Aboutpage} />
-      <Route exact path="/0x:address" component={Account} />
-      <Route component={NotFound} />
-    </Switch>
-  </Providers>,
+    <Providers>
+      <Switch>
+        <Route exact path="/" component={Root} />
+        <Route exact path="/0x:address/create" component={CreatePage} />
+        <Route exact path="/0x:address/congrats" component={Newnft} />
+        <Route exact path="/market" component={Market} />
+        <Route exact path="/0x:address/myNFTs" component={MyNFTs} />
+        <Route exact path="/about" component={Aboutpage} />
+        <Route exact path="/0x:address" component={Account} />
+        <Route component={NotFound} />
+      </Switch>
+    </Providers>,
   document.getElementById("root")
 )
 

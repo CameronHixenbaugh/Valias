@@ -41,7 +41,7 @@ const app = express();
 import multer from 'multer';
 var corsOptions = {
   //origin: 'http://localhost:3001'
-  origin: 'http://Valias.io/'
+  origin: 'https://vaultv2.herokuapp.com/'
 };
 app.use(cors(corsOptions));
 //app.use(cors());
@@ -131,13 +131,6 @@ app.post('/upload',function(req, res) {
 app.listen(8000, function() {
     console.log('App running on port 8000');
 });
-
-
-
-
-
-
-
 
 const V1 = "/v1/";
 
