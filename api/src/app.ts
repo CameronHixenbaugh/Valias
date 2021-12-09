@@ -41,7 +41,9 @@ const app = express();
 import multer from 'multer';
 var corsOptions = {
   //origin: 'http://localhost:3001'
-  origin: 'https://vaultv2.herokuapp.com/'
+  //origin: 'https://vaultv2.herokuapp.com/',
+  //Access-Control-Allow-Origin: 'http://www.valias.io/'
+  origin: ["https://vaultv2.herokuapp.com/", "http://www.valias.io/"]
 };
 app.use(cors(corsOptions));
 //app.use(cors());
