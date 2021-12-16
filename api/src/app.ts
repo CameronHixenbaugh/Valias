@@ -45,10 +45,10 @@ import multer from 'multer';
 };
 app.use(cors(corsOptions));*/
 
-var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io/']
+var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io']
   var corsOptions = {
     origin: function(origin, callback){
-      if(whitelist.indexOf(origin) !== -1 || !origin){
+      if(whitelist.indexOf(origin) !== -1){
         callback(null, true)
       } else {
         callback(new Error('Not Allowed by CORS!'))
@@ -61,7 +61,7 @@ var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io/']
   app.use(cors(corsOptions))
 
   app.get('*', (req, res, next) =>{
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.header('Access-Control-Allow-Credentials', 'true');
