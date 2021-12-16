@@ -44,8 +44,9 @@ import multer from 'multer';
   //origin: 'https://vaultv2.herokuapp.com/'
 };
 app.use(cors(corsOptions));*/
-
-var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io']
+//var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io', 'http://localhost:3001']//, 'young-rambutan-ww9d29k0amurnhj2rnj2pgkw.herokudns.com', 'valias.io']
+//var workCors = function(corsOptions){
+  var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io', 'young-rambutan-ww9d29k0amurnhj2rnj2pgkw.herokudns.com', 'valias.io']
   var corsOptions = {
     origin: function(origin, callback){
       if(whitelist.indexOf(origin) !== -1){
@@ -53,20 +54,29 @@ var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io']
       } else {
         callback(new Error('Not Allowed by CORS!'))
       }
-    }/*,
-    methods: 'GET,PUT,POST,DELETE,HEAD,OPTIONS',
-		headers: 'Content-Type, Authorization, Content-Length, X-Requested-With, X-HTTP-Method-Override'*/
+    },
+    methods: 'GET,PUT,POST,DELETE,HEAD,OPTIONS'
+		/*headers: 'Content-Type, Authorization, Content-Length, X-Requested-With, X-HTTP-Method-Override'
+    }*/
   }
-
   app.use(cors(corsOptions))
 
   app.get('*', (req, res, next) =>{
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    return next();
-  })
+  //return function(req, res, next){
+    //if(req.method==='OPTIONS'){
+      res.header('Access-Control-Allow-Origin', "*");
+      //res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      res.header('Access-Control-Allow-Credentials', 'true');
+      //res.send();
+    //}else{
+      next();
+    })
+ // }
+//}
+
+  //app.use(cors(corsOptions))
+
 
 import fs from 'fs'; 
 import pinataSDK from '@pinata/sdk';
