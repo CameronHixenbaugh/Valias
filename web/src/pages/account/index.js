@@ -129,15 +129,6 @@ return /*loggedIn ?*/(
         </Box>
         <Box backgroundColor="black">
         <Center>
-        <Flex mb="4">
-          <Center>
-          {address === cu.addr && (
-              <Badge ml="4" variant="solid" colorScheme="red">
-                You
-              </Badge>
-          )}
-          </Center>
-        </Flex>
         <Suspense fallback={null} >
           <InfoBanner address={address} />
         </Suspense>

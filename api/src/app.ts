@@ -58,47 +58,7 @@ app.all('/*', (req, res, next) => {
   }
 });
 
-/*var corsOptions = {
-  origin: 'http://localhost:3001'
-  //origin: 'https://vaultv2.herokuapp.com/'
-};
-app.use(cors(corsOptions));*/
-/*
-var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io', 'http://localhost:3001']//, 'young-rambutan-ww9d29k0amurnhj2rnj2pgkw.herokudns.com', 'valias.io']
-var workCors = function(req, callback){
-  //var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io']//, 'http://localhost:3001']//, 'young-rambutan-ww9d29k0amurnhj2rnj2pgkw.herokudns.com', 'valias.io']
-  var corsOptions;// = {
-    //origin: function(origin, callback){
-      if(whitelist.indexOf(req.header('Origin')) !== -1){
-        //callback(null, true)
-        corsOptions = {origin: true}
-      } else {
-        //callback(new Error('Not Allowed by CORS!'))
-        corsOptions = {origin: false}
-      }
-      callback(null, corsOptions)
-    }
-    //methods: 'GET,PUT,POST,DELETE,HEAD,OPTIONS'
-  //}
-  app.use(cors(workCors))
 
-  app.get('*', cors(workCors) ,function (req, res, next){
-  //return function(req, res, next){
-    //if(req.method==='OPTIONS'){
-      res.header('Access-Control-Allow-Origin', "*");
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-      res.header('Access-Control-Allow-Credentials', 'true');
-      //res.send();
-    //}else{
-      //next();
-    })
- // }
-//}
-
-  //app.use(cors(corsOptions))
-
-*/
 import fs from 'fs'; 
 import pinataSDK from '@pinata/sdk';
 
@@ -195,64 +155,15 @@ const initApp = (
   app.use(V1, initKibblesRouter(kibblesService));
   app.use(V1, initKittyItemsRouter(kittyItemsService));
   app.use(V1, initMarketRouter(marketService));
-
-  /*function isString(s) {
-    return typeof s === 'string' || s instanceof String;
-  }
-  var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io/', 'http://localhost:3001']
-  var corsOptions = {
-    origin: function(origin, callback){
-      if(whitelist.indexOf(origin) !== -1 || !origin){
-        callback(null, true)
-      } else {
-        callback(new Error('Not Allowed by CORS!'))
-      }
-    }
-  }*/
   
 
   const serveReactApp = () => {
     app.use(express.static(path.resolve(__dirname, "../../web/build")));
-    //app.use(cors())
-    //app.get('/', (req, res, next) => {
-      //const origin = req.headers.origin;
-
-      /*if(isString(req.headers.origin)){
-          const origin = req.headers.origin;
-        if (whitelist.indexOf(origin) !== -1 || !origin) {
-           res.setHeader('Access-Control-Allow-Origin', origin);
-        }else{
-           !!whitelist
-        }
-      }
-      
-      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-      res.header('Access-Control-Allow-Credentials', 'true');
-      res.json({msg: 'bitchesss'})
-      return next();
-    });*/
 
     app.get("*", function (req, res) {
       res.sendFile(path.resolve(__dirname, "../../web/build/index.html"));
       res.cookie('_ga', '.paypal.com/',{sameSite:'none', secure: true});
     });
-
-    /*var allowCrossDomain = function(req, res, next) {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-        
-      // intercept OPTIONS method
-      if ('OPTIONS' == req.method) {
-        res.send(201);
-      }
-      else {
-        next();
-      }
-  };
-  app.use(allowCrossDomain);*/
 
   };
 
