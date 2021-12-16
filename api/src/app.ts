@@ -39,27 +39,50 @@ if (LOCAL) {
 //IPFS file upload
 const app = express();
 import multer from 'multer';
+
+const corsOptions = {
+  origin: ['[http://valias.io,', 'http://vaultv2.herokuapp.com/']//, 'http://localhost:3001']
+};
+app.use(cors(corsOptions));
+// CORS controls from the security blog post
+app.all('/*', (req, res, next) => {
+  // CORS headers
+  res.header("Access-Control-Allow-Origin", "*"); // restrict all access to the required domains
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  // set custom headers for CORS
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Accept,X-Access-Token,X-Key');
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+  } else {
+    next();
+  }
+});
+
 /*var corsOptions = {
   origin: 'http://localhost:3001'
   //origin: 'https://vaultv2.herokuapp.com/'
 };
 app.use(cors(corsOptions));*/
-//var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io', 'http://localhost:3001']//, 'young-rambutan-ww9d29k0amurnhj2rnj2pgkw.herokudns.com', 'valias.io']
-//var workCors = function(corsOptions){
-  var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io']//, 'http://localhost:3001']//, 'young-rambutan-ww9d29k0amurnhj2rnj2pgkw.herokudns.com', 'valias.io']
-  var corsOptions = {
-    origin: function(origin, callback){
-      if(whitelist.indexOf(origin) !== -1){
-        callback(null, true)
+/*
+var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io', 'http://localhost:3001']//, 'young-rambutan-ww9d29k0amurnhj2rnj2pgkw.herokudns.com', 'valias.io']
+var workCors = function(req, callback){
+  //var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io']//, 'http://localhost:3001']//, 'young-rambutan-ww9d29k0amurnhj2rnj2pgkw.herokudns.com', 'valias.io']
+  var corsOptions;// = {
+    //origin: function(origin, callback){
+      if(whitelist.indexOf(req.header('Origin')) !== -1){
+        //callback(null, true)
+        corsOptions = {origin: true}
       } else {
-        callback(new Error('Not Allowed by CORS!'))
+        //callback(new Error('Not Allowed by CORS!'))
+        corsOptions = {origin: false}
       }
+      callback(null, corsOptions)
     }
     //methods: 'GET,PUT,POST,DELETE,HEAD,OPTIONS'
-  }
-  app.use(cors(corsOptions))
+  //}
+  app.use(cors(workCors))
 
-  app.get('*', (req, res, next) =>{
+  app.get('*', cors(workCors) ,function (req, res, next){
   //return function(req, res, next){
     //if(req.method==='OPTIONS'){
       res.header('Access-Control-Allow-Origin', "*");
@@ -68,14 +91,14 @@ app.use(cors(corsOptions));*/
       res.header('Access-Control-Allow-Credentials', 'true');
       //res.send();
     //}else{
-      next();
+      //next();
     })
  // }
 //}
 
   //app.use(cors(corsOptions))
 
-
+*/
 import fs from 'fs'; 
 import pinataSDK from '@pinata/sdk';
 
