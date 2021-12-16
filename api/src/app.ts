@@ -39,6 +39,25 @@ if (LOCAL) {
 //IPFS file upload
 const app = express();
 import multer from 'multer';
+/*var corsOptions = {
+  origin: 'http://localhost:3001'
+  //origin: 'https://vaultv2.herokuapp.com/'
+};
+app.use(cors(corsOptions));*/
+
+var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io/']
+  var corsOptions = {
+    origin: function(origin, callback){
+      if(whitelist.indexOf(origin) !== -1 || !origin){
+        callback(null, true)
+      } else {
+        callback(new Error('Not Allowed by CORS!'))
+      }
+    }
+  }
+
+  app.use(cors(corsOptions))
+
 import fs from 'fs'; 
 import pinataSDK from '@pinata/sdk';
 
@@ -136,7 +155,7 @@ const initApp = (
   app.use(V1, initKittyItemsRouter(kittyItemsService));
   app.use(V1, initMarketRouter(marketService));
 
-  function isString(s) {
+  /*function isString(s) {
     return typeof s === 'string' || s instanceof String;
   }
   var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io/', 'http://localhost:3001']
@@ -148,8 +167,7 @@ const initApp = (
         callback(new Error('Not Allowed by CORS!'))
       }
     }
-  }
-
+  }*/
   
 
   const serveReactApp = () => {
@@ -175,7 +193,12 @@ const initApp = (
       return next();
     });*/
 
-    var allowCrossDomain = function(req, res, next) {
+    app.get("*", function (req, res) {
+      res.sendFile(path.resolve(__dirname, "../../web/build/index.html"));
+      res.cookie('_ga', '.paypal.com/',{sameSite:'none', secure: true});
+    });
+
+    /*var allowCrossDomain = function(req, res, next) {
       res.header('Access-Control-Allow-Origin', '*');
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
       res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -188,13 +211,8 @@ const initApp = (
         next();
       }
   };
-  app.use(allowCrossDomain);
+  app.use(allowCrossDomain);*/
 
-    app.get('*', function (req, res) {
-      res.sendFile(path.resolve(__dirname, "../../web/build/index.html"));
-      res.cookie('_ga', '.paypal.com/',{sameSite:'none', secure: true});
-      console.log('bitchesss')
-    });
   };
 
 
@@ -205,12 +223,9 @@ const initApp = (
   }
 
   app.all("*", async (req: Request, res: Response) => {
-    console.log('fuuuuuck')
     return res.sendStatus(404);
     
   });
-
-  console.log('fuuuuuck?')
   
 
   return app;
