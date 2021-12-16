@@ -4,39 +4,39 @@ import {Address} from "@onflow/types"
 const CODE = cdc`
   import FungibleToken from 0xFungibleToken
   import NonFungibleToken from 0xNonFungibleToken
-  import Kibble from 0xKibble
-  import KittyItems from 0xKittyItems
-  import KittyItemsMarket from 0xKittyItemsMarket
+  import Vex from 0xKibble
+  import Valias from 0xKittyItems
+  import ValiasMarket from 0xKittyItemsMarket
 
-  pub fun hasKibble(_ address: Address): Bool {
+  pub fun hasVex(_ address: Address): Bool {
     let receiver: Bool = getAccount(address)
-      .getCapability<&Kibble.Vault{FungibleToken.Receiver}>(Kibble.ReceiverPublicPath)
+      .getCapability<&Vex.Vault{FungibleToken.Receiver}>(Vex.ReceiverPublicPath)
       .check()
 
     let balance: Bool = getAccount(address)
-      .getCapability<&Kibble.Vault{FungibleToken.Balance}>(Kibble.BalancePublicPath)
+      .getCapability<&Vex.Vault{FungibleToken.Balance}>(Vex.BalancePublicPath)
       .check()
 
     return receiver && balance
   }
 
-  pub fun hasKittyItems(_ address: Address): Bool {
+  pub fun hasValias(_ address: Address): Bool {
     return getAccount(address)
-      .getCapability<&KittyItems.Collection{NonFungibleToken.CollectionPublic, KittyItems.KittyItemsCollectionPublic}>(KittyItems.CollectionPublicPath)
+      .getCapability<&Valias.Collection{NonFungibleToken.CollectionPublic, Valias.ValiasCollectionPublic}>(Valias.CollectionPublicPath)
       .check()
   }
 
-  pub fun hasKittyItemsMarket(_ address: Address): Bool {
+  pub fun hasValiasMarket(_ address: Address): Bool {
     return getAccount(address)
-      .getCapability<&KittyItemsMarket.Collection{KittyItemsMarket.CollectionPublic}>(KittyItemsMarket.CollectionPublicPath)
+      .getCapability<&ValiasMarket.Collection{ValiasMarket.CollectionPublic}>(ValiasMarket.CollectionPublicPath)
       .check()
   }
 
   pub fun main(address: Address): {String: Bool} {
     let ret: {String: Bool} = {}
-    ret["Kibble"] = hasKibble(address)
-    ret["KittyItems"] = hasKittyItems(address)
-    ret["KittyItemsMarket"] = hasKittyItemsMarket(address)
+    ret["Kibble"] = hasVex(address)
+    ret["KittyItems"] = hasValias(address)
+    ret["KittyItemsMarket"] = hasValiasMarket(address)
     return ret
   }
 `

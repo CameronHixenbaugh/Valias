@@ -39,14 +39,6 @@ if (LOCAL) {
 //IPFS file upload
 const app = express();
 import multer from 'multer';
-var corsOptions = {
-  //origin: 'http://localhost:3001'
-  //origin: 'https://vaultv2.herokuapp.com/',
-  //Access-Control-Allow-Origin: 'http://www.valias.io/'
-  origin: ["https://vaultv2.herokuapp.com/", "http://www.valias.io/"]
-};
-app.use(cors(corsOptions));
-//app.use(cors());
 import fs from 'fs'; 
 import pinataSDK from '@pinata/sdk';
 
@@ -92,10 +84,6 @@ var storage = multer.diskStorage({
   })
   
   var upload = multer({ storage: storage }).array('file')
-/*  
-app.get('/',function(req,res){
-    return res.send('Hello Server')
-})*/
 
 app.post('/upload',function(req, res) {
     
@@ -142,20 +130,52 @@ const initApp = (
   kittyItemsService: KittyItemsService,
   marketService: MarketService
 ) => {
-  //const app = express();
-//{origin:['https://vaultv2.herokuapp.com/']}
-  // @ts-ignore
-  //app.use(cors());
   app.use(json());
   app.use(urlencoded({ extended: false }));
   app.use(V1, initKibblesRouter(kibblesService));
   app.use(V1, initKittyItemsRouter(kittyItemsService));
   app.use(V1, initMarketRouter(marketService));
 
+  /*function isString(s) {
+    return typeof s === 'string' || s instanceof String;
+  }*/
+  var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io/']
+  var corsOptions = {
+    origin: function(origin, callback){
+      if(whitelist.indexOf(origin) !== -1 || !origin){
+        callback(null, true)
+      } else {
+        callback(new Error('Not Allowed by CORS!'))
+      }
+    }
+  }
+
+  
+
   const serveReactApp = () => {
     app.use(express.static(path.resolve(__dirname, "../../web/build")));
+    app.use(cors(corsOptions))
+    /*app.use((req, res, next) => {
+      const origin = req.headers.origin;
 
-    app.get("*", function (req, res) {
+      if(isString(origin)){
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
+           res.setHeader('Access-Control-Allow-Origin', origin);
+        }else{
+           !!whitelist
+        }
+      }else{
+        callback(new Error('Not Allowed by CORS!'))
+      };
+      
+      
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      res.header('Access-Control-Allow-Credentials', 'true');
+      return next();
+    });*/
+
+    app.get('*', function (req, res) {
       res.sendFile(path.resolve(__dirname, "../../web/build/index.html"));
       res.cookie('_ga', '.paypal.com/',{sameSite:'none', secure: true});
     });
@@ -175,5 +195,4 @@ const initApp = (
   return app;
 };
 
-//export {ipfsCid};
 export default initApp;

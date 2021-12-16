@@ -18,11 +18,11 @@ class SaleOfferHandler extends BaseEventHandler {
 
     this.eventCollectionInsertedSaleOffer = `A.${fcl.sansPrefix(
       marketService.marketAddress
-    )}.KittyItemsMarket.CollectionInsertedSaleOffer`;
+    )}.ValiasMarket.CollectionInsertedSaleOffer`;
 
     this.eventCollectionRemovedSaleOffer = `A.${fcl.sansPrefix(
       marketService.marketAddress
-    )}.KittyItemsMarket.CollectionRemovedSaleOffer`;
+    )}.ValiasMarket.CollectionRemovedSaleOffer`;
 
     this.eventNames = [
       this.eventCollectionInsertedSaleOffer,

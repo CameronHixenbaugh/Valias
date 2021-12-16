@@ -9,9 +9,9 @@ import { isNamedExports, isNamespaceExport } from "typescript";
 
 const fungibleTokenPath = '"../../contracts/FungibleToken.cdc"';
 const nonFungibleTokenPath = '"../../contracts/NonFungibleToken.cdc"';
-const kibblePath = '"../../contracts/Kibble.cdc"';
-const kittyItemsPath = '"../../contracts/KittyItems.cdc"';
-const kittyItemsMarkPath = '"../../contracts/KittyItemsMarket.cdc"';
+const kibblePath = '"../../contracts/Vex.cdc"';
+const kittyItemsPath = '"../../contracts/Valias.cdc"';
+const kittyItemsMarkPath = '"../../contracts/ValiasMarket.cdc"';
 
 class MarketService {
   constructor(

@@ -3,10 +3,10 @@ import {Address} from "@onflow/types"
 
 const CODE = fcl.cdc`
   import NonFungibleToken from 0xNonFungibleToken
-  import KittyItems from 0xKittyItems
+  import Valias from 0xKittyItems
 
   pub fun main(address: Address): [UInt64] {
-    if let collection =  getAccount(address).getCapability<&KittyItems.Collection{NonFungibleToken.CollectionPublic, KittyItems.KittyItemsCollectionPublic}>(KittyItems.CollectionPublicPath).borrow() {
+    if let collection =  getAccount(address).getCapability<&Valias.Collection{NonFungibleToken.CollectionPublic, Valias.ValiasCollectionPublic}>(Valias.CollectionPublicPath).borrow() {
       return collection.getIDs()
     }
 

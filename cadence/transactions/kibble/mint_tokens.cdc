@@ -1,17 +1,17 @@
 import FungibleToken from "../../contracts/FungibleToken.cdc"
-import Kibble from "../../contracts/Kibble.cdc"
+import Vex from "../../contracts/Vex.cdc"
 
 transaction(recipient: Address, amount: UFix64) {
-    let tokenAdmin: &Kibble.Administrator
+    let tokenAdmin: &Vex.Administrator
     let tokenReceiver: &{FungibleToken.Receiver}
 
     prepare(signer: AuthAccount) {
         self.tokenAdmin = signer
-        .borrow<&Kibble.Administrator>(from: Kibble.AdminStoragePath)
+        .borrow<&Vex.Administrator>(from: Vex.AdminStoragePath)
         ?? panic("Signer is not the token admin")
 
         self.tokenReceiver = getAccount(recipient)
-        .getCapability(Kibble.ReceiverPublicPath)!
+        .getCapability(Vex.ReceiverPublicPath)!
         .borrow<&{FungibleToken.Receiver}>()
         ?? panic("Unable to borrow receiver reference")
     }

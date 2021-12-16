@@ -1,30 +1,30 @@
 import FungibleToken from "../../contracts/FungibleToken.cdc"
-import Kibble from "../../contracts/Kibble.cdc"
+import Vex from "../../contracts/Vex.cdc"
 
 // This transaction is a template for a transaction
 // to add a Vault resource to their account
-// so that they can use the Kibble
+// so that they can use the Vex
 
 transaction {
 
     prepare(signer: AuthAccount) {
 
-        if signer.borrow<&Kibble.Vault>(from: Kibble.VaultStoragePath) == nil {
-            // Create a new Kibble Vault and put it in storage
-            signer.save(<-Kibble.createEmptyVault(), to: Kibble.VaultStoragePath)
+        if signer.borrow<&Vex.Vault>(from: Vex.VaultStoragePath) == nil {
+            // Create a new Vex Vault and put it in storage
+            signer.save(<-Vex.createEmptyVault(), to: Vex.VaultStoragePath)
 
             // Create a public capability to the Vault that only exposes
             // the deposit function through the Receiver interface
-            signer.link<&Kibble.Vault{FungibleToken.Receiver}>(
-                Kibble.ReceiverPublicPath,
-                target: Kibble.VaultStoragePath
+            signer.link<&Vex.Vault{FungibleToken.Receiver}>(
+                Vex.ReceiverPublicPath,
+                target: Vex.VaultStoragePath
             )
 
             // Create a public capability to the Vault that only exposes
             // the balance field through the Balance interface
-            signer.link<&Kibble.Vault{FungibleToken.Balance}>(
-                Kibble.BalancePublicPath,
-                target: Kibble.VaultStoragePath
+            signer.link<&Vex.Vault{FungibleToken.Balance}>(
+                Vex.BalancePublicPath,
+                target: Vex.VaultStoragePath
             )
         }
     }

@@ -24,7 +24,7 @@ export function BalanceCluster({address}) {
   const kibbles = useKibblesBalance(address)
   //const init = useInitialized(address)
   return (
-    <Box mb="4">
+    <Box >
       <Box mb="2">
         <Flex>
           <Heading size="md" mr="4">
@@ -53,12 +53,38 @@ export function BalanceCluster({address}) {
           </Tbody>
         </Table>
       </Box>
-      <Box mt="2">
+      <Box mt="2"
+      border= "2px solid #BEE3F8"
+      boxSizing= "border-box"
+      boxShadow= "inset 0px 4px 4px #E2E8F0"
+      filter= "drop-shadow(0px 4px 4px #C4C4C4)"
+      borderRadius= "6px"
+      fontFamily= "Sora"
+      fontStyle= "normal"
+      fontWeight= "bolder"
+      fontSize= "16px"
+      lineHeight= "24px"
+      color= "rgba(226, 232, 240, 0.92)"
+      textShadow= "0px 4px 4px rgba(196, 196, 196, 0.0989583)"
+      backgroundColor= "black">
         <Flex>
             <VexModal />
         </Flex>
       </Box>
-      <Box mt="2">
+      <Box mt="2"
+      border= "2px solid #BEE3F8"
+      boxSizing= "border-box"
+      boxShadow= "inset 0px 4px 4px #E2E8F0"
+      filter= "drop-shadow(0px 4px 4px #C4C4C4)"
+      borderRadius= "6px"
+      fontFamily= "Sora"
+      fontStyle= "normal"
+      fontWeight= "bolder"
+      fontSize= "16px"
+      lineHeight= "24px"
+      color= "rgba(226, 232, 240, 0.92)"
+      textShadow= "0px 4px 4px rgba(196, 196, 196, 0.0989583)"
+      backgroundColor= "black">
         <Flex>
             <DepositVex />
         </Flex>

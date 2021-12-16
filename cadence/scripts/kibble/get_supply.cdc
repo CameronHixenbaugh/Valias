@@ -1,10 +1,10 @@
-import Kibble from "../../contracts/Kibble.cdc"
+import Vex from "../../contracts/Vex.cdc"
 
-// This script returns the total amount of Kibble currently in existence.
+// This script returns the total amount of Vex currently in existence.
 
 pub fun main(): UFix64 {
 
-    let supply = Kibble.totalSupply
+    let supply = Vex.totalSupply
 
     log(supply)
 

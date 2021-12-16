@@ -140,7 +140,9 @@ export function Page() {
   }, []);
   
   
-  if (loggedIn) return <Redirect to={"/" + user.addr} />
+  if (loggedIn){ 
+    return <Redirect to={"/" + user.addr} />
+  }
 
   return (
     <Base >

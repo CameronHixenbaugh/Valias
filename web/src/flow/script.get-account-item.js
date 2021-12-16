@@ -4,7 +4,7 @@ import {batch} from "./util/batch"
 
 const CODE = fcl.cdc`
 import NonFungibleToken from 0xNonFungibleToken
-import KittyItems from 0xKittyItems
+import Valias from 0xKittyItems
 
 pub struct AccountItem {
   pub let itemID: UInt64
@@ -19,8 +19,8 @@ pub struct AccountItem {
 }
 
 pub fun fetch(address: Address, id: UInt64): AccountItem? {
-  if let col = getAccount(address).getCapability<&KittyItems.Collection{NonFungibleToken.CollectionPublic, KittyItems.KittyItemsCollectionPublic}>(KittyItems.CollectionPublicPath).borrow() {
-    if let item = col.borrowKittyItem(id: id) {
+  if let col = getAccount(address).getCapability<&Valias.Collection{NonFungibleToken.CollectionPublic, Valias.ValiasCollectionPublic}>(Valias.CollectionPublicPath).borrow() {
+    if let item = col.borrowValias(id: id) {
       return AccountItem(itemID: id, typeID: item.typeID, owner: address)
     }
   }

@@ -4,14 +4,14 @@ import {tx} from "./util/tx"
 import {invariant} from "@onflow/util-invariant"
 
 const CODE = fcl.cdc`
-  import KittyItemsMarket from 0xKittyItemsMarket
+  import ValiasMarket from 0xKittyItemsMarket
 
 transaction(itemID: UInt64) {
-    let marketCollection: &KittyItemsMarket.Collection
+    let marketCollection: &ValiasMarket.Collection
 
     prepare(signer: AuthAccount) {
-        self.marketCollection = signer.borrow<&KittyItemsMarket.Collection>(from: KittyItemsMarket.CollectionStoragePath)
-            ?? panic("Missing or mis-typed KittyItemsMarket Collection")
+        self.marketCollection = signer.borrow<&ValiasMarket.Collection>(from: ValiasMarket.CollectionStoragePath)
+            ?? panic("Missing or mis-typed ValiasMarket Collection")
     }
 
     execute {

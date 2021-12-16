@@ -1,5 +1,5 @@
 import React, {Suspense} from "react"
-import { Redirect} from "react-router-dom"
+//import { Redirect} from "react-router-dom"
 import {Base} from "../../parts/base.comp"
 import {IDLE} from "../../global/constants"
 import {useAddress} from "../../hooks/use-url-address.hook"
@@ -25,7 +25,6 @@ import {
   Flex,
   Center,
   Tag,
-  Text,
   Tabs,
   TabList,
   Tab,
@@ -68,7 +67,7 @@ export function InfoBanner({address}) {
       type: "info",
       title: "Initialize Your Account",
       text:
-        "You need to initialize your account before you can receive VCoins.",
+        "You need to initialize your account before you can receive Vex.",
     },
     noKibble: {
       type: "info",
@@ -79,8 +78,21 @@ export function InfoBanner({address}) {
 
   function Banner(message) {
     return (
-      <Flex my="4">
-        <Alert status={message.type}>
+      <Flex my="4" color="white">
+        <Alert status={message.type} style={{
+        border: "2px solid #BEE3F8",
+        boxSizing: "border-box",
+        boxShadow: "inset 0px 4px 4px #E2E8F0",
+        filter: "drop-shadow(0px 4px 4px #C4C4C4)",
+        borderRadius: "6px",
+        fontFamily: "Sora",
+        fontStyle: "normal",
+        fontWeight: "bolder",
+        fontSize: "16px",
+        lineHeight: "24px",
+        color: "rgba(226, 232, 240, 0.92)",
+        textShadow: "0px 4px 4px rgba(196, 196, 196, 0.0989583)",
+        backgroundColor: "black"}}>
           <AlertIcon />
           <AlertTitle mr={2}>{message.title}</AlertTitle>
           {message.text}
@@ -101,9 +113,9 @@ export function InfoBanner({address}) {
 
 export function Page() {
   const address = useAddress()
-  const [user, loggedIn, cu] = useCurrentUser()
+  const [cu] = useCurrentUser()
 
-  return loggedIn ?(
+return /*loggedIn ?*/(
     <Base>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
@@ -119,12 +131,6 @@ export function Page() {
         <Center>
         <Flex mb="4">
           <Center>
-            <Text mr="4" fontSize="2xl" color="black" backgroundColor="#A0AEC0">
-              Account:{" "}
-              <Text display="inline" color="black" fontWeight="bold">
-                {address}
-              </Text>
-            </Text>
           {address === cu.addr && (
               <Badge ml="4" variant="solid" colorScheme="red">
                 You
@@ -138,10 +144,36 @@ export function Page() {
         </Center>
         <Center>
         <Flex>
-          <Box backgroundColor="#A0AEC0">
+          <Box p="5"
+          border= "2px solid #BEE3F8"
+          boxSizing= "border-box"
+          boxShadow= "inset 0px 4px 4px #E2E8F0"
+          filter= "drop-shadow(0px 4px 4px #C4C4C4)"
+          borderRadius= "6px"
+          fontFamily= "Sora"
+          fontStyle= "normal"
+          fontWeight= "bolder"
+          fontSize= "16px"
+          lineHeight= "24px"
+          color= "rgba(226, 232, 240, 0.92)"
+          textShadow= "0px 4px 4px rgba(196, 196, 196, 0.0989583)"
+          backgroundColor= "black">
             <InitCluster address={address} />
           </Box>
-          <Box ml="4" backgroundColor="#A0AEC0">
+          <Box ml="4" p="5"
+          border= "2px solid #BEE3F8"
+          boxSizing= "border-box"
+          boxShadow= "inset 0px 4px 4px #E2E8F0"
+          filter= "drop-shadow(0px 4px 4px #C4C4C4)"
+          borderRadius= "6px"
+          fontFamily= "Sora"
+          fontStyle= "normal"
+          fontWeight= "bolder"
+          fontSize= "16px"
+          lineHeight= "24px"
+          color= "rgba(226, 232, 240, 0.92)"
+          textShadow= "0px 4px 4px rgba(196, 196, 196, 0.0989583)"
+          backgroundColor= "black">
             <BalanceCluster address={address} />
           </Box>
 
@@ -195,10 +227,11 @@ export function Page() {
         <Foot />
       </footer>
     </Base>
-  ):(
-    <Base>
-      <div>\\<Redirect to="/" /></div>
-    </Base>
-  );
+  );/*:(
+    <Suspense fallback={<div><Redirect to="/" /></div>
+  }>
+      <root />
+    </Suspense>
+  );*/
 }
 

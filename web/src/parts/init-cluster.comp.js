@@ -13,6 +13,7 @@ import {
   Heading,
   Spinner,
   Center,
+  VStack
 } from "@chakra-ui/react"
 import {CheckIcon, CloseIcon} from "@chakra-ui/icons"
 
@@ -25,7 +26,7 @@ export function InitCluster({address}) {
   if (address == null) return null
 
   return (
-    <Box mb="4">
+    <Box>
       <Box mb="2">
         <Flex>
           <Heading size="md" mr="4">
@@ -38,6 +39,8 @@ export function InitCluster({address}) {
           )}
         </Flex>
       </Box>
+      <Center>
+      <VStack>
       <Box maxW="200px" borderWidth="1px" borderRadius="lg">
         <Table size="sm">
           <Tbody>
@@ -57,10 +60,22 @@ export function InitCluster({address}) {
         </Table>
       </Box>
       {!init.isInitialized && address === cu.addr && (
-        <Box mt="2">
+        <Box mt="2"
+        border= "2px solid #BEE3F8"
+        boxSizing= "border-box"
+        boxShadow= "inset 0px 4px 4px #E2E8F0"
+        filter= "drop-shadow(0px 4px 4px #C4C4C4)"
+        borderRadius= "6px"
+        fontFamily= "Sora"
+        fontStyle= "normal"
+        fontWeight= "bolder"
+        fontSize= "16px"
+        lineHeight= "24px"
+        color= "rgba(226, 232, 240, 0.92)"
+        textShadow= "0px 4px 4px rgba(196, 196, 196, 0.0989583)"
+        backgroundColor= "black">
           <Flex>
             <Button
-              colorScheme="blue"
               disabled={init.status !== IDLE}
               onClick={init.initialize}
             >
@@ -69,6 +84,8 @@ export function InitCluster({address}) {
           </Flex>
         </Box>
       )}
+      </VStack>
+      </Center>
     </Box>
   )
 }

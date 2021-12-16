@@ -1,4 +1,5 @@
 import {Suspense} from "react"
+import { NavLink} from "react-router-dom"
 import {useCurrentUser} from "../hooks/use-current-user.hook"
 import {
   Box,
@@ -12,6 +13,8 @@ import {
 
 export function AuthCluster() {
   const [user,loggedIn, {signUp, logIn, logOut}] = useCurrentUser()
+  
+
 
   return loggedIn ? (
     <Box backgroundColor="black">
@@ -30,7 +33,8 @@ export function AuthCluster() {
             <HStack>
               <img className="img-fluid" alt="ValiasLogo" style={{width: 150, height: 150}} src={'https://drive.google.com/uc?export=view&id=1iKkvy1tPabahiV3eRNGZU_7DRbXcPLJk'} />           
               <div className="container-fluid text-right">
-                  <Button type="button" className="btn" onClick={logOut} style={{
+                <NavLink to={"/market"} style={{color:"white"}}>
+                  <Button type="button" className="btn" onClick={logOut } style={{
                     border: "2px solid #BEE3F8",
                     boxSizing: "border-box",
                     boxShadow: "inset 0px 4px 4px #E2E8F0",
@@ -47,6 +51,7 @@ export function AuthCluster() {
                   }}>
                     Log Out
                   </Button>
+                </NavLink>
               </div>
               </HStack>
           </Box>

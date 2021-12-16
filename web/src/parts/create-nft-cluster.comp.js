@@ -134,7 +134,6 @@ export function CreateNFTCluster(){
         Name : ${title1}
         Description : ${description}
         Price : ${price1}
-        Hash: ${hash}
       `)
       name = title1
       des = description

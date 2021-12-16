@@ -5,7 +5,7 @@ export async function fetchMarketItem(address, id) {
   return fcl
     .send([
       fcl.script`
-      import KittyItemsMarket from 0xKittyItemsMarket
+      import ValiasMarket from 0xKittyItemsMarket
 
       pub struct SaleItem {
         pub let itemID: UInt64
@@ -23,7 +23,7 @@ export async function fetchMarketItem(address, id) {
       }
 
       pub fun main(address: Address, id: UInt64): SaleItem? {
-        if let collection = getAccount(address).getCapability<&KittyItemsMarket.Collection{KittyItemsMarket.CollectionPublic}>(KittyItemsMarket.CollectionPublicPath).borrow() {
+        if let collection = getAccount(address).getCapability<&ValiasMarket.Collection{ValiasMarket.CollectionPublic}>(ValiasMarket.CollectionPublicPath).borrow() {
           if let item = collection.borrowSaleItem(itemID: id) {
             return SaleItem(itemID: id, typeID: item.typeID, owner: address, price: item.price)
           }

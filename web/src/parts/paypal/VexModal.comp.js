@@ -38,7 +38,7 @@ export default function VexModal(props){
 
   return (
     <>
-      <Button disabled={kibbles.status !== IDLE || !init.isInitialized} onClick={onOpen} backgroundColor="#BEE3F8">Request VEX</Button>
+      <Button disabled={kibbles.status !== IDLE || !init.isInitialized} onClick={onOpen}>Request VEX</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

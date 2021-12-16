@@ -13,6 +13,7 @@ import {Market} from "./pages/routepages/Market.page"
 import {MyNFTs} from "./pages/routepages/MyNFTs.page"
 import {Page as Account} from "./pages/account"
 import {Page as NotFound} from "./pages/not-found.page"
+import { HowPage } from "./pages/routepages/HowPage.page"
 
 import * as fcl from "@onflow/fcl"
 import * as t from "@onflow/types"
@@ -35,6 +36,7 @@ ReactDOM.render(
         <Route exact path="/market" component={Market} />
         <Route exact path="/0x:address/myNFTs" component={MyNFTs} />
         <Route exact path="/about" component={Aboutpage} />
+        <Route exact path="/how" component={HowPage} />
         <Route exact path="/0x:address" component={Account} />
         <Route component={NotFound} />
       </Switch>

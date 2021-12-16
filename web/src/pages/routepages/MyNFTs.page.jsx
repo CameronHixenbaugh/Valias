@@ -1,7 +1,5 @@
 import React, {Suspense} from "react";
-import { Redirect } from "react-router-dom";
 import {Base} from "../../parts/base.comp"
-import {useCurrentUser } from "../../hooks/use-current-user.hook";
 import AuthCluster from "../../parts/auth-cluster.comp.js"
 import {AccountItemsCluster} from "../../parts/account-items-cluster.comp.js"
 import Navbar from "../../parts/navbar.comp.js"
@@ -13,11 +11,10 @@ import {
 
 export function MyNFTs (){
   const address = useAddress()
-  const [user, loggedIn, cu] = useCurrentUser()
 
   
 
-  return loggedIn ?(
+  return (//loggedIn ?(
     <Base>
         <Box borderWidth="10px" borderColor="black" >
           <AuthCluster/>
@@ -37,9 +34,9 @@ export function MyNFTs (){
           <Foot />
         </footer>
     </Base>
-  ):(
+  /*):(
     <Base>
       <div>\\<Redirect to="/" /></div>
-    </Base>
+    </Base>*/
   )
 };

@@ -1,8 +1,6 @@
 /*users.jsx*/
 import React, {Suspense} from "react";
-import { Redirect } from "react-router-dom";
 import {Base} from "../../parts/base.comp"
-import {useCurrentUser } from "../../hooks/use-current-user.hook";
 import AuthCluster from "../../parts/auth-cluster.comp.js"
 import {CreateNFTCluster} from "../../parts/create-nft-cluster.comp.js"
 import Navbar from "../../parts/navbar.comp.js"
@@ -14,9 +12,8 @@ import {
 
 export function CreatePage (){
   const address = useAddress()
-  const [user, loggedIn, cu] = useCurrentUser()
 
-  return loggedIn ?(
+  return (
     <Base>
         <Box borderWidth="10px" borderColor="black" >
           <AuthCluster/>
@@ -33,11 +30,11 @@ export function CreatePage (){
           <Foot />
         </footer>
     </Base>
-  ):(
+  )/*:(
     <Base>
       <div>\\<Redirect to="/" /></div>
     </Base>
-  );
+  );*/
 };
 
 

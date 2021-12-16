@@ -1,11 +1,11 @@
-import KittyItemsMarket from "../../contracts/KittyItemsMarket.cdc"
+import ValiasMarket from "../../contracts/ValiasMarket.cdc"
 
 transaction(itemID: UInt64) {
-    let marketCollection: &KittyItemsMarket.Collection
+    let marketCollection: &ValiasMarket.Collection
 
     prepare(signer: AuthAccount) {
-        self.marketCollection = signer.borrow<&KittyItemsMarket.Collection>(from: KittyItemsMarket.CollectionStoragePath)
-            ?? panic("Missing or mis-typed KittyItemsMarket Collection")
+        self.marketCollection = signer.borrow<&ValiasMarket.Collection>(from: ValiasMarket.CollectionStoragePath)
+            ?? panic("Missing or mis-typed ValiasMarket Collection")
     }
 
     execute {

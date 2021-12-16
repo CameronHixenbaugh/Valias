@@ -5,7 +5,7 @@ import * as fs from "fs";
 import * as path from "path";
 
 const nonFungibleTokenPath = '"../../contracts/NonFungibleToken.cdc"';
-const kittyItemsPath = '"../../contracts/KittyItems.cdc"';
+const kittyItemsPath = '"../../contracts/Valias.cdc"';
 
 class KittyItemsService {
   constructor(

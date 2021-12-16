@@ -5,7 +5,7 @@ import * as fs from "fs";
 import * as path from "path";
 
 const fungibleTokenPath = '"../../contracts/FungibleToken.cdc"';
-const kibblePath = '"../../contracts/Kibble.cdc"';
+const kibblePath = '"../../contracts/Vex.cdc"';
 
 class KibblesService {
   constructor(

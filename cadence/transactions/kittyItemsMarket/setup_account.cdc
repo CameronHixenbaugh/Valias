@@ -1,4 +1,4 @@
-import KittyItemsMarket from "../../contracts/KittyItemsMarket.cdc"
+import ValiasMarket from "../../contracts/ValiasMarket.cdc"
 
 // This transaction configures an account to hold SaleOffer items.
 
@@ -6,16 +6,16 @@ transaction {
     prepare(signer: AuthAccount) {
 
         // if the account doesn't already have a collection
-        if signer.borrow<&KittyItemsMarket.Collection>(from: KittyItemsMarket.CollectionStoragePath) == nil {
+        if signer.borrow<&ValiasMarket.Collection>(from: ValiasMarket.CollectionStoragePath) == nil {
 
             // create a new empty collection
-            let collection <- KittyItemsMarket.createEmptyCollection() as! @KittyItemsMarket.Collection
+            let collection <- ValiasMarket.createEmptyCollection() as! @ValiasMarket.Collection
             
             // save it to the account
-            signer.save(<-collection, to: KittyItemsMarket.CollectionStoragePath)
+            signer.save(<-collection, to: ValiasMarket.CollectionStoragePath)
 
             // create a public capability for the collection
-            signer.link<&KittyItemsMarket.Collection{KittyItemsMarket.CollectionPublic}>(KittyItemsMarket.CollectionPublicPath, target: KittyItemsMarket.CollectionStoragePath)
+            signer.link<&ValiasMarket.Collection{ValiasMarket.CollectionPublic}>(ValiasMarket.CollectionPublicPath, target: ValiasMarket.CollectionStoragePath)
         }
     }
 }

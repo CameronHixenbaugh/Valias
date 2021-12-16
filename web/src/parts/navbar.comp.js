@@ -21,6 +21,7 @@ export default function Navbar() {
   const mobileNav = useDisclosure();
   const [user,loggedIn] = useCurrentUser()
 
+
   function burgerHandle(){
     if(mobileNav.isOpen === true){
       mobileNav.onClose()
@@ -49,7 +50,7 @@ export default function Navbar() {
             >
               <VisuallyHidden>Valias</VisuallyHidden>
             </chakra.a>
-            <chakra.h1 fontSize="xl" color="white" fontWeight="medium" ml="2">
+            <chakra.h1 fontSize="xl" color="white" fontWeight="medium" ml="2" pt="1.5">
               Menu
             </chakra.h1>
           </Flex>
@@ -64,6 +65,7 @@ export default function Navbar() {
               <NavLink to={"/"+user.addr+"/myNFTs"} style={{color:"white"}}><Button variant="ghost">My NFTs</Button></NavLink>
               <NavLink to={"/"+user.addr+"/create"} style={{color:"white"}}><Button variant="ghost">Create NFT</Button></NavLink>
               <NavLink to={"/market"} style={{color:"white"}}><Button variant="ghost">Marketplace</Button></NavLink>
+              <NavLink to={"/how"} style={{color:"white"}}><Button w="full" style={{color:"white"}} variant="ghost">How it Works</Button></NavLink>
               <NavLink to={"/about"} style={{color:"white"}}><Button variant="ghost">About Us</Button></NavLink>
             </HStack>
             <Box display={{ base: "inline-block", md: "none" }}>
@@ -105,6 +107,7 @@ export default function Navbar() {
               <NavLink to={"/"+user.addr+"/myNFTs"} style={{color:"white"}}><Button w="full" style={{color:"white"}} variant="ghost">My NFTs</Button></NavLink>
               <NavLink to={"/"+user.addr+"/create"} style={{color:"white"}}><Button w="full" style={{color:"white"}} variant="ghost">Create NFT</Button></NavLink>
               <NavLink to={"/market"} style={{color:"white"}}><Button w="full" style={{color:"white"}} variant="ghost">Marketplace</Button></NavLink>
+              <NavLink to={"/how"} style={{color:"white"}}><Button w="full" style={{color:"white"}} variant="ghost">How it Works</Button></NavLink>
               <NavLink to={"/about"} style={{color:"white"}}><Button w="full" style={{color:"white"}} variant="ghost">About Us</Button></NavLink>
               </VStack>
             </Box>
@@ -145,6 +148,7 @@ export default function Navbar() {
             >
               <NavLink to={"/"} style={{color:"white"}}><Button variant="ghost">Home</Button></NavLink>
               <NavLink to={"/market"} style={{color:"white"}}><Button variant="ghost">Marketplace</Button></NavLink>
+              <NavLink to={"/how"} style={{color:"white"}}><Button w="full" style={{color:"white"}} variant="ghost">How it Works</Button></NavLink>
               <NavLink to={"/about"} style={{color:"white"}}><Button variant="ghost">About Us</Button></NavLink>
             </HStack>
             <Box display={{ base: "inline-block", md: "none" }}>
@@ -184,6 +188,7 @@ export default function Navbar() {
 
               <NavLink to={"/"} style={{color:"white"}}><Button w="full" style={{color:"white"}} variant="ghost">Home</Button></NavLink>
               <NavLink to={"/market"} style={{color:"white"}}><Button w="full" style={{color:"white"}} variant="ghost">Marketplace</Button></NavLink>
+              <NavLink to={"/how"} style={{color:"white"}}><Button w="full" style={{color:"white"}} variant="ghost">How it Works</Button></NavLink>
               <NavLink to={"/about"} style={{color:"white"}}><Button w="full" style={{color:"white"}} variant="ghost">About Us</Button></NavLink>
               </VStack>
             </Box>

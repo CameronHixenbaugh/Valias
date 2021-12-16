@@ -43,7 +43,7 @@ export default function DepositVex(props){
 
   return (
     <>
-      <Button disabled={kibbles.status !== IDLE || !init.isInitialized} onClick={onOpen} alignSelf="center" backgroundColor="#BEE3F8">Deposit VEX</Button>
+      <Button disabled={kibbles.status !== IDLE || !init.isInitialized} onClick={onOpen} alignSelf="center">Deposit VEX</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

@@ -6,17 +6,17 @@ import {tx} from "./util/tx"
 const CODE = cdc`
   import FungibleToken from 0xFungibleToken
   import NonFungibleToken from 0xNonFungibleToken
-  import Kibble from 0xKibble
-  import KittyItems from 0xKittyItems
-  import KittyItemsMarket from 0xKittyItemsMarket
+  import Vex from 0xKibble
+  import Valias from 0xKittyItems
+  import ValiasMarket from 0xKittyItemsMarket
 
-  pub fun hasKibble(_ address: Address): Bool {
+  pub fun hasVex(_ address: Address): Bool {
     let receiver = getAccount(address)
-      .getCapability<&Kibble.Vault{FungibleToken.Receiver}>(Kibble.ReceiverPublicPath)
+      .getCapability<&Vex.Vault{FungibleToken.Receiver}>(Vex.ReceiverPublicPath)
       .check()
 
     let balance = getAccount(address)
-      .getCapability<&Kibble.Vault{FungibleToken.Balance}>(Kibble.BalancePublicPath)
+      .getCapability<&Vex.Vault{FungibleToken.Balance}>(Vex.BalancePublicPath)
       .check()
 
     return receiver && balance
@@ -24,42 +24,42 @@ const CODE = cdc`
 
   pub fun hasItems(_ address: Address): Bool {
     return getAccount(address)
-      .getCapability<&KittyItems.Collection{NonFungibleToken.CollectionPublic, KittyItems.KittyItemsCollectionPublic}>(KittyItems.CollectionPublicPath)
+      .getCapability<&Valias.Collection{NonFungibleToken.CollectionPublic, Valias.ValiasCollectionPublic}>(Valias.CollectionPublicPath)
       .check()
   }
 
   pub fun hasMarket(_ address: Address): Bool {
     return getAccount(address)
-      .getCapability<&KittyItemsMarket.Collection{KittyItemsMarket.CollectionPublic}>(KittyItemsMarket.CollectionPublicPath)
+      .getCapability<&ValiasMarket.Collection{ValiasMarket.CollectionPublic}>(ValiasMarket.CollectionPublicPath)
       .check()
   }
 
   transaction {
     prepare(acct: AuthAccount) {
-      if !hasKibble(acct.address) {
-        if acct.borrow<&Kibble.Vault>(from: Kibble.VaultStoragePath) == nil {
-          acct.save(<-Kibble.createEmptyVault(), to: Kibble.VaultStoragePath)
+      if !hasVex(acct.address) {
+        if acct.borrow<&Vex.Vault>(from: Vex.VaultStoragePath) == nil {
+          acct.save(<-Vex.createEmptyVault(), to: Vex.VaultStoragePath)
         }
-        acct.unlink(Kibble.ReceiverPublicPath)
-        acct.unlink(Kibble.BalancePublicPath)
-        acct.link<&Kibble.Vault{FungibleToken.Receiver}>(Kibble.ReceiverPublicPath, target: Kibble.VaultStoragePath)
-        acct.link<&Kibble.Vault{FungibleToken.Balance}>(Kibble.BalancePublicPath, target: Kibble.VaultStoragePath)
+        acct.unlink(Vex.ReceiverPublicPath)
+        acct.unlink(Vex.BalancePublicPath)
+        acct.link<&Vex.Vault{FungibleToken.Receiver}>(Vex.ReceiverPublicPath, target: Vex.VaultStoragePath)
+        acct.link<&Vex.Vault{FungibleToken.Balance}>(Vex.BalancePublicPath, target: Vex.VaultStoragePath)
       }
 
       if !hasItems(acct.address) {
-        if acct.borrow<&KittyItems.Collection>(from: KittyItems.CollectionStoragePath) == nil {
-          acct.save(<-KittyItems.createEmptyCollection(), to: KittyItems.CollectionStoragePath)
+        if acct.borrow<&Valias.Collection>(from: Valias.CollectionStoragePath) == nil {
+          acct.save(<-Valias.createEmptyCollection(), to: Valias.CollectionStoragePath)
         }
-        acct.unlink(KittyItems.CollectionPublicPath)
-        acct.link<&KittyItems.Collection{NonFungibleToken.CollectionPublic, KittyItems.KittyItemsCollectionPublic}>(KittyItems.CollectionPublicPath, target: KittyItems.CollectionStoragePath)
+        acct.unlink(Valias.CollectionPublicPath)
+        acct.link<&Valias.Collection{NonFungibleToken.CollectionPublic, Valias.ValiasCollectionPublic}>(Valias.CollectionPublicPath, target: Valias.CollectionStoragePath)
       }
 
       if !hasMarket(acct.address) {
-        if acct.borrow<&KittyItemsMarket.Collection>(from: KittyItemsMarket.CollectionStoragePath) == nil {
-          acct.save(<-KittyItemsMarket.createEmptyCollection(), to: KittyItemsMarket.CollectionStoragePath)
+        if acct.borrow<&ValiasMarket.Collection>(from: ValiasMarket.CollectionStoragePath) == nil {
+          acct.save(<-ValiasMarket.createEmptyCollection(), to: ValiasMarket.CollectionStoragePath)
         }
-        acct.unlink(KittyItemsMarket.CollectionPublicPath)
-        acct.link<&KittyItemsMarket.Collection{KittyItemsMarket.CollectionPublic}>(KittyItemsMarket.CollectionPublicPath, target:KittyItemsMarket.CollectionStoragePath)
+        acct.unlink(ValiasMarket.CollectionPublicPath)
+        acct.link<&ValiasMarket.Collection{ValiasMarket.CollectionPublic}>(ValiasMarket.CollectionPublicPath, target:ValiasMarket.CollectionStoragePath)
       }
     }
   }

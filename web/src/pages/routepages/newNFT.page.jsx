@@ -1,11 +1,8 @@
 import React from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {useCurrentUser } from "../../hooks/use-current-user.hook";
-import {useAddress} from "../../hooks/use-url-address.hook"
 import {Base} from "../../parts/base.comp"
-//import {IDLE} from "../../global/constants"
 import AuthCluster from "../../parts/auth-cluster.comp.js"
-//import { useAccountItems} from "../../hooks/use-account-items.hook"
 import Navbar from "../../parts/navbar.comp.js"
 import Foot from "../../parts/footer.comp"
 import { 
@@ -17,7 +14,6 @@ import {
 } from "@chakra-ui/react";
 
 import "../../pages/vid2.css"
-//import fireworks from "../../parts/images/fireworks.mp4"
 
 var name
 var description
@@ -37,15 +33,12 @@ function buildNFT(n, d, p, l, p3, h){
 
 }
 
-var image = "https://ipfs.io/ipfs/"+ hash
-
 export function Newnft (){
-    const address = useAddress()
-    const [user, loggedIn, cu] = useCurrentUser()
+    const [user] = useCurrentUser()
 
-    
+    var image = ("https://ipfs.io/ipfs/"+hash)
 
-  return loggedIn ?(
+  return (//loggedIn ?(
     <Base>
         <Box borderWidth="10px" borderColor="black" >
           <AuthCluster/>
@@ -70,7 +63,7 @@ export function Newnft (){
                             <Center>
                                 <VStack>
                                     <Text color="white" fontSize="4xl" ><b>{name}</b></Text>
-                                    <img src={image} alt="New NFT" width="75%" />
+                                    <img src={image} alt="New NFT" width= "250px" height= "250px" />
                                     <Text color="white" fontSize="2xl" width="75%" ><b>{description}</b></Text>
                                     <Text color="white" fontSize="2xl" ><b>Price: {price}</b></Text>
                                     <Text color="white" fontSize="2xl" ><b>TypeID: {hash}</b></Text>
@@ -86,10 +79,10 @@ export function Newnft (){
         </Box>
         <Foot />
     </Base>
-  ):(
+  /*):(
     <Base>
       <div>\\<Redirect to="/" /></div>
-    </Base>
+    </Base>*/
   );
 };
 
