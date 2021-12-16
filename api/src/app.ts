@@ -136,10 +136,10 @@ const initApp = (
   app.use(V1, initKittyItemsRouter(kittyItemsService));
   app.use(V1, initMarketRouter(marketService));
 
-  /*function isString(s) {
+  function isString(s) {
     return typeof s === 'string' || s instanceof String;
-  }*/
-  var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io/']
+  }
+  var whitelist = ['https://vaultv2.herokuapp.com/', 'http://www.valias.io/', 'http://localhost:3001']
   var corsOptions = {
     origin: function(origin, callback){
       if(whitelist.indexOf(origin) !== -1 || !origin){
@@ -154,30 +154,46 @@ const initApp = (
 
   const serveReactApp = () => {
     app.use(express.static(path.resolve(__dirname, "../../web/build")));
-    app.use(cors(corsOptions))
-    /*app.use((req, res, next) => {
-      const origin = req.headers.origin;
+    //app.use(cors())
+    //app.get('/', (req, res, next) => {
+      //const origin = req.headers.origin;
 
-      if(isString(origin)){
+      /*if(isString(req.headers.origin)){
+          const origin = req.headers.origin;
         if (whitelist.indexOf(origin) !== -1 || !origin) {
            res.setHeader('Access-Control-Allow-Origin', origin);
         }else{
            !!whitelist
         }
-      }else{
-        callback(new Error('Not Allowed by CORS!'))
-      };
+      }
       
-      
+      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');
       res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
       res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
       res.header('Access-Control-Allow-Credentials', 'true');
+      res.json({msg: 'bitchesss'})
       return next();
     });*/
+
+    var allowCrossDomain = function(req, res, next) {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        
+      // intercept OPTIONS method
+      if ('OPTIONS' == req.method) {
+        res.send(201);
+      }
+      else {
+        next();
+      }
+  };
+  app.use(allowCrossDomain);
 
     app.get('*', function (req, res) {
       res.sendFile(path.resolve(__dirname, "../../web/build/index.html"));
       res.cookie('_ga', '.paypal.com/',{sameSite:'none', secure: true});
+      console.log('bitchesss')
     });
   };
 
@@ -189,8 +205,13 @@ const initApp = (
   }
 
   app.all("*", async (req: Request, res: Response) => {
+    console.log('fuuuuuck')
     return res.sendStatus(404);
+    
   });
+
+  console.log('fuuuuuck?')
+  
 
   return app;
 };
