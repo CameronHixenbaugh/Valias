@@ -1,7 +1,7 @@
 {
-  "name": "kitty-items",
+  "name": "valias",
   "version": "1.0.0",
-  "description": "<p align=\"center\">     <a href=\"http://kitty-items-flow-testnet.herokuapp.com/\">         <img width=\"400\" src=\"kitty-items-banner.png\" />     </a> </p>",
+  "description": "valias marketplace dapp",
   "main": "index.js",
   "dependencies": {
     "lerna": "^4.0.0",

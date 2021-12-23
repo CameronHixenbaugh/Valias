@@ -11,27 +11,18 @@ import {useKibblesBalance} from "../../hooks/use-kibbles-balance.hook"
 import AuthCluster from "../../parts/auth-cluster.comp"
 import InitCluster from "../../parts/init-cluster.comp"
 import BalanceCluster from "../../parts/balance-cluster.comp"
-import MarketItemsCluster from "../../parts/market-items-cluster.comp"
-import {CreateNFTCluster} from "../../parts/create-nft-cluster.comp.js"
 import Navbar from "../../parts/navbar.comp"
-import AccountItemsCluster from "../../parts/account-items-cluster.comp"
 import Foot from "../../parts/footer.comp"
+import Carousel from "./../../parts/carousel/ChakraCarousel.jsx";
 import {
   Alert,
   AlertIcon,
   AlertTitle,
   Box,
-  Badge,
   Flex,
   Center,
   Tag,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  Spinner,
-  HStack
+  Spinner
 } from "@chakra-ui/react" 
 
 
@@ -113,7 +104,6 @@ export function InfoBanner({address}) {
 
 export function Page() {
   const address = useAddress()
-  const [cu] = useCurrentUser()
 
 return /*loggedIn ?*/(
     <Base>
@@ -122,6 +112,7 @@ return /*loggedIn ?*/(
         crossOrigin="anonymous"></link>
 
         <Box borderWidth="10px" borderColor="black" >
+
         <AuthCluster/>
         </Box>
         <Box borderWidth="10px" borderColor="black"> 
@@ -171,58 +162,26 @@ return /*loggedIn ?*/(
         </Flex>
         </Center>
         </Box>
-        <Box backgroundColor="black" p="7">
-        <Tabs colorScheme="blue" defaultIndex={0}>
-          <Center>
-          <TabList backgroundColor="black" style={{color:"white"}}>
-            <Tab fontSize="2xl">
-              <HStack>
-                <Box>{cu.addr === address ? "My" : "User"} NFTs</Box>
-              </HStack>
-              <Suspense fallback={null}>
-                <AccountItemsCount address={address} />
-              </Suspense>
-            </Tab>
-            <Tab fontSize="2xl">
-              <HStack>
-                <Box>NFT Market</Box>
-              </HStack>
-              <Suspense fallback={null}>
-                <MarketItemsCount />
-              </Suspense>
-            </Tab>
-            <Tab fontSize="2xl">
-              <HStack>
-                <Box>Create NFT</Box>
-              </HStack>
-            </Tab>
-          </TabList>
-          </Center> 
-
-          <TabPanels backgroundColor="black">
-            <TabPanel>
-              <AccountItemsCluster address={address} />
-            </TabPanel>
-            <TabPanel >
-              <MarketItemsCluster />
-            </TabPanel>
-            <TabPanel>
-            <Suspense fallback={null}>
-              <CreateNFTCluster address={address} />
-            </Suspense>
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+      <Box backgroundColor="black" p="7">
+        <h2 style={{
+          color:"#E2E8F0", 
+          textShadow: "0px 4px 10px rgba(226, 232, 240, 0.92)",
+          fontWeight: "bolder",
+          textAlign: "center"}}><u>User Collections</u></h2>
+        <Carousel />
+      </Box>
+      <Box backgroundColor="black" p="7">
+        <h2 style={{
+          color:"#E2E8F0", 
+          textShadow: "0px 4px 10px rgba(226, 232, 240, 0.92)",
+          fontWeight: "bolder",
+          textAlign: "center"}}><u>Top NFTs For Sale</u></h2>
+        <Carousel />
       </Box>
       <footer>
         <Foot />
       </footer>
     </Base>
-  );/*:(
-    <Suspense fallback={<div><Redirect to="/" /></div>
-  }>
-      <root />
-    </Suspense>
-  );*/
+  );
 }
 

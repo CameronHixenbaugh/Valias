@@ -4,6 +4,7 @@ import AuthCluster from "../../parts/auth-cluster.comp.js"
 import {MarketItemsCluster} from "../../parts/market-items-cluster.comp.js"
 import Navbar from "../../parts/navbar.comp.js"
 import {useAddress} from "../../hooks/use-url-address.hook"
+import Search from "../../parts/search.comp";
 import Foot from "../../parts/footer.comp"
 import { 
   Box
@@ -12,7 +13,7 @@ import {
 export function Market (){
   const address = useAddress()
 
-  return (
+    return (
     <Base>
         <Box borderWidth="10px" borderColor="black" >
           <AuthCluster/>
@@ -24,13 +25,19 @@ export function Market (){
             <Box textAlign="center" backgroundColor="black" style={{color:"white"}}>
                 <h3>NFTs for Sale</h3>
             </Box>
+            <br />
+            <br />
+            <Search />
+            <br />
           <Suspense fallback={null} >
               <MarketItemsCluster address={address} />
           </Suspense>
-        </Box>
+          </Box>
         <footer>
           <Foot />
         </footer>
     </Base>
   );
 };
+
+
